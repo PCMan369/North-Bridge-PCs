@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photo gallery of gaming PC builds from North Bridge PCs in Southern Oregon — current listings and completed systems.">
+  <title>Gallery — North Bridge PCs</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a href="index.html" class="header-brand">
+        <span class="brand-name">North Bridge <span>PCs</span></span>
+        <span class="brand-sub">Southern Oregon Gaming PCs</span>
+        <span class="brand-tagline">Local Pickup &bull; Custom Builds &bull; Linux Available</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="index.html"        class="nav-link">Home</a>
+        <a href="builds.html"       class="nav-link">Gaming PCs</a>
+        <a href="custom-build.html" class="nav-link">Custom Builds</a>
+        <a href="gallery.html"      class="nav-link active">Gallery</a>
+        <a href="faq.html"          class="nav-link">FAQ</a>
+        <a href="contact.html"      class="nav-link nav-cta">Contact</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="index.html"        class="nav-link">Home</a>
+      <a href="builds.html"       class="nav-link">Gaming PCs</a>
+      <a href="custom-build.html" class="nav-link">Custom Builds</a>
+      <a href="gallery.html"      class="nav-link active">Gallery</a>
+      <a href="faq.html"          class="nav-link">FAQ</a>
+      <a href="contact.html"      class="nav-link nav-cta">Contact</a>
+    </nav>
+  </header>
+
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">Photos</span>
+      <h1>Gallery</h1>
+      <p>
+        Photos of current listings and completed builds.
+        Images are added as new systems come through.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       HOW TO ADD PHOTOS
+       ============================================================
+       All images are managed in js/gallery.js — not here.
+
+       To add a photo:
+       1. Put the image file in the "images" folder.
+       2. Open js/gallery.js
+       3. Add a new entry to either currentBuilds or completedBuilds:
+            {
+              src: "images/your-filename.jpg",
+              alt: "Description of what's in the photo"
+            },
+       4. Save gallery.js — the page updates automatically.
+
+       See js/gallery.js for full instructions.
+       ============================================================ -->
+
+
+  <!-- CURRENT BUILDS -->
+  <section class="section">
+    <div class="container">
+
+      <div class="section-header" style="text-align:left; margin-bottom:2rem;">
+        <span class="section-label">For Sale</span>
+        <h2>Current Builds</h2>
+        <p>Systems that are currently available or in progress.</p>
+      </div>
+
+      <!--
+        Images are loaded here automatically from js/gallery.js.
+        Edit the currentBuilds array in gallery.js to manage this section.
+      -->
+      <div id="gallery-current" class="gallery-grid"></div>
+
+    </div>
+  </section>
+
+
+  <!-- COMPLETED BUILDS -->
+  <section class="section section-alt">
+    <div class="container">
+
+      <div class="section-header" style="text-align:left; margin-bottom:2rem;">
+        <span class="section-label">Past Work</span>
+        <h2>Completed Builds</h2>
+        <p>Sold systems, detail shots, and past builds.</p>
+      </div>
+
+      <!--
+        Images are loaded here automatically from js/gallery.js.
+        Edit the completedBuilds array in gallery.js to manage this section.
+      -->
+      <div id="gallery-completed" class="gallery-grid"></div>
+
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>See Something You Like?</h2>
+        <p>
+          If a listed system catches your eye, reach out and ask about it.
+          Or if you're thinking about a custom build, I'm happy to talk through what's possible.
+        </p>
+        <div class="btn-group">
+          <a href="builds.html"       class="btn btn-primary btn-lg">Browse Available Systems →</a>
+          <a href="custom-build.html" class="btn btn-secondary btn-lg">Custom Builds</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="brand-name">North Bridge <span style="color:var(--accent);">PCs</span></div>
+          <p>Southern Oregon</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="builds.html">Gaming PCs</a>
+          <a href="custom-build.html">Custom Builds</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        <p>&copy; 2025 North Bridge PCs &mdash; Southern Oregon</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- SCRIPTS -->
+  <script src="js/gallery.js"></script>
+
+  <script>
+    // Mobile nav toggle
+    (function () {
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobile-nav');
+
+      hamburger.addEventListener('click', function () {
+        const isOpen = hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+
+      mobileNav.querySelectorAll('.nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          hamburger.classList.remove('open');
+          mobileNav.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+    // Note: initGalleryPage() is called automatically by gallery.js
+    // when it detects the #gallery-current element on the page.
+  </script>
+
+</body>
+</html>

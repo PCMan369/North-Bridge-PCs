@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="North Bridge PCs — Gaming PCs built, tested, and sold in Southern Oregon. Ready-to-buy systems and custom builds around your budget.">
+  <title>North Bridge PCs — Southern Oregon Gaming PCs</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+       Sticky. Shared across all pages.
+       ============================================================ -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a href="index.html" class="header-brand">
+        <span class="brand-name">North Bridge <span>PCs</span></span>
+        <span class="brand-sub">Southern Oregon Gaming PCs</span>
+        <span class="brand-tagline">Local Pickup &bull; Custom Builds &bull; Linux Available</span>
+      </a>
+
+      <!-- Desktop navigation -->
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="index.html"        class="nav-link active">Home</a>
+        <a href="builds.html"       class="nav-link">Gaming PCs</a>
+        <a href="custom-build.html" class="nav-link">Custom Builds</a>
+        <a href="gallery.html"      class="nav-link">Gallery</a>
+        <a href="faq.html"          class="nav-link">FAQ</a>
+        <a href="contact.html"      class="nav-link nav-cta">Contact</a>
+      </nav>
+
+      <!-- Mobile hamburger button -->
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile navigation drawer -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="index.html"        class="nav-link active">Home</a>
+      <a href="builds.html"       class="nav-link">Gaming PCs</a>
+      <a href="custom-build.html" class="nav-link">Custom Builds</a>
+      <a href="gallery.html"      class="nav-link">Gallery</a>
+      <a href="faq.html"          class="nav-link">FAQ</a>
+      <a href="contact.html"      class="nav-link nav-cta">Contact</a>
+    </nav>
+  </header>
+
+
+  <!-- ============================================================
+       HERO
+       Desktop: text left, image right.
+       Mobile: image on top, text below.
+       ============================================================ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+
+        <!-- LEFT: Copy -->
+        <div class="hero-content">
+          <div class="hero-eyebrow">Southern Oregon</div>
+          <h1>Gaming PCs Built and Tested in Southern Oregon</h1>
+          <p class="hero-body">
+            Hi, I'm the person behind North Bridge PCs. I build, test, and sell gaming PCs —
+            along with custom systems put together around your budget and the games you actually play.
+          </p>
+          <div class="hero-buttons">
+            <a href="builds.html"       class="btn btn-primary btn-lg">View Gaming PCs</a>
+            <a href="custom-build.html" class="btn btn-secondary btn-lg">Custom Builds</a>
+          </div>
+        </div>
+
+        <!-- RIGHT: Hero image -->
+        <!--
+          ============================================================
+          HOW TO REPLACE THE HERO IMAGE
+          ============================================================
+          1. Add your photo to the "images" folder.
+             Recommended size: 1200 x 900 pixels (or similar 4:3 ratio).
+             Good name: hero-build.jpg
+
+          2. The image is referenced below in the src attribute.
+             Change:
+               src="images/hero-build.jpg"
+             To:
+               src="images/whatever-you-named-your-file.jpg"
+
+          3. Update the alt text to describe what's in the photo.
+
+          If the file is missing, a placeholder shows automatically.
+          ============================================================
+        -->
+        <div class="hero-image-wrap">
+          <img
+            src="images/hero-build.jpg"
+            alt="Custom gaming PC build — North Bridge PCs, Southern Oregon"
+            onerror="
+              this.parentElement.innerHTML =
+                '<div class=\'hero-img-placeholder\'>' +
+                '<span class=\'icon\'>🖥️</span>' +
+                '<span>Add hero-build.jpg to the images folder</span>' +
+                '</div>';
+            "
+          >
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FEATURED GAMING PCS
+       Loaded automatically from js/builds.js.
+       Shows up to 3 available systems.
+       ============================================================ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Ready to Buy</span>
+        <h2>Available Systems</h2>
+        <p>Cleaned, tested, and ready for pickup. Performance estimates listed for every system.</p>
+        <div class="accent-line"></div>
+      </div>
+
+      <!-- Build cards are injected here by the script at the bottom of this page -->
+      <div id="featured-builds" class="builds-grid"></div>
+
+      <div class="text-center mt-4">
+        <a href="builds.html" class="btn btn-ghost">View All Systems →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       WHY NORTH BRIDGE PCS
+       Three honest value propositions.
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">What You're Getting</span>
+        <h2>Why North Bridge PCs</h2>
+        <p>No fluff. Here's what's actually different.</p>
+        <div class="accent-line"></div>
+      </div>
+
+      <div class="grid-3">
+
+        <div class="card">
+          <div class="card-icon">🔍</div>
+          <h3>Tested Before It Leaves</h3>
+          <p>
+            Every system gets cleaned, stress tested under load, and checked for temperatures
+            before it goes anywhere. You're not getting a gamble — you're getting a machine
+            that's been run through its paces.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <h3>Honest Specs, Realistic Numbers</h3>
+          <p>
+            The specs listed are accurate. The performance estimates are based on real-world
+            expectations for that hardware — not cherry-picked benchmark runs. If a system has
+            a limitation, I'll tell you.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📍</div>
+          <h3>Local Pickup, Real Support</h3>
+          <p>
+            Based in Southern Oregon. Pickup is in person. If you hit a snag after getting
+            it home, reach out over email and I'll do my best to help. Not a ticket queue —
+            an actual person.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CUSTOM BUILDS SECTION
+       Two-column: pitch on left, tier examples on right.
+       ============================================================ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="two-col center">
+
+        <!-- Left: pitch and step list -->
+        <div>
+          <span class="section-label">Built for You</span>
+          <h2 style="margin-bottom:1.1rem;">Custom Builds Around Your Budget</h2>
+          <p style="margin-bottom:1.75rem; font-size:1.05rem;">
+            Don't need something off the shelf? I'll put together a system based on what you
+            actually want to do with it — no upsells, no filler parts.
+          </p>
+
+          <div class="step-list" style="margin-bottom:2rem;">
+            <div class="step-list-item">
+              <div class="step-list-num">1</div>
+              <div class="step-list-text">
+                <strong>Tell me your budget.</strong>
+                <p>I'll work with what you have, not push you past it.</p>
+              </div>
+            </div>
+            <div class="step-list-item">
+              <div class="step-list-num">2</div>
+              <div class="step-list-text">
+                <strong>Tell me what games you play.</strong>
+                <p>Different games have different demands. I'll build for what you actually run.</p>
+              </div>
+            </div>
+            <div class="step-list-item">
+              <div class="step-list-num">3</div>
+              <div class="step-list-text">
+                <strong>Tell me what features matter.</strong>
+                <p>Wi-Fi, extra storage, Linux, quiet operation — mention what's important to you.</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="custom-build.html" class="btn btn-primary btn-lg">See Custom Build Options →</a>
+        </div>
+
+        <!-- Right: tier highlights -->
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <div class="highlight-box">
+            <h3>Entry Gaming — Around $500</h3>
+            <p>Solid 1080p gaming on popular titles. Good starting point without overspending.</p>
+          </div>
+          <div class="highlight-box">
+            <h3>High Refresh 1080p — Around $800</h3>
+            <p>Smooth gameplay at higher frame rates. More headroom on demanding games.</p>
+          </div>
+          <div class="highlight-box">
+            <h3>1440p Gaming — Around $1,200</h3>
+            <p>Higher resolution and a stronger GPU. Handles modern titles at quality settings.</p>
+          </div>
+          <p style="font-size:0.78rem; color:var(--dim); font-style:italic; margin-top:0.25rem;">
+            Example ranges only. Actual cost depends on parts availability and your specific requirements.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       TESTING & SETUP PROCESS
+       5-step strip explaining what happens before handoff.
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Before Pickup</span>
+        <h2>Testing &amp; Setup Process</h2>
+        <p>Every system goes through the same checklist before it's ready to hand off.</p>
+        <div class="accent-line"></div>
+      </div>
+
+      <div class="process-steps">
+
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <div class="step-icon">🧹</div>
+          <h4>Cleaned</h4>
+          <p>Dust removed, thermal paste refreshed where needed. Clean inside and out.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <div class="step-icon">⚡</div>
+          <h4>Stress Tested</h4>
+          <p>CPU and GPU pushed under sustained load to check for stability issues.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <div class="step-icon">🌡️</div>
+          <h4>Temps Checked</h4>
+          <p>Thermals verified under load. Nothing runs hot, no surprises after pickup.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <div class="step-icon">💾</div>
+          <h4>Drivers Updated</h4>
+          <p>GPU and system drivers current before handoff. Ready to game the same day.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">5</div>
+          <div class="step-icon">✅</div>
+          <h4>Ready to Use</h4>
+          <p>Plugged in and confirmed working on pickup. A finished computer, not a box of parts.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       GALLERY PREVIEW
+       Shows first 3 images from gallery.js (combined arrays).
+       ============================================================ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Recent Work</span>
+        <h2>From the Build Bench</h2>
+        <p>Photos of recent systems and completed builds.</p>
+        <div class="accent-line"></div>
+      </div>
+
+      <!-- Injected by script at bottom of page -->
+      <div id="gallery-preview" class="gallery-grid" style="margin-bottom:2rem;"></div>
+
+      <div class="text-center">
+        <a href="gallery.html" class="btn btn-ghost">View Full Gallery →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FAQ PREVIEW
+       Two-column: brief intro on left, 3 accordion items on right.
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+
+        <!-- Left: intro -->
+        <div>
+          <span class="section-label">Common Questions</span>
+          <h2 style="margin-bottom:1rem;">Frequently Asked</h2>
+          <p style="margin-bottom:2rem; font-size:1.05rem; line-height:1.8;">
+            Quick answers to the questions that come up most often.
+            The full FAQ page has everything else.
+          </p>
+          <a href="faq.html" class="btn btn-secondary">Full FAQ →</a>
+        </div>
+
+        <!-- Right: 3 accordion items -->
+        <div class="faq-list" id="home-faq">
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>Can it run Fortnite?</h3>
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Yes — every listed system runs Fortnite. Entry builds handle 1080p medium settings
+                   comfortably. Mid and higher-tier builds push higher frame rates or Epic settings.
+                   Specific estimates are on each listing.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>Do you offer Linux?</h3>
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Yes. Linux installation is available on request. If you have a preferred distro —
+                   Ubuntu, Fedora, Pop!_OS, or something else — just mention it when you reach out
+                   and I'll set it up before pickup.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>What kind of support do you offer?</h3>
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Basic troubleshooting assistance after purchase, over email. If something isn't
+                   working right after you get it home, reach out and I'll help figure it out.
+                   Not a full repair shop — but I won't leave you without any help either.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT CTA
+       ============================================================ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label" style="display:block; margin-bottom:1rem;">Get in Touch</span>
+        <h2>Have a Question? Ready to Buy?</h2>
+        <p>
+          Whether you're interested in a specific system, thinking about a custom build,
+          or just not sure where to start — feel free to reach out.
+          No pressure, no sales pitch.
+        </p>
+        <div class="btn-group">
+          <a href="contact.html" class="btn btn-primary btn-lg">Send a Message</a>
+          <a href="builds.html"  class="btn btn-secondary btn-lg">Browse Systems</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="brand-name">North Bridge <span style="color:var(--accent);">PCs</span></div>
+          <p>Southern Oregon</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="builds.html">Gaming PCs</a>
+          <a href="custom-build.html">Custom Builds</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        <p>&copy; 2025 North Bridge PCs &mdash; Southern Oregon</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       SCRIPTS
+       builds.js and gallery.js must be loaded before the inline
+       script below, since the inline script uses their functions.
+       ============================================================ -->
+  <script src="js/builds.js"></script>
+  <script src="js/gallery.js"></script>
+
+  <script>
+    // ============================================================
+    // MOBILE NAV TOGGLE
+    // ============================================================
+    (function () {
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobile-nav');
+
+      hamburger.addEventListener('click', function () {
+        const isOpen = hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+
+      mobileNav.querySelectorAll('.nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          hamburger.classList.remove('open');
+          mobileNav.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+
+
+    // ============================================================
+    // FEATURED BUILDS (homepage — up to 3 available systems)
+    // Uses the renderBuildCard() function from builds.js
+    // ============================================================
+    (function () {
+      const container = document.getElementById('featured-builds');
+      if (!container) return;
+
+      const available = builds.filter(function (b) {
+        return b.status === 'available';
+      }).slice(0, 3);
+
+      if (available.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <span class="empty-icon">🖥️</span>
+            <h3>No Systems Currently Available</h3>
+            <p>Nothing listed right now, but custom builds are always on the table.</p>
+            <a href="custom-build.html" class="btn btn-primary">Start a Custom Build →</a>
+          </div>
+        `;
+      } else {
+        container.innerHTML = available.map(renderBuildCard).join('');
+      }
+    })();
+
+
+    // ============================================================
+    // GALLERY PREVIEW (homepage — first 3 photos combined)
+    // Uses currentBuilds and completedBuilds from gallery.js
+    // ============================================================
+    (function () {
+      const container = document.getElementById('gallery-preview');
+      if (!container) return;
+
+      const all = [].concat(currentBuilds, completedBuilds).slice(0, 3);
+
+      if (all.length === 0) {
+        container.innerHTML = '<p class="text-muted text-center" style="grid-column:1/-1;">Photos coming soon.</p>';
+        return;
+      }
+
+      container.innerHTML = all.map(function (img) {
+        return `
+          <div class="gallery-item">
+            <img
+              src="${img.src}"
+              alt="${img.alt}"
+              loading="lazy"
+              onerror="
+                this.parentElement.innerHTML =
+                  '<div class=\\'gallery-placeholder\\'>' +
+                  '<span class=\\'gp-icon\\'>📷</span>' +
+                  '<span>Photo coming soon</span>' +
+                  '</div>';
+              "
+            >
+          </div>
+        `;
+      }).join('');
+    })();
+
+
+    // ============================================================
+    // FAQ ACCORDION (homepage preview — 3 items)
+    // ============================================================
+    (function () {
+      document.querySelectorAll('#home-faq .faq-question').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const item   = this.closest('.faq-item');
+          const isOpen = item.classList.contains('open');
+
+          // Close all items in this FAQ list
+          document.querySelectorAll('#home-faq .faq-item').forEach(function (el) {
+            el.classList.remove('open');
+          });
+
+          // Open the clicked item if it was closed
+          if (!isOpen) {
+            item.classList.add('open');
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

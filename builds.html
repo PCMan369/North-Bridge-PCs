@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse gaming PCs for sale from North Bridge PCs in Southern Oregon. All systems cleaned, stress tested, and priced fairly.">
+  <title>Gaming PCs — North Bridge PCs</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a href="index.html" class="header-brand">
+        <span class="brand-name">North Bridge <span>PCs</span></span>
+        <span class="brand-sub">Southern Oregon Gaming PCs</span>
+        <span class="brand-tagline">Local Pickup &bull; Custom Builds &bull; Linux Available</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="index.html"        class="nav-link">Home</a>
+        <a href="builds.html"       class="nav-link active">Gaming PCs</a>
+        <a href="custom-build.html" class="nav-link">Custom Builds</a>
+        <a href="gallery.html"      class="nav-link">Gallery</a>
+        <a href="faq.html"          class="nav-link">FAQ</a>
+        <a href="contact.html"      class="nav-link nav-cta">Contact</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="index.html"        class="nav-link">Home</a>
+      <a href="builds.html"       class="nav-link active">Gaming PCs</a>
+      <a href="custom-build.html" class="nav-link">Custom Builds</a>
+      <a href="gallery.html"      class="nav-link">Gallery</a>
+      <a href="faq.html"          class="nav-link">FAQ</a>
+      <a href="contact.html"      class="nav-link nav-cta">Contact</a>
+    </nav>
+  </header>
+
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">For Sale</span>
+      <h1>Gaming PCs</h1>
+      <p>
+        Every system is cleaned, stress tested, and ready for local pickup in Southern Oregon.
+        Specs are accurate. Performance estimates are based on real-world usage at typical settings.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       AVAILABLE SYSTEMS
+       All cards are rendered by js/builds.js — nothing is
+       hardcoded here. Change status in builds.js to manage listings.
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+
+      <div class="section-header" style="text-align:left; margin-bottom:2rem;">
+        <span class="section-label">Currently Listed</span>
+        <h2>Available Systems</h2>
+      </div>
+
+      <!--
+        Build cards are injected into this element by js/builds.js.
+        To add a PC: edit js/builds.js and add an entry with status: "available"
+        To sell a PC: change status: "available" to status: "sold"
+        The page updates automatically when you save builds.js.
+      -->
+      <div id="available-builds" class="builds-grid"></div>
+
+      <p class="disclaimer">
+        Performance estimates are approximations based on typical usage at the settings listed.
+        Actual frame rates vary by game version, driver updates, and specific settings used.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SOLD SYSTEMS
+       Hidden by default. JavaScript shows it only when there
+       are entries with status: "sold" in builds.js.
+       ============================================================ -->
+  <section class="section section-alt" id="sold-section" style="display:none;">
+    <div class="container">
+
+      <div class="section-header" style="text-align:left; margin-bottom:2rem;">
+        <span class="section-label">Past Sales</span>
+        <h2>Sold Systems</h2>
+        <p>These systems have already been sold. Listed here for reference.</p>
+      </div>
+
+      <div id="sold-builds" class="builds-grid"></div>
+
+    </div>
+  </section>
+
+
+  <!-- INTERESTED IN A CUSTOM BUILD? CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Don't See What You're Looking For?</h2>
+        <p>
+          I can put together a custom system around your budget and the games you play.
+          Reach out and we'll figure out a parts list that makes sense for your situation.
+        </p>
+        <div class="btn-group">
+          <a href="custom-build.html" class="btn btn-primary btn-lg">Custom Builds →</a>
+          <a href="contact.html"      class="btn btn-secondary btn-lg">Ask a Question</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="brand-name">North Bridge <span style="color:var(--accent);">PCs</span></div>
+          <p>Southern Oregon</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="builds.html">Gaming PCs</a>
+          <a href="custom-build.html">Custom Builds</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        <p>&copy; 2025 North Bridge PCs &mdash; Southern Oregon</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- SCRIPTS -->
+  <!--
+    builds.js handles rendering all PC listings.
+    No additional JavaScript needed on this page beyond mobile nav.
+  -->
+  <script src="js/builds.js"></script>
+
+  <script>
+    // Mobile nav toggle
+    (function () {
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobile-nav');
+
+      hamburger.addEventListener('click', function () {
+        const isOpen = hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+
+      mobileNav.querySelectorAll('.nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          hamburger.classList.remove('open');
+          mobileNav.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+    // Note: initBuildsPage() is called automatically by builds.js
+    // when it detects the #available-builds element on the page.
+  </script>
+
+</body>
+</html>

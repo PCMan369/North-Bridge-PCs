@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact North Bridge PCs — ask about a system, start a custom build, or just get a question answered. Southern Oregon.">
+  <title>Contact — North Bridge PCs</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <a href="index.html" class="header-brand">
+        <span class="brand-name">North Bridge <span>PCs</span></span>
+        <span class="brand-sub">Southern Oregon Gaming PCs</span>
+        <span class="brand-tagline">Local Pickup &bull; Custom Builds &bull; Linux Available</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="index.html"        class="nav-link">Home</a>
+        <a href="builds.html"       class="nav-link">Gaming PCs</a>
+        <a href="custom-build.html" class="nav-link">Custom Builds</a>
+        <a href="gallery.html"      class="nav-link">Gallery</a>
+        <a href="faq.html"          class="nav-link">FAQ</a>
+        <a href="contact.html"      class="nav-link nav-cta active">Contact</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="index.html"        class="nav-link">Home</a>
+      <a href="builds.html"       class="nav-link">Gaming PCs</a>
+      <a href="custom-build.html" class="nav-link">Custom Builds</a>
+      <a href="gallery.html"      class="nav-link">Gallery</a>
+      <a href="faq.html"          class="nav-link">FAQ</a>
+      <a href="contact.html"      class="nav-link nav-cta active">Contact</a>
+    </nav>
+  </header>
+
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">Get in Touch</span>
+      <h1>Contact</h1>
+      <p>
+        Fill out the form and I'll get back to you by email.
+        Whether it's a question about a listed system, a custom build inquiry,
+        or something else — no pressure, just a conversation.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- CONTACT SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-layout">
+
+
+        <!-- LEFT COLUMN: Info cards -->
+        <div class="contact-info">
+
+          <div class="contact-info-card">
+            <h3>Response Time</h3>
+            <p>
+              I typically respond within a day or two. If it's been longer than
+              that, feel free to send a follow-up.
+            </p>
+          </div>
+
+          <div class="contact-info-card">
+            <h3>Pickup Location</h3>
+            <p>
+              Southern Oregon. Exact location shared after we've confirmed
+              a sale or a meeting. Local pickup only.
+            </p>
+          </div>
+
+          <div class="contact-info-card">
+            <h3>Custom Builds</h3>
+            <p>
+              Not sure what you need? Just fill in your budget and the games
+              you play — I'll take it from there. You don't need to know
+              anything about PC hardware to get started.
+            </p>
+          </div>
+
+          <div class="contact-info-card">
+            <h3>Linux Available</h3>
+            <p>
+              Prefer Linux? Mention your distro of choice in the form and
+              I'll have it set up before pickup.
+            </p>
+          </div>
+
+        </div>
+
+
+        <!-- RIGHT COLUMN: Contact form -->
+        <div class="form-card">
+
+          <h2 style="margin-bottom:0.4rem; font-size:1.4rem;">Send a Message</h2>
+          <p style="margin-bottom:2rem; font-size:0.93rem;">
+            Fill out what's relevant and skip anything that doesn't apply.
+          </p>
+
+          <!--
+            ============================================================
+            HOW TO SET UP FORMSUBMIT
+            ============================================================
+            1. Replace YOUR_EMAIL_HERE in the action URL below with
+               your actual email address. Example:
+               action="https://formsubmit.co/you@gmail.com"
+
+            2. The first time someone submits the form, FormSubmit will
+               send a confirmation email to that address. Click the
+               confirmation link to activate it.
+
+            3. After that, all form submissions will arrive in your inbox.
+
+            4. OPTIONAL: Update the _next field below to redirect users
+               to a thank-you page after they submit. Change the URL to
+               your GitHub Pages URL + /contact.html (or a custom page).
+               Example:
+               value="https://yourusername.github.io/north-bridge-pcs/contact.html?sent=true"
+
+            5. The _honey field is a spam trap — leave it exactly as-is.
+               Bots fill it in; real users don't. FormSubmit discards any
+               submission where that field has a value.
+            ============================================================
+          -->
+
+          <form
+            action="https://formsubmit.co/YOUR_EMAIL_HERE"
+            method="POST"
+          >
+
+            <!-- FormSubmit configuration fields -->
+            <input type="hidden" name="_subject"  value="New inquiry — North Bridge PCs">
+            <input type="hidden" name="_captcha"  value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next"     value="contact.html?sent=true">
+
+            <!-- Honeypot spam trap — must stay hidden, must stay empty -->
+            <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
+
+
+            <div class="form-grid">
+
+              <!-- Name -->
+              <div class="form-group">
+                <label class="form-label" for="name">Your Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  placeholder="First name is fine"
+                  required
+                  autocomplete="name"
+                >
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label class="form-label" for="email">Your Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="So I can reply to you"
+                  required
+                  autocomplete="email"
+                >
+              </div>
+
+              <!-- Budget -->
+              <div class="form-group">
+                <label class="form-label" for="budget">
+                  Budget <span class="optional">(optional)</span>
+                </label>
+                <input
+                  type="text"
+                  id="budget"
+                  name="budget"
+                  class="form-input"
+                  placeholder="e.g. Around $800, or $600–900"
+                >
+              </div>
+
+              <!-- Games Played -->
+              <div class="form-group">
+                <label class="form-label" for="games">
+                  Games You Play <span class="optional">(optional)</span>
+                </label>
+                <input
+                  type="text"
+                  id="games"
+                  name="games_played"
+                  class="form-input"
+                  placeholder="e.g. Fortnite, War Thunder, Minecraft"
+                >
+              </div>
+
+              <!-- Need Wi-Fi? -->
+              <div class="form-group">
+                <label class="form-label" for="wifi">Need Wi-Fi?</label>
+                <select id="wifi" name="need_wifi" class="form-select">
+                  <option value="" disabled selected>Select one</option>
+                  <option value="Yes — needs Wi-Fi">Yes — needs Wi-Fi</option>
+                  <option value="No — I'll use ethernet">No — I'll use ethernet</option>
+                  <option value="Not sure yet">Not sure yet</option>
+                </select>
+              </div>
+
+              <!-- Need Monitor? -->
+              <div class="form-group">
+                <label class="form-label" for="monitor">Need a Monitor?</label>
+                <select id="monitor" name="need_monitor" class="form-select">
+                  <option value="" disabled selected>Select one</option>
+                  <option value="Yes — looking for a monitor too">Yes — looking for a monitor too</option>
+                  <option value="No — already have one">No — already have one</option>
+                  <option value="Not sure">Not sure</option>
+                </select>
+              </div>
+
+              <!-- Windows or Linux? -->
+              <div class="form-group">
+                <label class="form-label" for="os">Windows or Linux?</label>
+                <select id="os" name="operating_system" class="form-select">
+                  <option value="" disabled selected>Select one</option>
+                  <option value="Windows">Windows</option>
+                  <option value="Linux">Linux</option>
+                  <option value="Open to either">Open to either</option>
+                  <option value="Not sure">Not sure</option>
+                </select>
+              </div>
+
+              <!-- RGB Preference -->
+              <div class="form-group">
+                <label class="form-label" for="rgb">
+                  RGB Preference <span class="optional">(optional)</span>
+                </label>
+                <select id="rgb" name="rgb_preference" class="form-select">
+                  <option value="" disabled selected>Select one</option>
+                  <option value="None — clean look">None — clean look</option>
+                  <option value="A little is fine">A little is fine</option>
+                  <option value="More the better">More the better</option>
+                  <option value="Don't care">Don't care</option>
+                </select>
+              </div>
+
+              <!-- Additional Notes -->
+              <div class="form-group full">
+                <label class="form-label" for="notes">
+                  Additional Notes <span class="optional">(optional)</span>
+                </label>
+                <textarea
+                  id="notes"
+                  name="additional_notes"
+                  class="form-textarea"
+                  placeholder="Anything else worth knowing — specific system you saw, upgrade questions, distro preference, etc."
+                ></textarea>
+              </div>
+
+              <!-- Privacy Notice -->
+              <div class="form-privacy full">
+                <p>
+                  <strong>Privacy:</strong> Your email address is only used to respond to your
+                  message. It will not be shared with anyone or used for anything else.
+                </p>
+              </div>
+
+            </div><!-- /.form-grid -->
+
+            <div style="margin-top:1.5rem;">
+              <button type="submit" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;">
+                Send Message →
+              </button>
+            </div>
+
+          </form>
+
+        </div><!-- /.form-card -->
+
+      </div><!-- /.contact-layout -->
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="brand-name">North Bridge <span style="color:var(--accent);">PCs</span></div>
+          <p>Southern Oregon</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="builds.html">Gaming PCs</a>
+          <a href="custom-build.html">Custom Builds</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        <p>&copy; 2025 North Bridge PCs &mdash; Southern Oregon</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // Mobile nav toggle
+    (function () {
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobile-nav');
+
+      hamburger.addEventListener('click', function () {
+        const isOpen = hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+
+      mobileNav.querySelectorAll('.nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          hamburger.classList.remove('open');
+          mobileNav.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+
+
+    // ============================================================
+    // SHOW A THANK-YOU MESSAGE IF REDIRECTED BACK AFTER SUBMIT
+    // ============================================================
+    // FormSubmit redirects to contact.html?sent=true after a
+    // successful submission. This detects that and shows a message.
+    // ============================================================
+    (function () {
+      if (window.location.search.indexOf('sent=true') !== -1) {
+        const form = document.querySelector('form');
+        if (form) {
+          form.innerHTML = `
+            <div style="text-align:center; padding:3rem 1rem;">
+              <div style="font-size:3rem; margin-bottom:1.25rem;">✅</div>
+              <h3 style="margin-bottom:0.75rem; font-size:1.3rem;">Message Sent</h3>
+              <p style="font-size:1rem; max-width:420px; margin:0 auto 2rem;">
+                Thanks for reaching out. I'll get back to you by email
+                within a day or two.
+              </p>
+              <a href="index.html" class="btn btn-secondary">Back to Home</a>
+            </div>
+          `;
+        }
+      }
+    })();
+  </script>
+
+</body>
+</html>
