@@ -140,156 +140,148 @@
           -->
 
           <form
-            action="https://formsubmit.co/jacobskrove@gmail.com"
-            method="POST"
-          >
+  action="https://formsubmit.co/YOUR_EMAIL_HERE"
+  method="POST"
+  id="contact-form"
+>
+  <!-- FormSubmit configuration -->
+  <input type="hidden" name="_subject"  value="New inquiry — North Bridge PCs">
+  <input type="hidden" name="_captcha"  value="false">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_next"     value="https://YOURUSERNAME.github.io/YOURREPO/contact.html?sent=true">
 
-            <!-- FormSubmit configuration fields -->
-            <input type="hidden" name="_subject"  value="New inquiry — North Bridge PCs">
-            <input type="hidden" name="_captcha"  value="false">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://pcman369.github.io/North-Bridge-PCs-V4/contact.html?sent=true">
+  <!-- Honeypot spam trap -->
+  <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
 
-            <!-- Honeypot spam trap — must stay hidden, must stay empty -->
-            <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
+  <!-- SIMPLIFIED FORM (shown when arriving from a build card) -->
+  <div id="form-simple" style="display:none;">
+    <p style="font-size:0.9rem; color:var(--muted); margin-bottom:1.75rem; padding:0.85rem 1rem; background:rgba(59,130,246,0.07); border:1px solid rgba(59,130,246,0.18); border-radius:8px;">
+      Asking about: <strong id="system-name" style="color:var(--text);"></strong>
+    </p>
+    <input type="hidden" name="system_inquiry" id="system-field">
 
+    <div class="form-grid">
 
-            <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label" for="name-simple">Your Name</label>
+        <input type="text" id="name-simple" name="name" class="form-input" placeholder="First name is fine" required autocomplete="name">
+      </div>
 
-              <!-- Name -->
-              <div class="form-group">
-                <label class="form-label" for="name">Your Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  class="form-input"
-                  placeholder="First name is fine"
-                  required
-                  autocomplete="name"
-                >
-              </div>
+      <div class="form-group">
+        <label class="form-label" for="email-simple">Your Email</label>
+        <input type="email" id="email-simple" name="email" class="form-input" placeholder="So I can reply to you" required autocomplete="email">
+      </div>
 
-              <!-- Email -->
-              <div class="form-group">
-                <label class="form-label" for="email">Your Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="form-input"
-                  placeholder="So I can reply to you"
-                  required
-                  autocomplete="email"
-                >
-              </div>
+      <div class="form-group full">
+        <label class="form-label" for="os-simple">Windows or Linux?</label>
+        <select id="os-simple" name="operating_system" class="form-select">
+          <option value="" disabled selected>Select one</option>
+          <option value="Windows">Windows</option>
+          <option value="Linux">Linux</option>
+          <option value="Open to either">Open to either</option>
+          <option value="Not sure">Not sure</option>
+        </select>
+      </div>
 
-              <!-- Budget -->
-              <div class="form-group">
-                <label class="form-label" for="budget">
-                  Budget <span class="optional">(optional)</span>
-                </label>
-                <input
-                  type="text"
-                  id="budget"
-                  name="budget"
-                  class="form-input"
-                  placeholder="e.g. Around $800, or $600–900"
-                >
-              </div>
+      <div class="form-group full">
+        <label class="form-label" for="notes-simple">
+          Anything else you want me to know? <span class="optional">(optional)</span>
+        </label>
+        <textarea id="notes-simple" name="additional_notes" class="form-textarea" placeholder="Questions, preferences, anything at all..."></textarea>
+      </div>
 
-              <!-- Games Played -->
-              <div class="form-group">
-                <label class="form-label" for="games">
-                  Games You Play <span class="optional">(optional)</span>
-                </label>
-                <input
-                  type="text"
-                  id="games"
-                  name="games_played"
-                  class="form-input"
-                  placeholder="e.g. Fortnite, War Thunder, Minecraft"
-                >
-              </div>
+      <div class="form-privacy full">
+        <p><strong>Privacy:</strong> Your email is only used to respond to your message. It won't be shared or used for anything else.</p>
+      </div>
 
-              <!-- Need Wi-Fi? -->
-              <div class="form-group">
-                <label class="form-label" for="wifi">Need Wi-Fi?</label>
-                <select id="wifi" name="need_wifi" class="form-select">
-                  <option value="" disabled selected>Select one</option>
-                  <option value="Yes — needs Wi-Fi">Yes — needs Wi-Fi</option>
-                  <option value="No — I'll use ethernet">No — I'll use ethernet</option>
-                  <option value="Not sure yet">Not sure yet</option>
-                </select>
-              </div>
+    </div>
+  </div>
 
-              <!-- Need Monitor? -->
-              <div class="form-group">
-                <label class="form-label" for="monitor">Need a Monitor?</label>
-                <select id="monitor" name="need_monitor" class="form-select">
-                  <option value="" disabled selected>Select one</option>
-                  <option value="Yes — looking for a monitor too">Yes — looking for a monitor too</option>
-                  <option value="No — already have one">No — already have one</option>
-                  <option value="Not sure">Not sure</option>
-                </select>
-              </div>
+  <!-- FULL FORM (shown for general/custom build inquiries) -->
+  <div id="form-full">
+    <div class="form-grid">
 
-              <!-- Windows or Linux? -->
-              <div class="form-group">
-                <label class="form-label" for="os">Windows or Linux?</label>
-                <select id="os" name="operating_system" class="form-select">
-                  <option value="" disabled selected>Select one</option>
-                  <option value="Windows">Windows</option>
-                  <option value="Linux">Linux</option>
-                  <option value="Open to either">Open to either</option>
-                  <option value="Not sure">Not sure</option>
-                </select>
-              </div>
+      <div class="form-group">
+        <label class="form-label" for="name">Your Name</label>
+        <input type="text" id="name" name="name" class="form-input" placeholder="First name is fine" required autocomplete="name">
+      </div>
 
-              <!-- RGB Preference -->
-              <div class="form-group">
-                <label class="form-label" for="rgb">
-                  RGB Preference <span class="optional">(optional)</span>
-                </label>
-                <select id="rgb" name="rgb_preference" class="form-select">
-                  <option value="" disabled selected>Select one</option>
-                  <option value="None — clean look">None — clean look</option>
-                  <option value="A little is fine">A little is fine</option>
-                  <option value="More the better">More the better</option>
-                  <option value="Don't care">Don't care</option>
-                </select>
-              </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Your Email</label>
+        <input type="email" id="email" name="email" class="form-input" placeholder="So I can reply to you" required autocomplete="email">
+      </div>
 
-              <!-- Additional Notes -->
-              <div class="form-group full">
-                <label class="form-label" for="notes">
-                  Additional Notes <span class="optional">(optional)</span>
-                </label>
-                <textarea
-                  id="notes"
-                  name="additional_notes"
-                  class="form-textarea"
-                  placeholder="Anything else worth knowing — specific system you saw, upgrade questions, distro preference, etc."
-                ></textarea>
-              </div>
+      <div class="form-group">
+        <label class="form-label" for="budget">Budget <span class="optional">(optional)</span></label>
+        <input type="text" id="budget" name="budget" class="form-input" placeholder="e.g. Around $800, or $600–900">
+      </div>
 
-              <!-- Privacy Notice -->
-              <div class="form-privacy full">
-                <p>
-                  <strong>Privacy:</strong> Your email address is only used to respond to your
-                  message. It will not be shared with anyone or used for anything else.
-                </p>
-              </div>
+      <div class="form-group">
+        <label class="form-label" for="games">Games You Play <span class="optional">(optional)</span></label>
+        <input type="text" id="games" name="games_played" class="form-input" placeholder="e.g. Fortnite, War Thunder, Minecraft">
+      </div>
 
-            </div><!-- /.form-grid -->
+      <div class="form-group">
+        <label class="form-label" for="wifi">Need Wi-Fi?</label>
+        <select id="wifi" name="need_wifi" class="form-select">
+          <option value="" disabled selected>Select one</option>
+          <option value="Yes — needs Wi-Fi">Yes — needs Wi-Fi</option>
+          <option value="No — I'll use ethernet">No — I'll use ethernet</option>
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+      </div>
 
-            <div style="margin-top:1.5rem;">
-              <button type="submit" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;">
-                Send Message →
-              </button>
-            </div>
+      <div class="form-group">
+        <label class="form-label" for="monitor">Need a Monitor?</label>
+        <select id="monitor" name="need_monitor" class="form-select">
+          <option value="" disabled selected>Select one</option>
+          <option value="Yes — looking for a monitor too">Yes — looking for a monitor too</option>
+          <option value="No — already have one">No — already have one</option>
+          <option value="Not sure">Not sure</option>
+        </select>
+      </div>
 
-          </form>
+      <div class="form-group">
+        <label class="form-label" for="os">Windows or Linux?</label>
+        <select id="os" name="operating_system" class="form-select">
+          <option value="" disabled selected>Select one</option>
+          <option value="Windows">Windows</option>
+          <option value="Linux">Linux</option>
+          <option value="Open to either">Open to either</option>
+          <option value="Not sure">Not sure</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="rgb">RGB Preference <span class="optional">(optional)</span></label>
+        <select id="rgb" name="rgb_preference" class="form-select">
+          <option value="" disabled selected>Select one</option>
+          <option value="None — clean look">None — clean look</option>
+          <option value="A little is fine">A little is fine</option>
+          <option value="More the better">More the better</option>
+          <option value="Don't care">Don't care</option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <label class="form-label" for="notes">Additional Notes <span class="optional">(optional)</span></label>
+        <textarea id="notes" name="additional_notes" class="form-textarea" placeholder="Anything else worth knowing — specific system you saw, upgrade questions, distro preference, etc."></textarea>
+      </div>
+
+      <div class="form-privacy full">
+        <p><strong>Privacy:</strong> Your email is only used to respond to your message. It won't be shared or used for anything else.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem;">
+    <button type="submit" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;">
+      Send Message →
+    </button>
+  </div>
+
+</form>
 
         </div><!-- /.form-card -->
 
