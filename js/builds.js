@@ -227,11 +227,10 @@ function renderBuildCard(build) {
     : '';
 
   // Action button — available gets an inquiry link, sold gets a note
-  const systemParam = encodeURIComponent(build.title);
-const action = available
-    ? `<a href="contact.html?system=${systemParam}" class="btn btn-primary btn-sm">Inquire →</a>`
+  const action = available
+    ? `<a href="contact.html" class="btn btn-primary btn-sm">Inquire →</a>`
     : `<span class="text-dim" style="font-size:0.82rem;">No longer available</span>`;
-  
+
   return `
     <div class="build-card ${!available ? 'is-sold' : ''}">
       <div class="build-image">
