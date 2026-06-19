@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pcman369.github.io/North-Bridge-PCs/sitemap.xml
