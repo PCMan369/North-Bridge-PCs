@@ -185,5 +185,20 @@
     // when it detects the #available-builds element on the page.
   </script>
 
+  
+  <!-- Back to Top Button -->
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+<script>
+  (function () {
+    const btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function () {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    });
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+</script>
+
 </body>
 </html>
