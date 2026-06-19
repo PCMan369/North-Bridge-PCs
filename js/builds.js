@@ -88,97 +88,31 @@
 const builds = [
 
   // ----------------------------------------------------------------
-  // BUILD 1 — Entry-level 1080p system
+  // BUILD 1 — Entry-level 1080p system - SOLD
   // ----------------------------------------------------------------
   {
-    title:   "Ryzen 5 5600 / RTX 3060 12GB",
-    image:   "images/build-ryzen5600-rtx3060.jpg",
-    ram:     "16GB DDR4 3200MHz",
-    storage: "500GB NVMe SSD",
+    title:   "Ryzen 5 5500 / RTX 2070 Super",
+    image:   "images/build-ryzen5500-rtx2070s.jpg",
+    ram:     "16GB DDR4 3000MHz",
+    storage: "480GB SSD",
     fps: [
       "Fortnite: ~110fps @ 1080p High",
       "War Thunder: ~100fps @ 1080p High",
       "Apex Legends: ~130fps @ 1080p High",
       "Minecraft Java: ~200fps+"
     ],
-    price:  "$649",
-    status: "available"
+    price:  "$599",
+    status: "sold"
     // To mark sold, change "available" to "sold"
   },
 
   // ----------------------------------------------------------------
-  // BUILD 2 — Mid-range 1080p/1440p system
+  // BUILD 4 — 
   // ----------------------------------------------------------------
-  {
-    title:   "Ryzen 7 5700X / RX 6700 XT",
-    image:   "images/build-ryzen5700x-rx6700xt.jpg",
-    ram:     "32GB DDR4 3600MHz",
-    storage: "1TB NVMe SSD",
-    fps: [
-      "Fortnite: ~150fps @ 1080p Epic",
-      "War Thunder: ~120fps @ 1440p High",
-      "Cyberpunk 2077: ~75fps @ 1080p High",
-      "Call of Duty Warzone: ~130fps @ 1080p High"
-    ],
-    price:  "$849",
-    status: "available"
-  },
 
   // ----------------------------------------------------------------
-  // BUILD 3 — 1440p-capable system
+  // BUILD 5 — 
   // ----------------------------------------------------------------
-  {
-    title:   "i5-12400F / RTX 3070 8GB",
-    image:   "images/build-i512400f-rtx3070.jpg",
-    ram:     "16GB DDR4 3200MHz",
-    storage: "1TB NVMe SSD",
-    fps: [
-      "Fortnite: ~160fps @ 1080p Epic",
-      "War Thunder: ~140fps @ 1440p High",
-      "Elden Ring: 60fps @ 1440p Max",
-      "GTA V: ~140fps @ 1440p High"
-    ],
-    price:  "$1,049",
-    status: "available"
-  },
-
-  // ----------------------------------------------------------------
-  // BUILD 4 — SOLD EXAMPLE
-  // This build is marked sold. It shows in the "Sold Systems" section.
-  // Change "sold" back to "available" to re-list it.
-  // ----------------------------------------------------------------
-  {
-    title:   "Ryzen 5 3600 / GTX 1080",
-    image:   "images/build-ryzen3600-gtx1080.jpg",
-    ram:     "16GB DDR4 3200MHz",
-    storage: "500GB NVMe SSD + 1TB HDD",
-    fps: [
-      "Fortnite: ~100fps @ 1080p High",
-      "War Thunder: ~90fps @ 1080p High",
-      "Minecraft Java: ~200fps+",
-      "Apex Legends: ~110fps @ 1080p High"
-    ],
-    price:  "$529",
-    status: "sold"   // <-- SOLD
-  },
-
-  // ----------------------------------------------------------------
-  // BUILD 5 — SOLD EXAMPLE
-  // ----------------------------------------------------------------
-  {
-    title:   "i7-9700K / RTX 2070 Super",
-    image:   "images/build-i79700k-rtx2070s.jpg",
-    ram:     "32GB DDR4 3000MHz",
-    storage: "500GB NVMe SSD + 2TB HDD",
-    fps: [
-      "Fortnite: ~140fps @ 1080p Epic",
-      "War Thunder: ~120fps @ 1440p High",
-      "Cyberpunk 2077: ~70fps @ 1080p High",
-      "Call of Duty Warzone: ~120fps @ 1080p High"
-    ],
-    price:  "$849",
-    status: "sold"   // <-- SOLD
-  }
 
 ];
 
