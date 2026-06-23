@@ -106,7 +106,7 @@ const builds = [
   // ----------------------------------------------------------------
   {
     title:   "Ryzen 5 5500 / RTX 2070 Super",
-    image:   "images/build-ryzen5500-rtx2070s.jpg",
+    image:   "images/Website Main Pic.jpeg",
     ram:     "16GB DDR4 3000MHz",
     storage: "512GB NVMe SSD",
     fps: [
