@@ -89,7 +89,7 @@ const builds = [
 
   {
     title:   "Ryzen 5 3600 / RTX 2060",
-    image:   "images/3600_RTX2060.jpeg",
+    image:   "images/3600_RTX2060.jpg",
     ram:     "16GB DDR4 2666MHz",
     storage: "480GB SSD",
     fps: [
