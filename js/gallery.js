@@ -68,18 +68,12 @@ const currentBuilds = [
   // Copy the block below and fill in your details.
   // ----------------------------------------------------------------
 
+  
   {
-    src: "images/gallery-current-1.jpg",
-    alt: "Ryzen 5 5600 / RTX 3060 build — currently available"
-  },
-  {
-    src: "images/gallery-current-2.jpg",
-    alt: "Ryzen 7 5700X / RX 6700 XT build — currently available"
-  },
-  {
-    src: "images/gallery-current-3.jpg",
-    alt: "i5-12400F / RTX 3070 build — currently available"
+    src: "images/3600_RTX2060.jpeg",
+    alt: "Ryzen 5 3600 / RTX 2060 build — currently being built"
   }
+  
 
   // ----------------------------------------------------------------
   // To add another photo:
@@ -109,30 +103,9 @@ const completedBuilds = [
   // ----------------------------------------------------------------
 
   {
-    src: "images/gallery-completed-1.jpg",
-    alt: "Completed build — Ryzen 5 3600 / GTX 1080"
-  },
-  {
-    src: "images/gallery-completed-2.jpg",
-    alt: "Completed build — i7-9700K / RTX 2070 Super"
-  },
-  {
-    src: "images/gallery-completed-3.jpg",
-    alt: "Cable management detail"
-  },
-  {
-    src: "images/gallery-completed-4.jpg",
-    alt: "Side panel view — completed build"
-  },
-  {
-    src: "images/gallery-completed-5.jpg",
-    alt: "Workspace — testing setup"
-  },
-  {
-    src: "images/gallery-completed-6.jpg",
-    alt: "Completed build — internal component layout"
+    src: "images/Website Main Pic.jpeg",
+    alt: "Completed Build — Ryzen 5 5500 / RTX 2070 Super"
   }
-
 ];
 
 
