@@ -96,17 +96,15 @@ const builds = [
       "Fortnite: ~100fps @ 1080p High",
       "Minecraft: ~180fps+ @ 1080p High",
       "Marvel Rivals: ~75fps @ 1080p High",
-      "Cyberpunk 2077: ~55fps @ 1080p High",
+      "Cyberpunk 2077: ~55fps @ 1080p High"
     ],
-    price:   "$549",
-    status:  "available"
+    price:  "$549",
+    status: "available"
   },
-  // ----------------------------------------------------------------
-  // BUILD 1 — Entry-level 1080p system - SOLD
-  // ----------------------------------------------------------------
+
   {
     title:   "Ryzen 5 5500 / RTX 2070 Super",
-    image:   "images/Website Main Pic.jpeg",
+    image:   "images/5500_RTX2070S.jpeg",
     ram:     "16GB DDR4 3000MHz",
     storage: "512GB NVMe SSD",
     fps: [
@@ -118,19 +116,8 @@ const builds = [
     price:  "$599",
     status: "sold"
   }
-    // To mark sold, change "available" to "sold"
-  
-
-  // ----------------------------------------------------------------
-  // BUILD 4 — 
-  // ----------------------------------------------------------------
-
-  // ----------------------------------------------------------------
-  // BUILD 5 — 
-  // ----------------------------------------------------------------
 
 ];
-
 
 // ================================================================
 // DO NOT EDIT BELOW THIS LINE
