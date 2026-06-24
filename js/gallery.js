@@ -70,7 +70,7 @@ const currentBuilds = [
 
   
   {
-    src: "images/3600_RTX2060.jpeg",
+    src: "images/3600_RTX2060.jpg",
     alt: "Ryzen 5 3600 / RTX 2060 build — currently being built"
   }
   
