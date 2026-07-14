@@ -391,6 +391,13 @@ function openBuildModal(index) {
   window._modalPhotos = photos;
 }
 
+// Preload all photos in the background as soon as modal opens
+  photos.forEach(function(src, i) {
+    if (i === 0) return; // first one already loaded
+    var img = new Image();
+    img.src = src;
+  });
+
 function closeBuildModal() {
   document.getElementById('build-modal').classList.remove('open');
   document.body.style.overflow = '';
