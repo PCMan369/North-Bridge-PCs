@@ -96,7 +96,7 @@ const builds = [
 
     {
     title:   "Ryzen 5 3600 / RTX 2070 Super",
-    image:   "images/3600_RTX2070S.jpg",
+    image:   "images/3600_2070S.jpg",
     ram:     "16GB DDR4 2800MHz",
     storage: "512GB NVMe SSD",
     fps: [
@@ -106,11 +106,11 @@ const builds = [
       "Cyberpunk 2077: ~55fps @ 1080p High"
     ],
     photos: [
-      "images/3600_RTX2070S.jpg",
-      "images/3600_RTX2070S_FRONT.jpg",
-      "images/3600_RTX2070S_SIDE.jpg",
-      "images/3600_RTX2070S_IO.jpg",
-      "images/3600_RTX2070S_BACK.jpg"
+      "images/3600_2070S.jpg",
+      "images/3600_2070S_FRONT.jpg",
+      "images/3600_2070S_SIDE.jpg",
+      "images/3600_2070S_IO.jpg",
+      "images/3600_2070S_BACK.jpg"
     ],
     price:  "$625",
     status: "available"
