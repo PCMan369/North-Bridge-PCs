@@ -100,10 +100,10 @@ const builds = [
     ram:     "16GB DDR4 2800MHz",
     storage: "512GB NVMe SSD",
     fps: [
-      "Fortnite: ~100fps @ 1080p High",
-      "Minecraft: ~180fps+ @ 1080p High",
-      "Marvel Rivals: ~75fps @ 1080p High",
-      "Cyberpunk 2077: ~55fps @ 1080p High"
+      "Fortnite: ~120fps @ 1080p High",
+      "Minecraft: ~220fps+ @ 1080p High",
+      "Marvel Rivals: ~90fps @ 1080p High",
+      "Cyberpunk 2077: ~65fps @ 1080p High"
     ],
     photos: [
       "images/3600_2070S.jpg",
@@ -144,10 +144,10 @@ const builds = [
     ram:     "16GB DDR4 3000MHz",
     storage: "512GB NVMe SSD",
     fps: [
-      "Fortnite: ~110fps @ 1080p High",
-      "War Thunder: ~100fps @ 1080p High",
-      "Apex Legends: ~130fps @ 1080p High",
-      "Minecraft Java: ~200fps+"
+      "Fortnite: ~130fps @ 1080p High",
+      "Minecraft: ~240fps+ @ 1080p High",
+      "Marvel Rivals: ~95fps @ 1080p High",
+      "Cyberpunk 2077: ~70fps @ 1080p High"
     ],
     photos: [
       "images/Website Main Pic.jpeg"
