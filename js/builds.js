@@ -107,10 +107,10 @@ const builds = [
     ],
     photos: [
       "images/3600_2070S.jpg",
-      "images/3600_2070S_FRONT.jpg",
-      "images/3600_2070S_SIDE.jpg",
+      "images/3600_2070S_Front.jpg",
+      "images/3600_2070S_Side.jpg",
       "images/3600_2070S_IO.jpg",
-      "images/3600_2070S_BACK.jpg"
+      "images/3600_2070S_Back.jpg"
     ],
     price:  "$625",
     status: "available"
