@@ -80,7 +80,7 @@ const currentBuilds = [
   },
 
     {
-    src: "images/3600_RTX2070S_IO.jpg",
+    src: "images/3600_2070S_IO.jpg",
     alt: "Ryzen 5 3600 / RTX 2070 Super build — currently available"
   },
 
