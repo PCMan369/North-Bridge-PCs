@@ -65,17 +65,17 @@ const currentBuilds = [
 
 
 {
-    src: "images/3600_RTX2070S.jpg",
+    src: "images/3600_2070S.jpg",
     alt: "Ryzen 5 3600 / RTX 2070 Super build — currently available"
   },
 
   {
-    src: "images/3600_RTX2070S_Front.jpg",
+    src: "images/3600_2070S_Front.jpg",
     alt: "Ryzen 5 3600 / RTX 2070 Super build — currently available"
   },
 
   {
-    src: "images/3600_RTX2070S_Side.jpg",
+    src: "images/3600_2070S_Side.jpg",
     alt: "Ryzen 5 3600 / RTX 2070 Super build — currently available"
   },
 
@@ -85,7 +85,7 @@ const currentBuilds = [
   },
 
     {
-    src: "images/3600_RTX2070S_Back.jpg",
+    src: "images/3600_2070S_Back.jpg",
     alt: "Ryzen 5 3600 / RTX 2070 Super build — currently available"
   }
 
