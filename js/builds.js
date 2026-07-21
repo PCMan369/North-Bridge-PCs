@@ -183,6 +183,7 @@ function renderBuildCard(build, index) {
          src="${build.image}"
          alt="${build.title}"
          loading="lazy"
+         onload="this.classList.add('loaded')"
          onerror="this.parentElement.innerHTML='<div class=\\'build-img-placeholder\\'>🖥️</div>'"
        >`
     : `<div class="build-img-placeholder">🖥️</div>`;
