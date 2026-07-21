@@ -16,6 +16,8 @@
 </head>
 <body>
 
+  <div class="scroll-progress" id="scroll-progress"></div>
+  
   <!-- ============================================================
        HEADER
        Sticky. Shared across all pages.
@@ -578,7 +580,7 @@
     })();
   </script>
 
-  <!-- Back to Top Button -->
+  <!-- Back to Top Button and Scroll Bar -->
 <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
 <script>
   (function () {
@@ -589,6 +591,16 @@
     btn.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+    // Scroll progress bar
+(function() {
+  const bar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', function() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = progress + '%';
+  });
+})();
   })();
 </script>
 
