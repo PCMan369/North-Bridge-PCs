@@ -163,6 +163,7 @@ function renderGalleryGrid(images, containerId) {
         src="${img.src}"
         alt="${img.alt}"
         loading="lazy"
+        onload="this.classList.add('loaded')"
         onerror="
           this.parentElement.innerHTML =
             '<div class=\\'gallery-placeholder\\'>' +
