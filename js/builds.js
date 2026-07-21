@@ -392,7 +392,7 @@ function openBuildModal(index) {
 }
 
 // Preload all photos in the background as soon as modal opens
-  photos.forEach(function(src, i) {
+  window._modalPhotos.forEach(function(src, i) {
     if (i === 0) return; // first one already loaded
     var img = new Image();
     img.src = src;
