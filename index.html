@@ -502,24 +502,26 @@
       const container = document.getElementById('featured-builds');
       if (!container) return;
 
-      const available = builds.filter(function (b) {
-        return b.status === 'available';
-      }).slice(0, 3);
+      const available = [];
+builds.forEach(function (b, i) {
+  if (b.status === 'available') available.push({ build: b, index: i });
+});
+const featured = available.slice(0, 3);
 
-      if (available.length === 0) {
-        container.innerHTML = `
-          <div class="empty-state">
-            <span class="empty-icon">🖥️</span>
-            <h3>No Systems Currently Available</h3>
-            <p>Nothing listed right now, but custom builds are always on the table.</p>
-            <a href="custom-build.html" class="btn btn-primary">Start a Custom Build →</a>
-          </div>
-        `;
-      } else {
-        container.innerHTML = available.map(renderBuildCard).join('');
-      }
-    })();
-
+if (featured.length === 0) {
+  container.innerHTML = `
+    <div class="empty-state">
+      <span class="empty-icon">🖥️</span>
+      <h3>No Systems Currently Available</h3>
+      <p>Nothing listed right now, but custom builds are always on the table.</p>
+      <a href="custom-build.html" class="btn btn-primary">Start a Custom Build →</a>
+    </div>
+  `;
+} else {
+  container.innerHTML = featured
+    .map(function (item) { return renderBuildCard(item.build, item.index); })
+    .join('');
+}
 
     // ============================================================
     // GALLERY PREVIEW (homepage — first 3 photos combined)
@@ -604,7 +606,6 @@
   })();
 </script>
 
-  <div class="modal-overlay" id="build-modal"></div>
-
+ 
 </body>
 </html>
