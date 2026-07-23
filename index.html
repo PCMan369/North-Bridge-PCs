@@ -512,9 +512,15 @@ if (featured.length === 0) {
   container.innerHTML = `
     <div class="empty-state">
       <span class="empty-icon">🖥️</span>
-      <h3>No Systems Currently Available</h3>
-      <p>Nothing listed right now, but custom builds are always on the table.</p>
-      <a href="custom-build.html" class="btn btn-primary">Start a Custom Build →</a>
+      <h3>No Systems Listed Right Now</h3>
+      <p>
+        Nothing available at the moment — check back soon,
+        or get notified when something comes in.
+      </p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">
+        <a href="builds.html" class="btn btn-primary">Get Notified →</a>
+        <a href="custom-build.html" class="btn btn-secondary">Custom Builds</a>
+      </div>
     </div>
   `;
 } else {
