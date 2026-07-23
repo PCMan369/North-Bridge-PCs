@@ -113,7 +113,7 @@ const builds = [
       "images/3600_2070S_Back.jpg"
     ],
     price:  "$625",
-    status: "available"
+    status: "sold"
   },
 
   {
