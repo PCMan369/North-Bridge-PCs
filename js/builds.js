@@ -265,14 +265,124 @@ function initBuildsPage() {
 
   if (availableBuilds.length === 0) {
     availableEl.innerHTML = `
-      <div class="empty-state">
-        <span class="empty-icon">🖥️</span>
-        <h3>No Systems Currently Listed</h3>
-        <p>Nothing available right now, but custom builds are still on the table.<br>
-           Reach out and we can talk through what you're looking for.</p>
-        <a href="custom-build.html" class="btn btn-primary">Explore Custom Builds →</a>
+      <div class="notify-box" id="notify-box">
+
+        <div class="notify-copy">
+          <span class="section-label" style="display:block; margin-bottom:0.75rem;">Nothing Listed Right Now</span>
+          <h3>Get Notified When Something Comes In</h3>
+          <p>
+            Leave your email and a note about what you're looking for.
+            When I have something that fits, I'll reach out directly.
+            No spam, no mailing list — just a one-time heads up.
+          </p>
+          <p style="margin-top:1rem; font-size:0.88rem;">
+            In the meantime, <a href="custom-build.html">custom builds</a> are always available
+            if you have something specific in mind.
+          </p>
+        </div>
+
+        <div class="notify-form-wrap">
+          <div class="form-group">
+            <label class="form-label" for="notify-email">Your Email</label>
+            <input
+              type="email"
+              id="notify-email"
+              class="form-input"
+              placeholder="So I can reach out when something comes in"
+            >
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="notify-looking">
+              What are you looking for? <span class="optional">(optional)</span>
+            </label>
+            <textarea
+              id="notify-looking"
+              class="form-textarea"
+              style="min-height:90px;"
+              placeholder="Budget, games you play, anything specific — or just leave it blank"
+            ></textarea>
+          </div>
+          <div class="form-privacy">
+            <p>
+              <strong>Privacy:</strong> Your email is only used to notify you about
+              new listings. It won't be shared or used for anything else.
+            </p>
+          </div>
+          <button
+            class="btn btn-primary btn-lg"
+            style="width:100%; justify-content:center;"
+            id="notify-submit"
+          >
+            Notify Me →
+          </button>
+          <p id="notify-error" style="color:var(--danger); font-size:0.85rem; display:none; text-align:center;">
+            Something went wrong — try again or <a href="contact.html">send a message instead</a>.
+          </p>
+        </div>
+
       </div>
     `;
+
+    // Handle notify form submission via FormSubmit AJAX
+    document.getElementById('notify-submit').addEventListener('click', function () {
+      const email   = document.getElementById('notify-email').value.trim();
+      const looking = document.getElementById('notify-looking').value.trim();
+      const errEl   = document.getElementById('notify-error');
+      const btn     = document.getElementById('notify-submit');
+
+      errEl.style.display = 'none';
+
+      if (!email || !email.includes('@')) {
+        errEl.textContent  = 'Please enter a valid email address.';
+        errEl.style.display = 'block';
+        return;
+      }
+
+      btn.textContent  = 'Sending…';
+      btn.disabled     = true;
+
+      // ============================================================
+      // REPLACE YOUR_EMAIL_HERE with your actual email address
+      // ============================================================
+      fetch('https://formsubmit.co/ajax/YOUR_EMAIL_HERE', {
+        method:  'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept':       'application/json'
+        },
+        body: JSON.stringify({
+          _subject:    'Notify me request — North Bridge PCs',
+          email:       email,
+          looking_for: looking || 'Not specified'
+        })
+      })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data.success === 'true' || data.success === true) {
+          // Show success state
+          document.getElementById('notify-box').outerHTML = `
+            <div class="notify-success">
+              <span class="success-icon">✅</span>
+              <h3>You're on the list</h3>
+              <p>
+                I'll reach out when something comes in that might be a good fit.
+                In the meantime, feel free to <a href="contact.html">send a message</a>
+                if you have questions.
+              </p>
+            </div>
+          `;
+        } else {
+          throw new Error('Submission failed');
+        }
+      })
+      .catch(function () {
+        btn.textContent  = 'Notify Me →';
+        btn.disabled     = false;
+        errEl.textContent  = 'Something went wrong — try again or send a message instead.';
+        errEl.style.display = 'block';
+      });
+    });
+
   } else {
     availableEl.innerHTML = availableBuilds
       .map(function (item) { return renderBuildCard(item.build, item.index); })
