@@ -344,7 +344,7 @@ function initBuildsPage() {
       // ============================================================
       // REPLACE YOUR_EMAIL_HERE with your actual email address
       // ============================================================
-      fetch('https://formsubmit.co/ajax/YOUR_EMAIL_HERE', {
+      fetch('https://formsubmit.co/ajax/jacobskrove@gmail.com', {
         method:  'POST',
         headers: {
           'Content-Type': 'application/json',
