@@ -171,7 +171,7 @@ const builds = [
  * @param {Object} build - One entry from the builds array above.
  * @returns {string}     - HTML string for the card.
  */
-function renderBuildCard(build, index) {
+function renderBuildCard(build, originalIndex) {
   const available = build.status === 'available';
 
   const badge = available
@@ -199,21 +199,16 @@ function renderBuildCard(build, index) {
        </div>`
     : '';
 
-  const action = available
-    ? `<a href="contact.html?system=${encodeURIComponent(build.title)}" class="btn btn-primary btn-sm">Inquire →</a>`
-    : `<span class="text-dim" style="font-size:0.82rem;">No longer available</span>`;
-
-  const hasPhotos = build.photos && build.photos.length > 1;
-  const photoHint = hasPhotos
+  const photoCount = (build.photos && build.photos.length > 1)
     ? `<div style="font-size:0.72rem; color:var(--dim); margin-top:0.5rem; text-align:center;">
-         📷 ${build.photos.length} photos — click card to view
+         📷 ${build.photos.length} photos — click to view listing
        </div>`
     : '';
 
   return `
-    <div class="build-card ${!available ? 'is-sold' : ''}"
-         style="cursor:pointer;"
-         onclick="openBuildModal(${index})">
+    <a href="build.html?id=${originalIndex}"
+       class="build-card ${!available ? 'is-sold' : ''}"
+       style="text-decoration:none;">
       <div class="build-image">
         ${image}
       </div>
@@ -235,11 +230,11 @@ function renderBuildCard(build, index) {
         ${perfBlock}
         <div class="build-footer">
           <div class="build-price">${build.price}</div>
-          ${action}
+          <span style="font-size:0.82rem; color:var(--accent);">View Listing →</span>
         </div>
-        ${photoHint}
+        ${photoCount}
       </div>
-    </div>
+    </a>
   `;
 }
 
@@ -254,13 +249,20 @@ function initBuildsPage() {
   const soldEl      = document.getElementById('sold-builds');
   const soldSection = document.getElementById('sold-section');
 
-  // Only run on builds.html
   if (!availableEl) return;
 
-  const availableBuilds = builds.filter(b => b.status === 'available');
-  const soldBuilds      = builds.filter(b => b.status === 'sold');
+  // Pass original index so build.html?id=X always points to the right build
+  const availableBuilds = [];
+  const soldBuilds      = [];
 
-  // Render available builds
+  builds.forEach(function (build, i) {
+    if (build.status === 'available') {
+      availableBuilds.push({ build: build, index: i });
+    } else {
+      soldBuilds.push({ build: build, index: i });
+    }
+  });
+
   if (availableBuilds.length === 0) {
     availableEl.innerHTML = `
       <div class="empty-state">
@@ -272,16 +274,18 @@ function initBuildsPage() {
       </div>
     `;
   } else {
-    availableEl.innerHTML = availableBuilds.map(renderBuildCard).join('');
+    availableEl.innerHTML = availableBuilds
+      .map(function (item) { return renderBuildCard(item.build, item.index); })
+      .join('');
   }
 
-  // Only show the Sold section if there are sold builds
   if (soldBuilds.length > 0 && soldSection && soldEl) {
     soldSection.style.display = 'block';
-    soldEl.innerHTML = soldBuilds.map(renderBuildCard).join('');
+    soldEl.innerHTML = soldBuilds
+      .map(function (item) { return renderBuildCard(item.build, item.index); })
+      .join('');
   }
 }
-
 
 // Initialize on the Gaming PCs page when the DOM is ready
 document.addEventListener('DOMContentLoaded', function () {
@@ -291,161 +295,3 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// ============================================================
-// BUILD MODAL
-// ============================================================
-
-function openBuildModal(index) {
-  const build     = builds[index];
-  const available = build.status === 'available';
-  const photos    = (build.photos && build.photos.length > 0)
-                    ? build.photos
-                    : (build.image ? [build.image] : []);
-
-  const badge = available
-    ? '<span class="badge badge-available">Available</span>'
-    : '<span class="badge badge-sold">Sold</span>';
-
-  const specsHtml = `
-    <div class="modal-specs">
-      <div class="modal-spec">
-        <span class="modal-spec-label">RAM</span>
-        <span>${build.ram}</span>
-      </div>
-      <div class="modal-spec">
-        <span class="modal-spec-label">Storage</span>
-        <span>${build.storage}</span>
-      </div>
-    </div>
-  `;
-
-  const perfHtml = (build.fps && build.fps.length > 0)
-    ? `<div class="modal-perf">
-        <div class="modal-perf-label">Estimated Performance</div>
-        ${build.fps.map(f => `<div class="modal-perf-item">• ${f}</div>`).join('')}
-       </div>`
-    : '';
-
-  const actionHtml = available
-    ? `<a href="contact.html?system=${encodeURIComponent(build.title)}"
-          class="btn btn-primary btn-lg"
-          onclick="event.stopPropagation()">Inquire About This System →</a>`
-    : `<span class="text-dim">This system has been sold.</span>`;
-
-  const imagesHtml = photos.length > 0
-    ? photos.map((src, i) => `
-        <img
-          class="modal-gallery-img ${i === 0 ? 'active' : ''}"
-          src="${src}"
-          alt="${build.title} — photo ${i + 1}"
-          loading="${i === 0 ? 'eager' : 'lazy'}"
-          onerror="this.style.display='none'"
-        >
-      `).join('')
-    : `<div class="modal-gallery-placeholder">🖥️</div>`;
-
-  const dotsHtml = photos.length > 1
-    ? photos.map((_, i) => `
-        <button class="modal-dot ${i === 0 ? 'active' : ''}"
-                onclick="modalGoTo(${i})" aria-label="Photo ${i+1}"></button>
-      `).join('')
-    : '';
-
-  const navHtml = photos.length > 1
-    ? `<div class="modal-nav">
-        <button class="modal-nav-btn hidden" id="modal-prev" onclick="modalPrev()">‹</button>
-        <button class="modal-nav-btn ${photos.length <= 1 ? 'hidden' : ''}" id="modal-next" onclick="modalNext()">›</button>
-       </div>
-       <div class="modal-dots">${dotsHtml}</div>`
-    : '';
-
-  const modal = document.getElementById('build-modal');
-
-  modal.innerHTML = `
-    <div class="modal-box" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeBuildModal()">✕</button>
-
-      <div class="modal-gallery" id="modal-gallery">
-        ${imagesHtml}
-        ${navHtml}
-      </div>
-
-      <div class="modal-content">
-        <div class="modal-top">
-          <div class="modal-title">${build.title}</div>
-          ${badge}
-        </div>
-        ${specsHtml}
-        ${perfHtml}
-        <div class="modal-footer">
-          <div class="modal-price">${build.price}</div>
-          ${actionHtml}
-        </div>
-      </div>
-    </div>
-  `;
-
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-
-  window._modalIndex  = 0;
-  window._modalPhotos = photos;
-}
-
-// Preload all photos in the background as soon as modal opens
-  window._modalPhotos.forEach(function(src, i) {
-    if (i === 0) return; // first one already loaded
-    var img = new Image();
-    img.src = src;
-  });
-
-function closeBuildModal() {
-  document.getElementById('build-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function modalGoTo(i) {
-  const photos = window._modalPhotos;
-  if (!photos) return;
-
-  window._modalIndex = i;
-
-  document.querySelectorAll('.modal-gallery-img').forEach(function(img, idx) {
-    img.classList.toggle('active', idx === i);
-  });
-
-  document.querySelectorAll('.modal-dot').forEach(function(dot, idx) {
-    dot.classList.toggle('active', idx === i);
-  });
-
-  const prev = document.getElementById('modal-prev');
-  const next = document.getElementById('modal-next');
-  if (prev) prev.classList.toggle('hidden', i === 0);
-  if (next) next.classList.toggle('hidden', i === photos.length - 1);
-}
-
-function modalPrev() {
-  if (window._modalIndex > 0) modalGoTo(window._modalIndex - 1);
-}
-
-function modalNext() {
-  if (window._modalIndex < window._modalPhotos.length - 1) {
-    modalGoTo(window._modalIndex + 1);
-  }
-}
-
-// Close on overlay click or Escape key
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('build-modal');
-  if (modal) {
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) closeBuildModal();
-    });
-  }
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeBuildModal();
-    if (e.key === 'ArrowLeft')  modalPrev();
-    if (e.key === 'ArrowRight') modalNext();
-  });
-});
