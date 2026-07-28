@@ -64,30 +64,7 @@
 const currentBuilds = [
 
 
-{
-    src: "images/3600_2070S.jpg",
-    alt: "Ryzen 5 3600 / RTX 2070 Super build — currently available"
-  },
 
-  {
-    src: "images/3600_2070S_Front.jpg",
-    alt: "Ryzen 5 3600 / RTX 2070 Super build — currently available"
-  },
-
-  {
-    src: "images/3600_2070S_Side.jpg",
-    alt: "Ryzen 5 3600 / RTX 2070 Super build — currently available"
-  },
-
-    {
-    src: "images/3600_2070S_IO.jpg",
-    alt: "Ryzen 5 3600 / RTX 2070 Super build — currently available"
-  },
-
-    {
-    src: "images/3600_2070S_Back.jpg",
-    alt: "Ryzen 5 3600 / RTX 2070 Super build — currently available"
-  }
 
   // ----------------------------------------------------------------
   // Add your current build photos here.
@@ -124,6 +101,32 @@ const completedBuilds = [
   // ----------------------------------------------------------------
   // Add your completed build photos here.
   // ----------------------------------------------------------------
+
+
+{
+    src: "images/3600_2070S.jpg",
+    alt: "Ryzen 5 3600 / RTX 2070 Super build — previously sold"
+  },
+
+  {
+    src: "images/3600_2070S_Front.jpg",
+    alt: "Ryzen 5 3600 / RTX 2070 Super build — previously sold"
+  },
+
+  {
+    src: "images/3600_2070S_Side.jpg",
+    alt: "Ryzen 5 3600 / RTX 2070 Super build — previously sold"
+  },
+
+    {
+    src: "images/3600_2070S_IO.jpg",
+    alt: "Ryzen 5 3600 / RTX 2070 Super build — previously sold"
+  },
+
+    {
+    src: "images/3600_2070S_Back.jpg",
+    alt: "Ryzen 5 3600 / RTX 2070 Super build — previously sold"
+  },
 
 {
     src: "images/3600_RTX2060.jpg",
