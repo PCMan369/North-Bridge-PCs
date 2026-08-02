@@ -210,7 +210,7 @@ function renderBuildCard(build, originalIndex) {
     : '';
 
   return `
-    <a href="build.html?id=${originalIndex}"
+    <a href="build.html?id=${build.id}"
        class="build-card ${!available ? 'is-sold' : ''}"
        style="text-decoration:none;">
       <div class="build-image">
