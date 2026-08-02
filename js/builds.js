@@ -17,7 +17,8 @@
   on line ~75). Fill in each field.
 
   {
-    title:   "Ryzen 5 3600 / RTX 2060",
+  id: "jul26-01",
+  title:   "Ryzen 5 3600 / RTX 2060",
     image:   "images/3600_RTX2060.jpeg",
     ram:     "16GB DDR4 2666MHz",
     storage: "480GB SSD",
@@ -95,6 +96,7 @@
 const builds = [
 
     {
+    id: "jul26",
     title:   "Ryzen 5 3600 / RTX 2070 Super",
     image:   "images/3600_2070S.jpg",
     ram:     "16GB DDR4 2800MHz",
@@ -117,6 +119,7 @@ const builds = [
   },
 
   {
+    id: "jun26",
     title:   "Ryzen 5 3600 / RTX 2060",
     image:   "images/3600_RTX2060.jpg",
     ram:     "16GB DDR4 2666MHz",
@@ -139,6 +142,7 @@ const builds = [
   },
 
   {
+    id: "may26",
     title:   "Ryzen 5 5500 / RTX 2070 Super",
     image:   "images/Website Main Pic.jpeg",
     ram:     "16GB DDR4 3000MHz",
