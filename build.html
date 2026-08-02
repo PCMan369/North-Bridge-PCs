@@ -539,8 +539,8 @@
     // ============================================================
     (function () {
       const params = new URLSearchParams(window.location.search);
-      const id     = parseInt(params.get('id'));
-      const build  = (!isNaN(id) && builds[id]) ? builds[id] : null;
+      const id     = params.get('id');
+      const build  = builds.find(function(b) { return b.id === id; }) || null;
 
       if (!build) {
         document.getElementById('build-content').innerHTML = `
