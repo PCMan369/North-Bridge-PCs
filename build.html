@@ -794,8 +794,25 @@
               </div>
             </div>
 
-            <div class="listing-price-row">
-              <div class="listing-price">${build.price}</div>
+           <div class="listing-price-row">
+              <div class="listing-price-wrap">
+                ${(function() {
+                  const live        = typeof eventIsLive === 'function' && eventIsLive();
+                  const hasEvent    = build.eventPrice && build.eventPrice !== build.price;
+                  const soldDuring  = build.soldDuringEvent === true;
+                  const showEvent   = (live || soldDuring) && hasEvent;
+                  if (showEvent) {
+                    return `
+                      <div class="price-original">${build.price}</div>
+                      <div style="display:flex; align-items:center; gap:0.6rem;">
+                        <div class="price-event">${build.eventPrice}</div>
+                        <span class="event-badge">${typeof EVENT !== 'undefined' ? EVENT.name : 'Sale'}</span>
+                      </div>
+                    `;
+                  }
+                  return `<div class="listing-price">${build.eventPrice && soldDuring ? build.eventPrice : build.price}</div>`;
+                })()}
+              </div>
               <div style="flex:1;"></div>
               <div style="font-size:0.8rem; color:var(--dim); text-align:right; line-height:1.5;">
                 Local pickup<br>Grants Pass, OR
