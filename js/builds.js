@@ -175,6 +175,31 @@ const builds = [
  * @param {Object} build - One entry from the builds array above.
  * @returns {string}     - HTML string for the card.
  */
+
+
+// Generates the correct price display depending on event state
+function buildPriceHtml(build) {
+  const live         = typeof eventIsLive === 'function' && eventIsLive();
+  const hasEventPrice = build.eventPrice && build.eventPrice !== build.price;
+  const soldDuring   = build.soldDuringEvent === true;
+  const showEvent    = (live || soldDuring) && hasEventPrice;
+
+  if (showEvent) {
+    return `
+      <div style="display:flex; flex-direction:column; gap:0.2rem;">
+        <div class="price-original">${build.price}</div>
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <div class="price-event">${build.eventPrice}</div>
+          <span class="event-badge">${typeof EVENT !== 'undefined' ? EVENT.name : 'Sale'}</span>
+        </div>
+      </div>
+    `;
+  }
+
+  return `<div class="price-normal">${build.price}</div>`;
+}
+
+
 function renderBuildCard(build, originalIndex) {
   const available = build.status === 'available';
 
@@ -232,8 +257,8 @@ function renderBuildCard(build, originalIndex) {
           </div>
         </div>
         ${perfBlock}
-        <div class="build-footer">
-          <div class="build-price">${build.price}</div>
+       <div class="build-footer">
+          ${buildPriceHtml(build)}
           <span style="font-size:0.82rem; color:var(--accent);">View Listing →</span>
         </div>
         ${photoCount}
