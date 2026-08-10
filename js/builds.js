@@ -115,6 +115,7 @@ const builds = [
       "images/3600_2070S_Back.jpg"
     ],
     price:  "$625",
+    soldDuringEvent: false,
     status: "sold"
   },
 
@@ -138,6 +139,7 @@ const builds = [
       "images/3600_RTX2060_BACK.jpg"
     ],
     price:  "$549",
+    soldDuringEvent: false,
     status: "sold"
   },
 
@@ -157,6 +159,7 @@ const builds = [
       "images/Website Main Pic.jpeg"
     ],
     price:  "$649",
+    soldDuringEvent: false,
     status: "sold"
   }
 
