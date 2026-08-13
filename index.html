@@ -1,93 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="google-site-verification" content="JXbErjX8WlFEl0OWllRvWaa7_q3CsMmbRjRSEClGjfI" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="North Bridge PCs — Gaming PCs built, tested, and sold in Southern Oregon. Ready-to-buy systems and custom builds around your budget. Serving Grants Pass, Medford, and surrounding areas.">
-  <meta name="geo.region" content="US-OR">
-  <meta name="geo.placename" content="Southern Oregon">
+  <meta name="keywords" content="gaming PC Southern Oregon, custom gaming PC, gaming computer for sale, local PC builder, Grants Pass gaming PC">
+<meta name="geo.region" content="US-OR">
+<meta name="geo.placename" content="Southern Oregon">
   <title>Gaming PCs for Sale in Southern Oregon — North Bridge PCs | Grants Pass, OR</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/base.css">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="stylesheet" href="css/style.css">
-  <!--
-    NOTE: no google-site-verification meta tag or canonical URL yet —
-    those depend on the real domain/Search Console property for this
-    new site, which don't exist yet. Phase 5 (SEO) picks this up once
-    the site has a real home.
-  -->
 </head>
 <body>
 
-<a href="#main" class="skip-link">Skip to content</a>
+  <div class="scroll-progress" id="scroll-progress"></div>
+  
+  <!-- ============================================================
+       HEADER
+       Sticky. Shared across all pages.
+       ============================================================ -->
+  <header class="site-header">
+    <div class="header-inner">
 
-<div id="event-banner"></div>
+      <a href="index.html" class="header-brand">
+        <span class="brand-name">North Bridge <span>PCs</span></span>
+        <span class="brand-sub">Southern Oregon Gaming PCs</span>
+        <span class="brand-tagline">Local Pickup &bull; Custom Builds &bull; Linux Available</span>
+      </a>
 
-<div class="scroll-progress" id="scroll-progress"></div>
+      <!-- Desktop navigation -->
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="index.html"        class="nav-link active">Home</a>
+        <a href="builds.html"       class="nav-link">Gaming PCs</a>
+        <a href="custom-build.html" class="nav-link">Custom Builds</a>
+        <a href="gallery.html"      class="nav-link">Gallery</a>
+        <a href="faq.html"          class="nav-link">FAQ</a>
+        <a href="contact.html"      class="nav-link nav-cta">Contact</a>
+      </nav>
 
-<header class="site-header">
-  <div class="header-inner">
-
-    <a href="index.html" class="header-brand">
-      <span class="brand-name">North Bridge <span>PCs</span></span>
-      <span class="brand-sub">Southern Oregon Gaming PCs</span>
-      <span class="brand-tagline">Local Pickup &bull; Custom Builds &bull; Linux Available</span>
-    </a>
-
-    <!-- Desktop navigation -->
-    <nav class="header-nav" aria-label="Main navigation">
-      <a href="index.html" class="nav-link active">Home</a>
-
-      <div class="nav-dropdown">
-        <button type="button" class="nav-link nav-dropdown-trigger "
-          id="forsale-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="forsale-menu">
-          For Sale <span class="nav-caret" aria-hidden="true">&#9662;</span>
-        </button>
-        <div class="nav-dropdown-menu" id="forsale-menu" aria-labelledby="forsale-trigger">
-          <a href="builds.html"       class="nav-dropdown-link ">Gaming PCs</a>
-          <a href="custom-build.html" class="nav-dropdown-link ">Custom Builds</a>
-          <a href="part-boxes.html"   class="nav-dropdown-link ">Part Boxes</a>
-        </div>
-      </div>
-
-      <a href="services.html" class="nav-link ">Services</a>
-      <a href="gallery.html"  class="nav-link ">Gallery</a>
-      <a href="faq.html"      class="nav-link ">FAQ</a>
-      <a href="contact.html"  class="nav-link nav-cta ">Contact</a>
-    </nav>
-
-    <!-- Mobile hamburger button -->
-    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-
-  <!-- Mobile navigation drawer -->
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-    <a href="index.html" class="nav-link active">Home</a>
-
-    <button type="button" class="nav-link mobile-nav-toggle "
-      aria-expanded="false" aria-controls="forsale-mobile-menu">
-      For Sale <span class="nav-caret" aria-hidden="true">&#9662;</span>
-    </button>
-    <div class="mobile-nav-submenu" id="forsale-mobile-menu">
-      <a href="builds.html"       class="nav-sublink ">Gaming PCs</a>
-      <a href="custom-build.html" class="nav-sublink ">Custom Builds</a>
-      <a href="part-boxes.html"   class="nav-sublink ">Part Boxes</a>
+      <!-- Mobile hamburger button -->
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
 
-    <a href="services.html" class="nav-link ">Services</a>
-    <a href="gallery.html"  class="nav-link ">Gallery</a>
-    <a href="faq.html"      class="nav-link ">FAQ</a>
-    <a href="contact.html"  class="nav-link nav-cta ">Contact</a>
-  </nav>
-</header>
+    <!-- Mobile navigation drawer -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="index.html"        class="nav-link active">Home</a>
+      <a href="builds.html"       class="nav-link">Gaming PCs</a>
+      <a href="custom-build.html" class="nav-link">Custom Builds</a>
+      <a href="gallery.html"      class="nav-link">Gallery</a>
+      <a href="faq.html"          class="nav-link">FAQ</a>
+      <a href="contact.html"      class="nav-link nav-cta">Contact</a>
+    </nav>
+  </header>
 
-
-<main id="main">
 
   <!-- ============================================================
        HERO
@@ -98,12 +70,13 @@
     <div class="container">
       <div class="hero-inner">
 
+        <!-- LEFT: Copy -->
         <div class="hero-content">
           <div class="hero-eyebrow">Southern Oregon</div>
           <h1>Gaming PCs Built and Tested in Southern Oregon</h1>
           <p class="hero-body">
-            Gaming PCs built, tested, and sold locally in Grants Pass, Oregon. Ready-to-buy
-            systems and custom builds around your budget — serving Grants Pass, Medford,
+            Gaming PCs built, tested, and sold locally in Grants Pass, Oregon. Ready-to-buy 
+            systems and custom builds around your budget — serving Grants Pass, Medford, 
             Ashland, and surrounding Southern Oregon areas.
           </p>
           <div class="hero-buttons">
@@ -112,19 +85,37 @@
           </div>
         </div>
 
+        <!-- RIGHT: Hero image -->
         <!--
+          ============================================================
           HOW TO REPLACE THE HERO IMAGE
-          1. Add your photo to the images/ folder.
-             Recommended size: 1200x900px (or similar 4:3 ratio).
-          2. Change the src below to match your filename.
+          ============================================================
+          1. Add your photo to the "images" folder.
+             Recommended size: 1200 x 900 pixels (or similar 4:3 ratio).
+             Good name: hero-build.jpg
+
+          2. The image is referenced below in the src attribute.
+             Change:
+               src="images/hero-build.jpg"
+             To:
+               src="images/whatever-you-named-your-file.jpg"
+
           3. Update the alt text to describe what's in the photo.
+
           If the file is missing, a placeholder shows automatically.
+          ============================================================
         -->
         <div class="hero-image-wrap">
           <img
-            src="images/hero-build.jpg"
+            src="images/Website Main Pic.jpeg"
             alt="Custom gaming PC build — North Bridge PCs, Southern Oregon"
-            onerror="this.parentElement.innerHTML='<div class=hero-img-placeholder><span class=icon>&#128421;</span><span>Add hero-build.jpg to the images folder</span></div>'"
+            onerror="
+              this.parentElement.innerHTML =
+                '<div class=\'hero-img-placeholder\'>' +
+                '<span class=\'icon\'>🖥️</span>' +
+                '<span>Add hero-build.jpg to the images folder</span>' +
+                '</div>';
+            "
           >
         </div>
 
@@ -135,8 +126,8 @@
 
   <!-- ============================================================
        FEATURED GAMING PCS
-       Data-driven from js/data/builds.js — shows up to 3 available
-       systems, or the empty state if none are currently available.
+       Loaded automatically from js/builds.js.
+       Shows up to 3 available systems.
        ============================================================ -->
   <section class="section section-alt">
     <div class="container">
@@ -147,10 +138,11 @@
         <div class="accent-line"></div>
       </div>
 
+      <!-- Build cards are injected here by the script at the bottom of this page -->
       <div id="featured-builds" class="builds-grid"></div>
 
       <div class="text-center mt-4">
-        <a href="builds.html" class="btn btn-ghost">View All Systems &rarr;</a>
+        <a href="builds.html" class="btn btn-ghost">View All Systems →</a>
       </div>
     </div>
   </section>
@@ -158,6 +150,7 @@
 
   <!-- ============================================================
        WHY NORTH BRIDGE PCS
+       Three honest value propositions.
        ============================================================ -->
   <section class="section">
     <div class="container">
@@ -168,20 +161,52 @@
         <div class="accent-line"></div>
       </div>
 
-      <!-- Content lives in js/render/trustSection.js — shared with build.html
-           so this copy only exists in one place. -->
-      <div id="trust-cards"></div>
+      <div class="grid-3">
+
+        <div class="card">
+          <div class="card-icon">🔍</div>
+          <h3>Tested Before It Leaves</h3>
+          <p>
+            Every system gets cleaned, stress tested under load, and temperatures checked
+            before it goes anywhere. You're not getting a gamble — you're getting a machine
+            that's been run through its paces.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <h3>Honest Specs, Realistic Numbers</h3>
+          <p>
+            The specs listed are accurate. The performance estimates are based on real-world
+            expectations for that hardware — not cherry-picked benchmark runs. If a system has
+            a limitation, I'll tell you.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📍</div>
+          <h3>Local Pickup, Real Support</h3>
+          <p>
+            Based in Southern Oregon. Pickup is in person. If you hit a snag after getting
+            it home, reach out over email and I'll do my best to help. Not a ticket queue —
+            an actual person.
+          </p>
+        </div>
+
+      </div>
     </div>
   </section>
 
 
   <!-- ============================================================
        CUSTOM BUILDS SECTION
+       Two-column: pitch on left, tier examples on right.
        ============================================================ -->
   <section class="section section-alt">
     <div class="container">
       <div class="two-col center">
 
+        <!-- Left: pitch and step list -->
         <div>
           <span class="section-label">Built for You</span>
           <h2 style="margin-bottom:1.1rem;">Custom Builds Around Your Budget</h2>
@@ -214,9 +239,10 @@
             </div>
           </div>
 
-          <a href="custom-build.html" class="btn btn-primary btn-lg">See Custom Build Options &rarr;</a>
+          <a href="custom-build.html" class="btn btn-primary btn-lg">See Custom Build Options →</a>
         </div>
 
+        <!-- Right: tier highlights -->
         <div style="display:flex; flex-direction:column; gap:1rem;">
           <div class="highlight-box">
             <h3>Entry Gaming — Around $500</h3>
@@ -242,6 +268,7 @@
 
   <!-- ============================================================
        TESTING & SETUP PROCESS
+       5-step strip explaining what happens before handoff.
        ============================================================ -->
   <section class="section">
     <div class="container">
@@ -252,16 +279,51 @@
         <div class="accent-line"></div>
       </div>
 
-      <!-- Content lives in js/render/trustSection.js — shared with build.html. -->
-      <div id="process-steps"></div>
+      <div class="process-steps">
+
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <div class="step-icon">🧹</div>
+          <h4>Cleaned</h4>
+          <p>Dust removed, thermal paste refreshed where needed. Clean inside and out.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <div class="step-icon">⚡</div>
+          <h4>Stress Tested</h4>
+          <p>CPU and GPU pushed under sustained load to check for stability issues.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <div class="step-icon">🌡️</div>
+          <h4>Temps Checked</h4>
+          <p>Thermals verified under load. Nothing runs hot, no surprises after pickup.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <div class="step-icon">💾</div>
+          <h4>Drivers Updated</h4>
+          <p>GPU and system drivers current before handoff. Ready to game the same day.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">5</div>
+          <div class="step-icon">✅</div>
+          <h4>Ready to Use</h4>
+          <p>Plugged in and confirmed working on pickup. A finished computer, not a box of parts.</p>
+        </div>
+
+      </div>
     </div>
   </section>
 
 
   <!-- ============================================================
        GALLERY PREVIEW
-       js/data/gallery.js lands in Phase 3 — until then this section
-       gracefully shows a "coming soon" message instead of an empty grid.
+       Shows first 3 images from gallery.js (combined arrays).
        ============================================================ -->
   <section class="section section-alt">
     <div class="container">
@@ -272,10 +334,11 @@
         <div class="accent-line"></div>
       </div>
 
+      <!-- Injected by script at bottom of page -->
       <div id="gallery-preview" class="gallery-grid" style="margin-bottom:2rem;"></div>
 
       <div class="text-center">
-        <a href="gallery.html" class="btn btn-ghost">View Full Gallery &rarr;</a>
+        <a href="gallery.html" class="btn btn-ghost">View Full Gallery →</a>
       </div>
     </div>
   </section>
@@ -283,11 +346,13 @@
 
   <!-- ============================================================
        FAQ PREVIEW
+       Two-column: brief intro on left, 3 accordion items on right.
        ============================================================ -->
   <section class="section">
     <div class="container">
       <div class="two-col">
 
+        <!-- Left: intro -->
         <div>
           <span class="section-label">Common Questions</span>
           <h2 style="margin-bottom:1rem;">Frequently Asked</h2>
@@ -295,9 +360,10 @@
             Quick answers to the questions that come up most often.
             The full FAQ page has everything else.
           </p>
-          <a href="faq.html" class="btn btn-secondary">Full FAQ &rarr;</a>
+          <a href="faq.html" class="btn btn-secondary">Full FAQ →</a>
         </div>
 
+        <!-- Right: 3 accordion items -->
         <div class="faq-list" id="home-faq">
 
           <div class="faq-item">
@@ -369,89 +435,186 @@
     </div>
   </section>
 
-</main>
 
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="brand-name">North Bridge <span style="color:var(--accent);">PCs</span></div>
-        <p>Southern Oregon</p>
-        <!-- Populated by chrome.js only if phone/social are enabled in
-             config.js. Stays empty (and invisible) otherwise. -->
-        <div class="footer-extra" id="footer-extra"></div>
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="brand-name">North Bridge <span style="color:var(--accent);">PCs</span></div>
+          <p>Southern Oregon</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="builds.html">Gaming PCs</a>
+          <a href="custom-build.html">Custom Builds</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="builds.html">Gaming PCs</a>
-        <a href="custom-build.html">Custom Builds</a>
-        <a href="part-boxes.html">Part Boxes</a>
-        <a href="services.html">Services</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
+      <div class="footer-copy">
+        <p>&copy; 2026 North Bridge PCs &mdash; Southern Oregon</p>
       </div>
     </div>
-    <div class="footer-copy">
-      <p>&copy; <span id="footer-year"></span> North Bridge PCs &mdash; Southern Oregon</p>
-    </div>
-  </div>
-</footer>
-
-<button class="back-to-top" id="back-to-top" aria-label="Back to top">&uarr;</button>
+  </footer>
 
 
   <!-- ============================================================
        SCRIPTS
-       Data files load first, then render helpers, then chrome.
+       builds.js and gallery.js must be loaded before the inline
+       script below, since the inline script uses their functions.
        ============================================================ -->
-  <script src="js/data/config.js"></script>
-  <script src="js/data/events.js"></script>
-  <script src="js/data/builds.js"></script>
-  <script src="js/render/buildCard.js"></script>
-  <script src="js/render/trustSection.js"></script>
-  <script src="js/render/eventBanner.js"></script>
-  <script src="js/render/chrome.js"></script>
-  <script src="js/render/faqAccordion.js"></script>
+  <script src="js/event.js"></script>
+  <script src="js/builds.js"></script>
+  <script src="js/gallery.js"></script>
 
   <script>
-    // Shared trust content (also used on build.html)
-    document.getElementById('trust-cards').innerHTML = renderTrustCards();
-    document.getElementById('process-steps').innerHTML = renderProcessSteps();
-
-    // Featured builds (homepage — up to 3 available systems)
+    // ============================================================
+    // MOBILE NAV TOGGLE
+    // ============================================================
     (function () {
-      var container = document.getElementById('featured-builds');
-      if (!container) return;
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobile-nav');
 
-      var available = builds.filter(function (b) { return b.status === 'available'; }).slice(0, 3);
-      container.innerHTML = available.length
-        ? available.map(renderBuildCard).join('')
-        : renderEmptyBuildsState();
+      hamburger.addEventListener('click', function () {
+        const isOpen = hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+
+      mobileNav.querySelectorAll('.nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          hamburger.classList.remove('open');
+          mobileNav.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
     })();
 
-    // Gallery preview (homepage — first 3 photos combined).
-    // js/data/gallery.js doesn't exist yet (Phase 3) — this degrades
-    // gracefully to a "coming soon" message until it does.
+
+    // ============================================================
+    // FEATURED BUILDS (homepage — up to 3 available systems)
+    // Uses the renderBuildCard() function from builds.js
+    // ============================================================
     (function () {
-      var container = document.getElementById('gallery-preview');
+      const container = document.getElementById('featured-builds');
       if (!container) return;
 
-      var hasGalleryData = (typeof currentBuilds !== 'undefined') || (typeof completedBuilds !== 'undefined');
-      var all = hasGalleryData ? [].concat(currentBuilds || [], completedBuilds || []).slice(0, 3) : [];
+      const available = [];
+builds.forEach(function (b, i) {
+  if (b.status === 'available') available.push({ build: b, index: i });
+});
+const featured = available.slice(0, 3);
 
-      if (!all.length) {
+if (featured.length === 0) {
+  container.innerHTML = `
+    <div class="empty-state">
+      <span class="empty-icon">🖥️</span>
+      <h3>No Systems Listed Right Now</h3>
+      <p>
+        Nothing available at the moment — check back soon,
+        or get notified when something comes in.
+      </p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">
+        <a href="builds.html" class="btn btn-primary">Get Notified →</a>
+        <a href="custom-build.html" class="btn btn-secondary">Custom Builds</a>
+      </div>
+    </div>
+  `;
+} else {
+  container.innerHTML = featured
+    .map(function (item) { return renderBuildCard(item.build, item.index); })
+    .join('');
+}
+      
+})();
+    // ============================================================
+    // GALLERY PREVIEW (homepage — first 3 photos combined)
+    // Uses currentBuilds and completedBuilds from gallery.js
+    // ============================================================
+    (function () {
+      const container = document.getElementById('gallery-preview');
+      if (!container) return;
+
+      const all = [].concat(currentBuilds, completedBuilds).slice(0, 3);
+
+      if (all.length === 0) {
         container.innerHTML = '<p class="text-muted text-center" style="grid-column:1/-1;">Photos coming soon.</p>';
         return;
       }
 
       container.innerHTML = all.map(function (img) {
-        return '<div class="gallery-item"><img src="' + img.src + '" alt="' + img.alt + '" loading="lazy" ' +
-          'onerror="this.parentElement.innerHTML=\'<div class=gallery-placeholder><span class=gp-icon>&#128247;</span><span>Photo coming soon</span></div>\'">' +
-          '</div>';
+        return `
+          <div class="gallery-item">
+            <img
+              src="${img.src}"
+              alt="${img.alt}"
+              loading="lazy"
+              onerror="
+                this.parentElement.innerHTML =
+                  '<div class=\\'gallery-placeholder\\'>' +
+                  '<span class=\\'gp-icon\\'>📷</span>' +
+                  '<span>Photo coming soon</span>' +
+                  '</div>';
+              "
+            >
+          </div>
+        `;
       }).join('');
     })();
-  </script>
 
+
+    // ============================================================
+    // FAQ ACCORDION (homepage preview — 3 items)
+    // ============================================================
+    (function () {
+      document.querySelectorAll('#home-faq .faq-question').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const item   = this.closest('.faq-item');
+          const isOpen = item.classList.contains('open');
+
+          // Close all items in this FAQ list
+          document.querySelectorAll('#home-faq .faq-item').forEach(function (el) {
+            el.classList.remove('open');
+          });
+
+          // Open the clicked item if it was closed
+          if (!isOpen) {
+            item.classList.add('open');
+          }
+        });
+      });
+    })();
+ 
+</script>
+  
+  <!-- Back to Top Button and Scroll Bar -->
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+<script>
+  (function () {
+    const btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function () {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    });
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    // Scroll progress bar
+(function() {
+  const bar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', function() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = progress + '%';
+  });
+})();
+  })();
+</script>
+
+ 
 </body>
 </html>
