@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gaming PCs for sale in Southern Oregon — cleaned, stress tested, and ready for local pickup. Current availability and past builds from North Bridge PCs.">
+  <title>Gaming PCs for Sale — North Bridge PCs | Southern Oregon</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!--HEADER:builds-->
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">Ready to Buy</span>
+      <h1>Gaming PCs</h1>
+      <p>Cleaned, stress tested, and ready for local pickup in Southern Oregon. Every listing includes real specs and realistic performance estimates.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div id="available-builds" class="builds-grid"></div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="sold-section" style="display:none;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Sold History</span>
+        <h2>Recently Sold</h2>
+        <p>A look at what's come through recently — for reference, not for sale.</p>
+        <div class="accent-line"></div>
+      </div>
+      <div id="sold-builds" class="builds-grid"></div>
+    </div>
+  </section>
+
+</main>
+
+<!--FOOTER-->
+
+  <script src="js/data/config.js"></script>
+  <script src="js/data/events.js"></script>
+  <script src="js/data/builds.js"></script>
+  <script src="js/render/buildCard.js"></script>
+  <script src="js/render/notifyBox.js"></script>
+  <script src="js/render/eventBanner.js"></script>
+  <script src="js/render/chrome.js"></script>
+
+  <script>
+    (function () {
+      var availableEl = document.getElementById('available-builds');
+      var soldEl = document.getElementById('sold-builds');
+      var soldSection = document.getElementById('sold-section');
+
+      var available = builds.filter(function (b) { return b.status === 'available'; });
+      var sold = builds.filter(function (b) { return b.status === 'sold'; });
+
+      if (available.length) {
+        availableEl.innerHTML = available.map(renderBuildCard).join('');
+      } else {
+        availableEl.innerHTML = renderNotifyBox();
+        wireNotifyBox();
+      }
+
+      if (sold.length) {
+        soldSection.style.display = 'block';
+        soldEl.innerHTML = sold.map(renderBuildCard).join('');
+      }
+    })();
+  </script>
+
+</body>
+</html>

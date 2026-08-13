@@ -1,0 +1,65 @@
+<a href="#main" class="skip-link">Skip to content</a>
+
+<div id="event-banner"></div>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+
+    <a href="index.html" class="header-brand">
+      <span class="brand-name">North Bridge <span>PCs</span></span>
+      <span class="brand-sub">Southern Oregon Gaming PCs</span>
+      <span class="brand-tagline">Local Pickup &bull; Custom Builds &bull; Linux Available</span>
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav class="header-nav" aria-label="Main navigation">
+      <a href="index.html" class="nav-link {{active:home}}">Home</a>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-link nav-dropdown-trigger {{activegroup:builds,custom-build,part-boxes}}"
+          id="forsale-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="forsale-menu">
+          For Sale <span class="nav-caret" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="nav-dropdown-menu" id="forsale-menu" aria-labelledby="forsale-trigger">
+          <a href="builds.html"       class="nav-dropdown-link {{active:builds}}">Gaming PCs</a>
+          <a href="custom-build.html" class="nav-dropdown-link {{active:custom-build}}">Custom Builds</a>
+          <a href="part-boxes.html"   class="nav-dropdown-link {{active:part-boxes}}">Part Boxes</a>
+        </div>
+      </div>
+
+      <a href="services.html" class="nav-link {{active:services}}">Services</a>
+      <a href="gallery.html"  class="nav-link {{active:gallery}}">Gallery</a>
+      <a href="faq.html"      class="nav-link {{active:faq}}">FAQ</a>
+      <a href="contact.html"  class="nav-link nav-cta {{active:contact}}">Contact</a>
+    </nav>
+
+    <!-- Mobile hamburger button -->
+    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile navigation drawer -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="index.html" class="nav-link {{active:home}}">Home</a>
+
+    <button type="button" class="nav-link mobile-nav-toggle {{activegroup:builds,custom-build,part-boxes}}"
+      aria-expanded="false" aria-controls="forsale-mobile-menu">
+      For Sale <span class="nav-caret" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="mobile-nav-submenu" id="forsale-mobile-menu">
+      <a href="builds.html"       class="nav-sublink {{active:builds}}">Gaming PCs</a>
+      <a href="custom-build.html" class="nav-sublink {{active:custom-build}}">Custom Builds</a>
+      <a href="part-boxes.html"   class="nav-sublink {{active:part-boxes}}">Part Boxes</a>
+    </div>
+
+    <a href="services.html" class="nav-link {{active:services}}">Services</a>
+    <a href="gallery.html"  class="nav-link {{active:gallery}}">Gallery</a>
+    <a href="faq.html"      class="nav-link {{active:faq}}">FAQ</a>
+    <a href="contact.html"  class="nav-link nav-cta {{active:contact}}">Contact</a>
+  </nav>
+</header>

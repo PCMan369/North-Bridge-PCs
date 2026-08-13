@@ -1,0 +1,403 @@
+/*
+  ================================================================
+  css/build-detail.css — Build Detail Page
+  ================================================================
+  Loaded only by build.html. Genuinely page-specific (the sticky
+  gallery, spec sheet, and inquiry-form layout aren't reused
+  elsewhere), so this stays out of the shared style.css rather than
+  bloating every other page with rules they'll never use.
+
+  Adapted from the old site's per-page inline <style> block: converted
+  to load as an external file, and the one hardcoded color
+  (`#0a1526` on .gallery-main) now uses `var(--placeholder-solid)` so
+  it works in light mode too. Also adds `.gallery-thumb-video-icon`,
+  new for video support in the gallery (the old site was photos-only).
+  ================================================================
+*/
+
+/* ---- Back button ---- */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transition: color var(--ease);
+  margin-bottom: 1.75rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+
+.back-btn:hover {
+  color: var(--text);
+}
+
+.back-btn::before {
+  content: '\2190';
+  font-size: 1rem;
+}
+
+/* ---- Listing layout ---- */
+.listing-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* ---- Photo/video gallery ---- */
+.listing-gallery {
+  position: sticky;
+  top: calc(var(--header-h) + 1.5rem);
+}
+
+.gallery-main {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--placeholder-solid);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 0.75rem;
+}
+
+.gallery-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.gallery-main-img.active {
+  display: block;
+}
+
+.gallery-main-img.loaded {
+  opacity: 1;
+}
+
+/* Videos don't get the fade-in treatment images do — their own
+   controls make immediate visibility more useful. */
+video.gallery-main-img.active {
+  opacity: 1;
+}
+
+.gallery-main-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  color: var(--dim);
+}
+
+.gallery-arrows {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.75rem;
+  pointer-events: none;
+}
+
+.gallery-arrow {
+  width: 38px;
+  height: 38px;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  color: white;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: all;
+  transition: background var(--ease);
+}
+
+.gallery-arrow:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+.gallery-arrow.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gallery-counter {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.85rem;
+  background: rgba(0,0,0,0.55);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.gallery-thumbs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.gallery-thumb {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color var(--ease), opacity var(--ease);
+  background: var(--card);
+  flex-shrink: 0;
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-thumb.active {
+  border-color: var(--accent);
+}
+
+.gallery-thumb:not(.active) {
+  opacity: 0.6;
+}
+
+.gallery-thumb:hover {
+  opacity: 1;
+}
+
+.gallery-thumb-video-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.35);
+  color: white;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+/* ---- Listing details column ---- */
+.listing-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.listing-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.listing-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.listing-price-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.listing-price {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1;
+}
+
+.listing-specs-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.listing-specs-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.85rem;
+}
+
+.listing-spec-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+
+.listing-spec-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.listing-spec-label {
+  color: var(--dim);
+  min-width: 65px;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.listing-spec-value {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.listing-perf-card {
+  background: rgba(59,130,246,0.07);
+  border: 1px solid rgba(59,130,246,0.18);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.listing-perf-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.listing-perf-item {
+  font-size: 0.9rem;
+  color: var(--muted);
+  padding: 0.25rem 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.listing-perf-item::before {
+  content: '\2022';
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ---- Inquiry form ---- */
+.listing-form-card {
+  background: var(--card);
+  border: 1px solid rgba(59,130,246,0.25);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.listing-form-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.listing-form-sub {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+.listing-system-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(59,130,246,0.08);
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.85rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.listing-system-badge strong {
+  color: var(--text);
+  font-size: 0.88rem;
+}
+
+/* ---- Trust section (shared content via js/render/trustSection.js) ---- */
+.trust-section {
+  border-top: 1px solid var(--border);
+  padding-top: 4rem;
+  margin-top: 1rem;
+}
+
+.listing-process {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.listing-process .process-steps {
+  margin-top: 1.5rem;
+}
+
+/* ---- Sold state ---- */
+.sold-notice {
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.sold-notice p {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .listing-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .listing-gallery {
+    position: static;
+  }
+
+  .listing-title {
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .listing-price {
+    font-size: 1.6rem;
+  }
+}

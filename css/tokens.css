@@ -1,0 +1,109 @@
+/*
+  ================================================================
+  css/tokens.css — Design Tokens
+  ================================================================
+  Every color, radius, shadow, and spacing value used sitewide lives
+  here as a CSS custom property. Components (css/style.css, Phase 2+)
+  should reference these variables, never hardcode a color directly —
+  that's what keeps theming and future rebrands centralized.
+
+  Dark is the default/fallback palette (carried forward from the old
+  site's only theme). The @media block below overrides it for visitors
+  whose system is set to light mode. No JavaScript involved — this
+  works even with JS disabled, and a manual toggle can be layered on
+  top later without restructuring these variables.
+
+  NOTE: the exact color values below carry forward the old site's
+  existing blue accent and dark palette as a starting point (proposed,
+  not yet explicitly confirmed — see DECISIONS.md D5). Change the
+  values here, once, if a different direction is chosen.
+  ================================================================
+*/
+
+:root {
+  /* ---- Color: dark (default) ---- */
+  --bg:        #0f172a;
+  --card:      #1e293b;
+  --card-h:    #243044;
+  --accent:    #3b82f6;
+  --accent-h:  #2563eb;
+  --text:      #f8fafc;
+  --muted:     #94a3b8;
+  --dim:       #64748b;
+  --border:    #334155;
+  --border-l:  #475569;
+  --success:   #22c55e;
+  --danger:    #ef4444;
+  --accent-2:  #60a5fa; /* secondary accent tint, for gradients/highlights — same in both themes */
+
+  /* Used for missing-image/video placeholder boxes. Separate from
+     --card/--card-h because these need to read as "empty state," not
+     as a normal elevated surface. */
+  --placeholder-start: #1a2742;
+  --placeholder-end:   #0f1e36;
+  --placeholder-solid: #0a1526;
+
+  --shadow:    0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.3);
+  --shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.5), 0 4px 6px -4px rgba(0,0,0,0.4);
+
+  /* ---- Shape & motion (theme-independent) ---- */
+  --radius:    12px;
+  --radius-sm: 8px;
+  --radius-lg: 18px;
+  --ease:      0.2s ease;
+
+  /* ---- Layout ---- */
+  --header-h:  76px;
+
+  /* ---- Type ---- */
+  --font-body: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+
+  /* Tells the browser both schemes are supported, so native form
+     controls / scrollbars adapt too, not just our own CSS. */
+  color-scheme: dark light;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:        #f8fafc;
+    --card:      #ffffff;
+    --card-h:    #f1f5f9;
+    --accent:    #3b82f6;
+    --accent-h:  #2563eb;
+    --text:      #0f172a;
+    --muted:     #475569;
+    --dim:       #64748b;
+    --border:    #e2e8f0;
+    --border-l:  #cbd5e1;
+    --success:   #16a34a;
+    --danger:    #dc2626;
+
+    --placeholder-start: #e2e8f0;
+    --placeholder-end:   #cbd5e1;
+    --placeholder-solid: #e2e8f0;
+
+    --shadow:    0 4px 6px -1px rgba(15,23,42,0.08), 0 2px 4px -2px rgba(15,23,42,0.06);
+    --shadow-lg: 0 10px 25px -3px rgba(15,23,42,0.12), 0 4px 6px -4px rgba(15,23,42,0.08);
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header-h: 68px;
+  }
+}
+
+/*
+  ================================================================
+  RESPONSIVE BREAKPOINT SCALE (reference only — CSS custom properties
+  can't be used inside @media query conditions, so these aren't
+  variables. Documented here so every component file uses the same
+  scale instead of inventing new breakpoints.)
+  ================================================================
+    1100px — large tablet / small laptop
+     900px — tablet
+     640px — large phone / small tablet
+     420px — small phone
+  Carried forward from the old site's existing scale.
+  ================================================================
+*/
