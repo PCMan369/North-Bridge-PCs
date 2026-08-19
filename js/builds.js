@@ -95,6 +95,32 @@
 
 const builds = [
 
+{
+    id: "aug26",
+    title:   "Ryzen 5 5500 / RX 5700 XT",
+    image:   "images/5500_5700XT.jpg",
+    ram:     "16GB DDR4 2800MHz",
+    storage: "512GB NVMe SSD",
+    fps: [
+      "Fortnite: ~130fps @ 1080p High",
+      "Minecraft: ~240fps+ @ 1080p High",
+      "Marvel Rivals: ~90fps @ 1080p High",
+      "Cyberpunk 2077: ~65fps @ 1080p High"
+    ],
+    photos: [
+      "images/5500_5700XT.jpg",
+      "images/5500_5700XT_FRONT.jpg",
+      "images/5500_5700XT_SIDE.jpg",
+      "images/5500_5700XT_IO.jpg",
+      "images/5500_5700XT_BACK.jpg"
+    ],
+    price:  "$550",
+  soldDuringEvent: true,
+  eventPrice:      "$450",
+    status: "available"
+  },
+
+  
     {
     id: "jul26",
     title:   "Ryzen 5 3600 / RTX 2070 Super",
