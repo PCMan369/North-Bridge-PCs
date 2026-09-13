@@ -115,54 +115,10 @@
 
 const builds = [
 
-  
-  {
-    id: "aug26-02",
-    title: "HP EliteBook 840 G10",
-    status: "available",
-    price: "$400",
-    eventId: null,
-    eventPrice: null,
-
-    summary: "A lightweight business laptop, cleaned and tested. Not built for gaming.",
-
-    components: {
-      cpu: { model: "Intel Core i5 1345U" }, // exact generation/SKU not confirmed — visible on the unit's palm-rest badge but not fully legible in the source photos
-      ram: { model: "24GB DDR5 5200MHz" },
-      storage: { model: "512GB NVMe SSD" },
-      os:  { model: "Windows 11" } // visibly running Windows in the source photos; exact version (10 vs 11) not confirmed
-    },
-
-    // No performance section for this one — see notes below. Deliberately
-    // left empty rather than guessing; flagged for the owner to fill in
-    // properly (see PROJECT_STATUS.md).
-    performance: {
-      isEstimate: true,
-      items: []
-    },
-
-    media: {
-      images: [
-        "images/EliteBook.jpg",
-        "images/EliteBook_screen.jpg",
-        "images/EliteBook_keyboard.jpg",
-        "images/EliteBook_left.jpg",
-        "images/EliteBook_right.jpg",
-        "images/EliteBook_bottom.jpg"
-      ],
-      videos: []
-    },
-
-    condition: "Used - Fair",
-    testingNotes: "",
-    listedDate: "2026-08-01",
-    notes: "This is not a gaming PC and does not have dedicated graphics, therefore it may not perform very well in most PC games. There is a visual bend on the front left corner that does not affect functionality or performance."
-  },
-
   {
     id: "aug26-01",
     title: "Ryzen 5 5500 / RX 5700 XT",
-    status: "sold",
+    status: "available",
     price: "$550",
     eventId: null,
     eventPrice: null,
@@ -197,12 +153,54 @@ const builds = [
       videos: []
     },
 
-    condition: "Used - Like New",
+    condition: "",
     testingNotes: "",
     listedDate: "2026-08-01",
     notes: ""
   },
 
+  {
+    id: "aug26-02",
+    title: "HP EliteBook 840 G10",
+    status: "available",
+    price: "$400",
+    eventId: null,
+    eventPrice: null,
+
+    summary: "A lightweight business laptop, cleaned and tested. Not built for gaming.",
+
+    components: {
+      cpu: { model: "Intel Core i5" }, // exact generation/SKU not confirmed — visible on the unit's palm-rest badge but not fully legible in the source photos
+      ram: { model: "24GB DDR5 5200MHz" },
+      storage: { model: "512GB NVMe SSD" },
+      os:  { model: "Windows" } // visibly running Windows in the source photos; exact version (10 vs 11) not confirmed
+    },
+
+    // No performance section for this one — see notes below. Deliberately
+    // left empty rather than guessing; flagged for the owner to fill in
+    // properly (see PROJECT_STATUS.md).
+    performance: {
+      isEstimate: true,
+      items: []
+    },
+
+    media: {
+      images: [
+        "images/EliteBook.jpg",
+        "images/EliteBook_screen.jpg",
+        "images/EliteBook_keyboard.jpg",
+        "images/EliteBook_left.jpg",
+        "images/EliteBook_right.jpg",
+        "images/EliteBook_bottom.jpg"
+      ],
+      videos: []
+    },
+
+    condition: "",
+    testingNotes: "",
+    listedDate: "2026-08-01",
+    notes: "Given that this is not a gaming PC and does not have dedicated graphics, it will not perform very well in most PC games."
+  },
 
   {
     id: "jul26-01",

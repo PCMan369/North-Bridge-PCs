@@ -3,7 +3,7 @@
   js/render/chrome.js — Shared Page Chrome
   ================================================================
   Handles behavior that's identical on every page: mobile nav toggle,
-  scroll progress bar, back-to-top button, footer year, and the
+  page-load progress bar, back-to-top button, footer year, and the
   toggle-driven phone/email/social links in the footer.
 
   The old site had a version of this copy-pasted inline into all 8
@@ -97,27 +97,68 @@
     });
   });
 
-  // ---- Back-to-top + scroll progress ----
+  // ---- Back-to-top (scroll-linked visibility only) ----
   var backToTop = document.getElementById('back-to-top');
-  var progressBar = document.getElementById('scroll-progress');
 
-  if (backToTop || progressBar) {
+  if (backToTop) {
     window.addEventListener('scroll', function () {
-      if (backToTop) {
-        backToTop.classList.toggle('visible', window.scrollY > 400);
-      }
-      if (progressBar) {
-        var scrollTop = window.scrollY;
-        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progressBar.style.width = progress + '%';
-      }
+      backToTop.classList.toggle('visible', window.scrollY > 400);
+    });
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  if (backToTop) {
-    backToTop.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  // ---- Page-load progress bar ----
+  // Two independent moments, not one continuous animation — a real
+  // cross-document navigation tears down this whole page (and this
+  // script) before the next one runs, so nothing can literally persist
+  // through the gap. This is the same illusion every site with a
+  // top-loading-bar uses: fill quickly on arrival, and separately
+  // start filling immediately when a link is clicked so the wait
+  // feels bridged rather than dead air.
+  var loadBar = document.getElementById('load-progress');
+
+  if (loadBar) {
+    // Arriving on a page (however you got here — a click on this
+    // site, a typed URL, a bookmark, back/forward): quickly finish
+    // the bar to 100%, then fade it out and reset for next time.
+    requestAnimationFrame(function () {
+      loadBar.style.transitionDuration = '0.3s';
+      loadBar.style.width = '100%';
+    });
+    setTimeout(function () {
+      loadBar.style.opacity = '0';
+    }, 350);
+    setTimeout(function () {
+      loadBar.style.transitionDuration = '0s';
+      loadBar.style.width = '0%';
+      loadBar.style.opacity = '1';
+    }, 600);
+
+    // Clicking a link that's actually navigating to another page on
+    // this site: start filling right away. Deliberately excludes
+    // anything that won't cause a real same-page navigation away from
+    // here — opening in a new tab, a modified click, same-page anchor
+    // links (like the "skip to content" link or FAQ anchors),
+    // mailto:/tel: links, file downloads, and external links — since
+    // none of those leave this bar stranded half-filled with nothing
+    // to ever complete it.
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a');
+      if (!link) return;
+      if (link.target === '_blank') return;
+      if (link.hasAttribute('download')) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+      var href = link.getAttribute('href') || '';
+      if (!href || href.charAt(0) === '#') return;
+      if (href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0) return;
+      if (link.origin && link.origin !== window.location.origin) return;
+
+      loadBar.style.transitionDuration = '0.6s';
+      loadBar.style.opacity = '1';
+      loadBar.style.width = '80%';
     });
   }
 

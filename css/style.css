@@ -1762,10 +1762,10 @@ strong {
 
 
 /* ============================================================
-   Scroll Progress Bar
+   Page-Load Progress Bar
    ============================================================ */
 
-.scroll-progress {
+.load-progress {
   position: fixed;
   top: 0;
   left: 0;
@@ -1773,8 +1773,9 @@ strong {
   height: 3px;
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
   z-index: 9999;
-  transition: width 0.1s linear;
   border-radius: 0 2px 2px 0;
+  transition: width 0.3s ease-out, opacity 0.2s ease-in;
+  opacity: 1;
 }
 
 /* ============================================================
