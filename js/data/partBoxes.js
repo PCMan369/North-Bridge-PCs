@@ -47,6 +47,66 @@
 
 const partBoxes = [
 
-  // No part box inventory has been added yet.
+  {
+    id: "box-01",
+    brand: "AMD",
+    model: "Ryzen 5 5500",
+    category: "CPU Box",
+    quantity: 3,
+    price: "$5",
+    condition: "Good condition — includes foam inserts.",
+    media: { images: [], videos: [] },
+    notes: ""
+  },
+
+  {
+    id: "box-02",
+    brand: "AMD",
+    model: "Ryzen 5 3600",
+    category: "CPU Box",
+    quantity: 2,
+    price: "$5",
+    condition: "Good condition — includes foam inserts.",
+    media: { images: [], videos: [] },
+    notes: ""
+  },
+
+  {
+    id: "box-03",
+    brand: "AMD",
+    model: "Ryzen 7 5700X3D",
+    category: "CPU Box",
+    quantity: 1,
+    price: "$5",
+    condition: "Fair condition.",
+    media: { images: [], videos: [] },
+    notes: ""
+  },
+
+  {
+    id: "box-04",
+    brand: "MSI",
+    model: "MAG A550BN",
+    category: "PSU Box",
+    quantity: 4,
+    price: "$3",
+    condition: "Good condition — includes foam inserts.",
+    media: { images: [], videos: [] },
+    notes: ""
+  },
+
+  {
+    id: "box-05",
+    brand: "MSI",
+    model: "MAG A650BE", // owner wrote "mg a650be" — MSI's PSU line is
+                          // branded "MAG," so read as a likely typo and
+                          // corrected; flag if a different model was meant
+    category: "PSU Box",
+    quantity: 1,
+    price: "$3",
+    condition: "Good condition — includes foam inserts.",
+    media: { images: [], videos: [] },
+    notes: ""
+  }
 
 ];

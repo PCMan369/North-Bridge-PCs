@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photo gallery of gaming PC builds from North Bridge PCs in Southern Oregon — current listings and completed systems.">
+  <title>Build Gallery — North Bridge PCs | Southern Oregon Gaming PCs</title>
+<!--SEO-->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/gallery.css">
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+
+<!--HEADER:gallery-->
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">Photos</span>
+      <h1>Gallery</h1>
+      <p>Photos of gaming PCs built and sold in Grants Pass, Oregon. Current listings and completed builds, serving Southern Oregon. Click any photo to view it larger.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header" style="text-align:left; margin-bottom:2rem;">
+        <span class="section-label">For Sale</span>
+        <h2>Current Builds</h2>
+        <p>Systems that are currently available or in progress.</p>
+      </div>
+      <div id="gallery-current" class="gallery-grid"></div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header" style="text-align:left; margin-bottom:2rem;">
+        <span class="section-label">Past Work</span>
+        <h2>Completed Builds</h2>
+        <p>Sold systems, detail shots, and past builds.</p>
+      </div>
+      <div id="gallery-completed" class="gallery-grid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>See Something You Like?</h2>
+        <p>If a listed system catches your eye, reach out and ask about it. Or if you're thinking about a custom build, I'm happy to talk through what's possible.</p>
+        <div class="btn-group">
+          <a href="builds.html"       class="btn btn-primary btn-lg">Browse Available Systems &rarr;</a>
+          <a href="custom-build.html" class="btn btn-secondary btn-lg">Custom Builds</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!--FOOTER-->
+
+  <script src="js/data/config.js"></script>
+  <script src="js/data/events.js"></script>
+  <script src="js/data/gallery.js"></script>
+  <script src="js/render/galleryGrid.js"></script>
+  <script src="js/render/eventBanner.js"></script>
+  <script src="js/render/chrome.js"></script>
+
+  <script>
+    renderGalleryGrid(currentBuilds,   'gallery-current');
+    renderGalleryGrid(completedBuilds, 'gallery-completed');
+  </script>
+
+</body>
+</html>
