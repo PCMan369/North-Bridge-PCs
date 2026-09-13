@@ -1,0 +1,259 @@
+/*
+  ================================================================
+  css/part-boxes.css — Part Boxes Page
+  ================================================================
+  Loaded only by part-boxes.html. Genuinely new UI (the old site had
+  nothing like this), so it gets its own file rather than bloating
+  the shared style.css with rules only one page uses — same reasoning
+  as css/build-detail.css.
+  ================================================================
+*/
+
+.part-boxes-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* ---- Box grid ---- */
+.box-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.box-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color var(--ease);
+}
+
+.box-card:hover {
+  border-color: var(--border-l);
+}
+
+.box-image {
+  aspect-ratio: 4 / 3;
+  background: var(--placeholder-solid);
+  overflow: hidden;
+}
+
+.box-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity var(--ease);
+}
+
+.box-image img.loaded {
+  opacity: 1;
+}
+
+.box-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: var(--dim);
+}
+
+.box-body {
+  padding: 1rem;
+}
+
+.box-category {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  background: rgba(59,130,246,0.1);
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  margin-bottom: 0.5rem;
+}
+
+.box-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 0.35rem;
+}
+
+.box-condition {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+.box-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.box-price-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.box-price {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.box-stock {
+  font-size: 0.72rem;
+  color: var(--dim);
+}
+
+/* ---- Quantity picker ---- */
+.qty-picker {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.qty-btn {
+  width: 44px;
+  min-height: 44px;
+  background: var(--card-h);
+  border: none;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--ease);
+}
+
+.qty-btn:hover {
+  background: var(--accent-h); /* was --accent — white text on it only reached 3.68:1 */
+  color: white;
+}
+
+.qty-input {
+  width: 40px;
+  border: none;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  -moz-appearance: textfield;
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ---- Order summary sidebar ---- */
+.order-summary {
+  position: sticky;
+  top: calc(var(--header-h) + 1.5rem);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.order-summary-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  margin-bottom: 0.9rem;
+}
+
+.order-summary-empty {
+  font-size: 0.85rem;
+  color: var(--dim);
+}
+
+.order-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.order-line:last-child {
+  border-bottom: none;
+}
+
+.order-line-label {
+  color: var(--muted);
+}
+
+.order-line-price {
+  color: var(--text);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.order-summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-l);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.order-summary-total strong {
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+#order-form-wrap {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+#order-form-wrap .form-group {
+  margin-bottom: 0.85rem;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .part-boxes-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .order-summary {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .box-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

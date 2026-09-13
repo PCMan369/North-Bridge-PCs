@@ -1,0 +1,109 @@
+/*
+  ================================================================
+  css/services.css — Services & Situation-Picker Cards
+  ================================================================
+  Loaded by services.html (all classes below) and by contact.html
+  (.service-hub-card only — the contact page's 6-option situation
+  picker reuses this exact class for visual consistency rather than
+  duplicating near-identical CSS; see DECISIONS.md D33).
+  ================================================================
+*/
+
+.service-hub-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.service-hub-card h3 {
+  font-size: 1.1rem;
+}
+
+.service-hub-card p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  flex: 1;
+}
+
+.service-detail-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.service-request-btn {
+  margin-top: 1.25rem;
+}
+
+.service-detail-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-lead {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.service-included {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.service-included li {
+  font-size: 0.9rem;
+  padding-left: 1.4rem;
+  position: relative;
+  color: var(--text);
+}
+
+.service-included li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.service-note {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  margin-top: 0.75rem;
+}
+
+.service-note:first-of-type {
+  margin-top: 0;
+}
+
+.service-note strong {
+  color: var(--text);
+}
+
+.service-caveat {
+  color: var(--dim);
+}
+
+.service-policy {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.8;
+}

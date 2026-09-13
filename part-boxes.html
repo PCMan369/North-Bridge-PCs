@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Empty PC component boxes for sale — GPU, CPU, and case packaging from North Bridge PCs builds. Southern Oregon local pickup.">
+  <title>Part Boxes &amp; Packaging — North Bridge PCs | Southern Oregon</title>
+<link rel="canonical" href="https://pcman369.github.io/North-Bridge-PCs/part-boxes.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="North Bridge PCs">
+<meta property="og:title" content="Part Boxes &amp;amp; Packaging — North Bridge PCs | Southern Oregon">
+<meta property="og:description" content="Empty PC component boxes for sale — GPU, CPU, and case packaging from North Bridge PCs builds. Southern Oregon local pickup.">
+<meta property="og:url" content="https://pcman369.github.io/North-Bridge-PCs/part-boxes.html">
+<meta property="og:image" content="https://pcman369.github.io/North-Bridge-PCs/images/may26-01-main.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Part Boxes &amp;amp; Packaging — North Bridge PCs | Southern Oregon">
+<meta name="twitter:description" content="Empty PC component boxes for sale — GPU, CPU, and case packaging from North Bridge PCs builds. Southern Oregon local pickup.">
+<meta name="twitter:image" content="https://pcman369.github.io/North-Bridge-PCs/images/may26-01-main.jpg">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/part-boxes.css">
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<div id="event-banner"></div>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+
+    <a href="index.html" class="header-brand">
+      <span class="brand-name">North Bridge <span>PCs</span></span>
+      <span class="brand-sub">Southern Oregon Gaming PCs</span>
+      <span class="brand-tagline">Local Pickup &bull; Custom Builds &bull; Linux Available</span>
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav class="header-nav" aria-label="Main navigation">
+      <a href="index.html" class="nav-link ">Home</a>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-link nav-dropdown-trigger active"
+          id="forsale-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="forsale-menu">
+          For Sale <span class="nav-caret" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="nav-dropdown-menu" id="forsale-menu" aria-labelledby="forsale-trigger">
+          <a href="builds.html"       class="nav-dropdown-link ">Gaming PCs</a>
+          <a href="custom-build.html" class="nav-dropdown-link ">Custom Builds</a>
+          <a href="part-boxes.html"   class="nav-dropdown-link active">Part Boxes</a>
+        </div>
+      </div>
+
+      <a href="services.html" class="nav-link ">Services</a>
+      <a href="about.html"    class="nav-link ">About</a>
+      <a href="gallery.html"  class="nav-link ">Gallery</a>
+      <a href="faq.html"      class="nav-link ">FAQ</a>
+      <a href="contact.html"  class="nav-link nav-cta ">Contact</a>
+    </nav>
+
+    <!-- Mobile hamburger button -->
+    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile navigation drawer -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="index.html" class="nav-link ">Home</a>
+
+    <button type="button" class="nav-link mobile-nav-toggle active"
+      aria-expanded="false" aria-controls="forsale-mobile-menu">
+      For Sale <span class="nav-caret" aria-hidden="true">&#9662;</span>
+    </button>
+    <div class="mobile-nav-submenu" id="forsale-mobile-menu">
+      <a href="builds.html"       class="nav-sublink ">Gaming PCs</a>
+      <a href="custom-build.html" class="nav-sublink ">Custom Builds</a>
+      <a href="part-boxes.html"   class="nav-sublink active">Part Boxes</a>
+    </div>
+
+    <a href="services.html" class="nav-link ">Services</a>
+    <a href="about.html"    class="nav-link ">About</a>
+    <a href="gallery.html"  class="nav-link ">Gallery</a>
+    <a href="faq.html"      class="nav-link ">FAQ</a>
+    <a href="contact.html"  class="nav-link nav-cta ">Contact</a>
+  </nav>
+</header>
+
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">Extra From the Bench</span>
+      <h1>Part Boxes &amp; Packaging</h1>
+      <p>Empty component boxes left over from builds — useful for shipping, storage, or reselling your own parts. Pick any combination below; local pickup in Southern Oregon.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="part-boxes-layout">
+
+        <div id="part-boxes-grid" class="box-grid"></div>
+
+        <aside class="order-summary" id="order-summary">
+          <div class="order-summary-title">Your Request</div>
+          <div id="order-summary-items">
+            <p class="order-summary-empty">No boxes selected yet.</p>
+          </div>
+          <div class="order-summary-total" id="order-summary-total" style="display:none;">
+            <span>Estimated Total</span>
+            <strong id="order-total-amount">$0</strong>
+          </div>
+
+          <div id="order-form-wrap" style="display:none;">
+            <!--
+              Form action and the _next redirect below are baked in at
+              build time by stitch.py (reading CONTACT.email/SITE.url from
+              config.js), same pattern as contact.html/services.html — a
+              real POST + redirect, not a fetch()/AJAX call, so it doesn't
+              depend on that specific request succeeding at submit time.
+              items_requested/estimated_total are hidden fields kept in
+              sync by partBoxOrder.js's updateSummary() every time the
+              selection changes, so the real submission always matches
+              what's shown in the summary above.
+            -->
+            <form id="order-form" method="POST" action="https://formsubmit.co/jacobskrove@gmail.com" aria-live="polite" aria-atomic="true">
+              <input type="hidden" name="_subject" value="Part box order request &mdash; North Bridge PCs">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_next" id="order-next" value="https://pcman369.github.io/North-Bridge-PCs/part-boxes.html?ordered=true">
+              <input type="hidden" name="_url" id="order-url" value="https://pcman369.github.io/North-Bridge-PCs/part-boxes.html">
+              <input type="hidden" name="items_requested" id="order-items-hidden" value="">
+              <input type="hidden" name="estimated_total" id="order-total-hidden" value="">
+
+              <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
+
+              <div class="form-group">
+                <label class="form-label" for="order-name">Your Name</label>
+                <input type="text" id="order-name" name="name" class="form-input" placeholder="First name is fine" required autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="order-email">Your Email</label>
+                <input type="email" id="order-email" name="email" class="form-input" placeholder="So I can follow up" required autocomplete="email">
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Request &rarr;</button>
+              <p style="font-size:0.72rem; color:var(--dim); margin-top:0.75rem; text-align:center; line-height:1.5;">
+                This sends a request, not a payment. I'll follow up by email to arrange pickup and payment.
+              </p>
+            </form>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-name">North Bridge <span style="color:var(--accent);">PCs</span></div>
+        <p>Southern Oregon</p>
+        <!-- Populated by chrome.js only if phone/social are enabled in
+             config.js. Stays empty (and invisible) otherwise. -->
+        <div class="footer-extra" id="footer-extra"></div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="builds.html">Gaming PCs</a>
+        <a href="custom-build.html">Custom Builds</a>
+        <a href="part-boxes.html">Part Boxes</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <p>Availability changes regularly — if you don't see what you're looking for, or aren't sure what's currently available, just send a message.</p>
+      <p>&copy; <span id="footer-year"></span> North Bridge PCs &mdash; Southern Oregon</p>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">&uarr;</button>
+
+
+  <script src="js/data/config.js"></script>
+  <script src="js/data/events.js"></script>
+  <script src="js/data/partBoxes.js"></script>
+  <script src="js/render/partBoxCard.js"></script>
+  <script src="js/render/partBoxOrder.js"></script>
+  <script src="js/render/eventBanner.js"></script>
+  <script src="js/render/chrome.js"></script>
+
+  <script>
+    (function () {
+      var grid = document.getElementById('part-boxes-grid');
+      var available = partBoxes.filter(function (b) { return b.quantity > 0; });
+
+      grid.innerHTML = available.length
+        ? available.map(renderPartBoxCard).join('')
+        : renderEmptyPartBoxesState();
+
+      // An empty "Your Request" panel next to an empty-state message
+      // would look broken rather than intentional — hide it entirely
+      // when there's nothing orderable. Hiding it alone isn't enough,
+      // though: .part-boxes-layout is a fixed 2-column grid (content +
+      // 300px sidebar), so the sidebar's column track stays reserved
+      // even with nothing visible in it, leaving the content column
+      // short of the full container width and looking off-center.
+      // Collapsing the layout to a single column when empty removes
+      // that orphaned gap.
+      if (!available.length) {
+        document.getElementById('order-summary').style.display = 'none';
+        document.querySelector('.part-boxes-layout').style.gridTemplateColumns = '1fr';
+      }
+    })();
+  </script>
+
+</body>
+</html>

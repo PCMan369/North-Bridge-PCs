@@ -1,0 +1,125 @@
+/*
+  ================================================================
+  css/gallery.css — Lightbox
+  ================================================================
+  Loaded only by gallery.html. The .gallery-grid/.gallery-item styles
+  themselves already live in the shared style.css (the homepage preview
+  uses them too) — this file is just the click-to-enlarge lightbox,
+  which is new and gallery-page-only.
+  ================================================================
+*/
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 3rem 1rem;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.lightbox-img {
+  max-width: min(90vw, 1100px);
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+}
+
+.lightbox-video {
+  max-width: min(90vw, 1100px);
+  max-height: 82vh;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--ease);
+}
+
+.lightbox-close:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--ease);
+}
+
+.lightbox-arrow:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.lightbox-prev {
+  left: 1rem;
+}
+
+.lightbox-next {
+  right: 1rem;
+}
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  .lightbox-arrow {
+    width: 44px;
+    height: 44px;
+  }
+
+  .lightbox-prev {
+    left: 0.4rem;
+  }
+
+  .lightbox-next {
+    right: 0.4rem;
+  }
+}
