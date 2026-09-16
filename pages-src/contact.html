@@ -1,31 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B0EGXM9JNN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B0EGXM9JNN');
-</script>
-
+  <!--ANALYTICS-->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Contact North Bridge PCs: ask about a system, start a custom build, or just get a question answered. Southern Oregon.">
   <title>Contact | North Bridge PCs, Gaming PCs in Southern Oregon</title>
-<link rel="canonical" href="https://pcman369.github.io/North-Bridge-PCs/contact.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="North Bridge PCs">
-<meta property="og:title" content="Contact | North Bridge PCs, Gaming PCs in Southern Oregon">
-<meta property="og:description" content="Contact North Bridge PCs: ask about a system, start a custom build, or just get a question answered. Southern Oregon.">
-<meta property="og:url" content="https://pcman369.github.io/North-Bridge-PCs/contact.html">
-<meta property="og:image" content="https://pcman369.github.io/North-Bridge-PCs/images/may26-01-main.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Contact | North Bridge PCs, Gaming PCs in Southern Oregon">
-<meta name="twitter:description" content="Contact North Bridge PCs: ask about a system, start a custom build, or just get a question answered. Southern Oregon.">
-<meta name="twitter:image" content="https://pcman369.github.io/North-Bridge-PCs/images/may26-01-main.jpg">
+<!--SEO-->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
@@ -35,74 +16,7 @@
 </head>
 <body>
 
-<a href="#main" class="skip-link">Skip to content</a>
-
-<div id="event-banner"></div>
-
-<div class="load-progress" id="load-progress"></div>
-
-<header class="site-header">
-  <div class="header-inner">
-
-    <a href="index.html" class="header-brand">
-      <span class="brand-name">North Bridge <span>PCs</span></span>
-      <span class="brand-sub">Southern Oregon Gaming PCs</span>
-      <span class="brand-tagline">Local Pickup &bull; Custom Builds &bull; Linux Available</span>
-    </a>
-
-    <!-- Desktop navigation -->
-    <nav class="header-nav" aria-label="Main navigation">
-      <a href="index.html" class="nav-link ">Home</a>
-
-      <div class="nav-dropdown">
-        <button type="button" class="nav-link nav-dropdown-trigger "
-          id="forsale-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="forsale-menu">
-          For Sale <span class="nav-caret" aria-hidden="true">&#9662;</span>
-        </button>
-        <div class="nav-dropdown-menu" id="forsale-menu" aria-labelledby="forsale-trigger">
-          <a href="builds.html"       class="nav-dropdown-link ">Gaming PCs</a>
-          <a href="custom-build.html" class="nav-dropdown-link ">Custom Builds</a>
-          <a href="part-boxes.html"   class="nav-dropdown-link ">Part Boxes</a>
-        </div>
-      </div>
-
-      <a href="services.html" class="nav-link ">Services</a>
-      <a href="about.html"    class="nav-link ">About</a>
-      <a href="gallery.html"  class="nav-link ">Gallery</a>
-      <a href="faq.html"      class="nav-link ">FAQ</a>
-      <a href="contact.html"  class="nav-link nav-cta active">Contact</a>
-    </nav>
-
-    <!-- Mobile hamburger button -->
-    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-
-  <!-- Mobile navigation drawer -->
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-    <a href="index.html" class="nav-link ">Home</a>
-
-    <button type="button" class="nav-link mobile-nav-toggle "
-      aria-expanded="false" aria-controls="forsale-mobile-menu">
-      For Sale <span class="nav-caret" aria-hidden="true">&#9662;</span>
-    </button>
-    <div class="mobile-nav-submenu" id="forsale-mobile-menu">
-      <a href="builds.html"       class="nav-sublink ">Gaming PCs</a>
-      <a href="custom-build.html" class="nav-sublink ">Custom Builds</a>
-      <a href="part-boxes.html"   class="nav-sublink ">Part Boxes</a>
-    </div>
-
-    <a href="services.html" class="nav-link ">Services</a>
-    <a href="about.html"    class="nav-link ">About</a>
-    <a href="gallery.html"  class="nav-link ">Gallery</a>
-    <a href="faq.html"      class="nav-link ">FAQ</a>
-    <a href="contact.html"  class="nav-link nav-cta active">Contact</a>
-  </nav>
-</header>
-
+<!--HEADER:contact-->
 
 <main id="main">
 
@@ -225,12 +139,12 @@
             makes more sense for what you need.
           </p>
 
-          <form method="POST" action="https://formsubmit.co/jacobskrove@gmail.com">
+          <form method="POST" action="https://formsubmit.co/{{CONTACT_EMAIL}}">
             <input type="hidden" name="_subject" value="Buying inquiry &mdash; North Bridge PCs">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://pcman369.github.io/North-Bridge-PCs/contact.html?sent=true">
-            <input type="hidden" name="_url" value="https://pcman369.github.io/North-Bridge-PCs/contact.html">
+            <input type="hidden" name="_next" value="{{SITE_URL}}/contact.html?sent=true">
+            <input type="hidden" name="_url" value="{{SITE_URL}}/contact.html">
             <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
 
             <div class="form-grid">
@@ -279,12 +193,12 @@
           <h2 style="margin-bottom:0.4rem; font-size:1.4rem;">Custom PC</h2>
           <p style="margin-bottom:1.5rem; font-size:0.93rem; color:var(--muted);">Tell me your budget and what matters to you. Fill in whatever's relevant, skip the rest.</p>
 
-          <form method="POST" action="https://formsubmit.co/jacobskrove@gmail.com">
+          <form method="POST" action="https://formsubmit.co/{{CONTACT_EMAIL}}">
             <input type="hidden" name="_subject" value="Custom build inquiry &mdash; North Bridge PCs">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://pcman369.github.io/North-Bridge-PCs/contact.html?sent=true">
-            <input type="hidden" name="_url" value="https://pcman369.github.io/North-Bridge-PCs/contact.html">
+            <input type="hidden" name="_next" value="{{SITE_URL}}/contact.html?sent=true">
+            <input type="hidden" name="_url" value="{{SITE_URL}}/contact.html">
             <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
 
             <div class="form-grid">
@@ -361,13 +275,13 @@
           <h2 class="situation-heading" style="margin-bottom:0.4rem; font-size:1.4rem;">General Question or Other Inquiry</h2>
           <p class="situation-lead" style="margin-bottom:1.5rem; font-size:0.93rem; color:var(--muted);">Ask a general question, or tell me what's going on if you're not sure where it fits.</p>
 
-          <form method="POST" action="https://formsubmit.co/jacobskrove@gmail.com">
+          <form method="POST" action="https://formsubmit.co/{{CONTACT_EMAIL}}">
             <input type="hidden" class="situation-subject-input" name="_subject" value="General question or other inquiry &mdash; North Bridge PCs">
             <input type="hidden" class="situation-tag-input" name="situation_type" value="General question or other">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://pcman369.github.io/North-Bridge-PCs/contact.html?sent=true">
-            <input type="hidden" name="_url" value="https://pcman369.github.io/North-Bridge-PCs/contact.html">
+            <input type="hidden" name="_next" value="{{SITE_URL}}/contact.html?sent=true">
+            <input type="hidden" name="_url" value="{{SITE_URL}}/contact.html">
             <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
 
             <div class="form-grid">
@@ -403,37 +317,7 @@
 
 </main>
 
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="brand-name">North Bridge <span style="color:var(--accent);">PCs</span></div>
-        <p>Southern Oregon</p>
-        <!-- Populated by chrome.js only if phone/social are enabled in
-             config.js. Stays empty (and invisible) otherwise. -->
-        <div class="footer-extra" id="footer-extra"></div>
-      </div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="builds.html">Gaming PCs</a>
-        <a href="custom-build.html">Custom Builds</a>
-        <a href="part-boxes.html">Part Boxes</a>
-        <a href="services.html">Services</a>
-        <a href="about.html">About</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </div>
-    </div>
-    <div class="footer-copy">
-      <p>Availability changes regularly — if you don't see what you're looking for, or aren't sure what's currently available, just send a message.</p>
-      <p>&copy; <span id="footer-year"></span> North Bridge PCs &mdash; Southern Oregon</p>
-    </div>
-  </div>
-</footer>
-
-<button class="back-to-top" id="back-to-top" aria-label="Back to top">&uarr;</button>
-
+<!--FOOTER-->
 
   <script src="js/data/config.js"></script>
   <script src="js/data/events.js"></script>

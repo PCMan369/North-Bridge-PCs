@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--ANALYTICS-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Empty PC component boxes for sale — GPU, CPU, and case packaging from North Bridge PCs builds. Southern Oregon local pickup.">
+  <title>Part Boxes &amp; Packaging — North Bridge PCs | Southern Oregon</title>
+<!--SEO-->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/part-boxes.css">
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+
+<!--HEADER:part-boxes-->
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">Extra From the Bench</span>
+      <h1>Part Boxes &amp; Packaging</h1>
+      <p>Empty component boxes left over from builds — useful for shipping, storage, or reselling your own parts. Pick any combination below; local pickup in Southern Oregon.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="part-boxes-layout">
+
+        <div id="part-boxes-grid" class="box-grid"></div>
+
+        <aside class="order-summary" id="order-summary">
+          <div class="order-summary-title">Your Request</div>
+          <div id="order-summary-items">
+            <p class="order-summary-empty">No boxes selected yet.</p>
+          </div>
+          <div class="order-summary-total" id="order-summary-total" style="display:none;">
+            <span>Estimated Total</span>
+            <strong id="order-total-amount">$0</strong>
+          </div>
+
+          <div id="order-form-wrap" style="display:none;">
+            <!--
+              Form action and the _next redirect below are baked in at
+              build time by stitch.py (reading CONTACT.email/SITE.url from
+              config.js), same pattern as contact.html/services.html — a
+              real POST + redirect, not a fetch()/AJAX call, so it doesn't
+              depend on that specific request succeeding at submit time.
+              items_requested/estimated_total are hidden fields kept in
+              sync by partBoxOrder.js's updateSummary() every time the
+              selection changes, so the real submission always matches
+              what's shown in the summary above.
+            -->
+            <form id="order-form" method="POST" action="https://formsubmit.co/{{CONTACT_EMAIL}}" aria-live="polite" aria-atomic="true">
+              <input type="hidden" name="_subject" value="Part box order request &mdash; North Bridge PCs">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_next" id="order-next" value="{{SITE_URL}}/part-boxes.html?ordered=true">
+              <input type="hidden" name="_url" id="order-url" value="{{SITE_URL}}/part-boxes.html">
+              <input type="hidden" name="items_requested" id="order-items-hidden" value="">
+              <input type="hidden" name="estimated_total" id="order-total-hidden" value="">
+
+              <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
+
+              <div class="form-group">
+                <label class="form-label" for="order-name">Your Name</label>
+                <input type="text" id="order-name" name="name" class="form-input" placeholder="First name is fine" required autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="order-email">Your Email</label>
+                <input type="email" id="order-email" name="email" class="form-input" placeholder="So I can follow up" required autocomplete="email">
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Request &rarr;</button>
+              <p style="font-size:0.8rem; color:var(--dim); margin-top:0.75rem; text-align:center; line-height:1.5;">
+                This sends a request, not a payment. I'll follow up by email to arrange pickup and payment.
+              </p>
+            </form>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!--FOOTER-->
+
+  <script src="js/data/config.js"></script>
+  <script src="js/data/events.js"></script>
+  <script src="js/data/partBoxes.js"></script>
+  <script src="js/render/partBoxCard.js"></script>
+  <script src="js/render/partBoxOrder.js"></script>
+  <script src="js/render/eventBanner.js"></script>
+  <script src="js/render/chrome.js"></script>
+
+  <script>
+    (function () {
+      var grid = document.getElementById('part-boxes-grid');
+      var available = partBoxes.filter(function (b) { return b.quantity > 0; });
+
+      grid.innerHTML = available.length
+        ? available.map(renderPartBoxCard).join('')
+        : renderEmptyPartBoxesState();
+
+      // An empty "Your Request" panel next to an empty-state message
+      // would look broken rather than intentional — hide it entirely
+      // when there's nothing orderable. Hiding it alone isn't enough,
+      // though: .part-boxes-layout is a fixed 2-column grid (content +
+      // 300px sidebar), so the sidebar's column track stays reserved
+      // even with nothing visible in it, leaving the content column
+      // short of the full container width and looking off-center.
+      // Collapsing the layout to a single column when empty removes
+      // that orphaned gap.
+      if (!available.length) {
+        document.getElementById('order-summary').style.display = 'none';
+        document.querySelector('.part-boxes-layout').style.gridTemplateColumns = '1fr';
+      }
+    })();
+  </script>
+
+</body>
+</html>

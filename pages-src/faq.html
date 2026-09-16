@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--ANALYTICS-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Frequently asked questions about North Bridge PCs — gaming PCs, Linux, custom builds, support, and more.">
+  <title>FAQ — North Bridge PCs | Gaming PCs in Grants Pass, Oregon</title>
+<!--SEO-->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+
+<!--HEADER:faq-->
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">Questions &amp; Answers</span>
+      <h1>Frequently Asked</h1>
+      <p>Answers to the questions that come up most often. If something isn't covered here, just reach out.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="faq-list full-width" id="faq-main"></div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Question Not Listed Here?</h2>
+        <p>If there's something you want to know that isn't covered above, feel free to send a message. There's no dumb question when it comes to buying a PC.</p>
+        <div class="btn-group">
+          <a href="contact.html"      class="btn btn-primary btn-lg">Send a Message</a>
+          <a href="custom-build.html" class="btn btn-secondary btn-lg">Custom Builds</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!--FOOTER-->
+
+  <script src="js/data/config.js"></script>
+  <script src="js/data/events.js"></script>
+  <script src="js/data/faq.js"></script>
+  <script src="js/render/faqList.js"></script>
+  <script src="js/render/faqAccordion.js"></script>
+  <script src="js/render/eventBanner.js"></script>
+  <script src="js/render/chrome.js"></script>
+
+  <script>
+    document.getElementById('faq-main').innerHTML = renderFaqList(faqItems);
+  </script>
+
+</body>
+</html>
