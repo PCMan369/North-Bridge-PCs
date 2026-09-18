@@ -2246,10 +2246,70 @@ Claude's.
 
 ---
 
+### D42 — Gallery carryover for the 2 D34-migrated builds; hero image checked and found still missing; image optimization found along the way
+
+**Ask:** carry the sold Ryzen 5 5500/RX 5700 XT (`aug26-01`) build's
+photos into the gallery's Completed Builds section, and the available
+HP EliteBook 840 G10 (`aug26-02`) laptop's photos into the gallery's
+Current Builds section.
+
+**Context:** `gallery.js` is a separate data file from `builds.js`,
+populated when the 3 original sold PCs were migrated (Phase 3) but
+never updated when D34 later added these 2 builds directly to
+`builds.js`. `completedBuilds` was missing the RX 5700 XT set, and
+`currentBuilds` was empty — this also resolves the long-open
+"carry over sold builds or start fresh" question in TODO.md's
+Recommended section (answer: carry over).
+
+**Done:** added 5 entries to `completedBuilds` (main, front, side,
+I/O, back — same order and alt-text pattern as the existing sold
+entries, `"— previously sold"`), and 6 entries to `currentBuilds`
+(main, screen, keyboard, left, right, bottom — new alt-text pattern
+for this section, `"— available now"`, since these are the first
+`currentBuilds` entries and none of the earlier sold-only pattern
+applied). No HTML/build changes needed — `gallery.js` is read
+directly by both `pages-src/gallery.html` and the built
+`gallery.html`, not templated by `stitch.py`.
+
+**Found along the way, not something being looked for:** the owner
+believed the homepage hero photo (`images/hero-build.jpg`) was
+already in place and only failing to load for AI crawlers. Checked
+directly — the file does not exist anywhere in the project; the hero
+section is rendering its "Photo coming soon" placeholder for every
+visitor, not just crawlers. TODO.md's existing line for this
+(owner's critique #3) already reflected the correct blocked status,
+so left as-is; noting the direct check here since it contradicts what
+the owner believed going in.
+
+**Found along the way, not something being looked for:** the 11
+photos these 2 builds actually use (5 for the RX 5700 XT, 6 for the
+EliteBook) were still full phone-camera files from the D34 migration
+— up to 1.7MB each, one at the full 3024×4032 resolution, none
+had been through the same optimization D13 already gave every other
+product photo. Applied the identical process: EXIF orientation baked
+into pixels, resized to a 1800px max dimension, re-encoded at JPEG
+quality 82, metadata stripped. 6.72MB → 3.35MB (50.1% reduction).
+Checked for GPS coordinates specifically, given D13's finding — none
+present in any of the 11 this time. No filenames changed, so no
+references needed updating; this also improves the same 2 builds'
+existing detail pages (`build.html`), not just the gallery.
+
+**Also resolved:** the owner separately confirmed the "MSI MAG
+A650BE" PSU box model name (flagged since D36) is correct as
+corrected. Comment in `partBoxes.js` updated to reflect the
+confirmation instead of flagging it as open.
+
+**Verified:** visually reviewed one resized photo directly (not just
+checked file size) to confirm orientation and quality held up after
+the resize/re-encode.
+
+**Decided by:** owner (carry over the photos; confirmed the PSU box
+model). The hero-image and unoptimized-photo findings are Claude's,
+surfaced while doing the requested work.
+
+---
+
 ## Still open
 
 - Whether any real testimonials exist to seed that system (owner
   confirmed: not yet — leave disabled).
-- **MSI MAG A650BE model name** — owner wrote "MG A650BE"; corrected
-  to "MAG A650BE" as a likely typo (D36). Worth a quick confirmation
-  next time it comes up.

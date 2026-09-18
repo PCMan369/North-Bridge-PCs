@@ -669,6 +669,24 @@ have shown a stray leading space for any box with no brand set — now
 only does that when a brand is actually present. See DECISIONS.md
 D41.
 
+## Gallery carryover for the 2 D34-migrated builds
+
+`gallery.js` had never been updated when D34 added the RX 5700 XT
+(sold) and EliteBook (available) builds directly to `builds.js` — its
+Completed Builds section was missing the 5700 XT's photos, and
+Current Builds was empty. Owner asked for both to be carried over:
+5 RX 5700 XT photos added to Completed Builds, 6 EliteBook photos
+added to Current Builds (its first entries). Resolves the
+long-standing "carry over sold builds or start fresh" question.
+Found and fixed along the way: those same 11 photos were still full
+phone-camera files from the D34 migration, never run through D13's
+optimization — done now (6.72MB → 3.35MB, no GPS data found this
+time). Also checked the owner's belief that the homepage hero photo
+was already in place — it isn't; `images/hero-build.jpg` doesn't
+exist in the project, so the placeholder is showing for every
+visitor, not just AI crawlers. Owner separately confirmed the "MSI
+MAG A650BE" PSU box model name is correct. See DECISIONS.md D42.
+
 ## Not started yet
 
 - Phase 6 remainder: general visual/micro-interaction polish (image

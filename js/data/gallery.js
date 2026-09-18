@@ -32,9 +32,12 @@
 
 const currentBuilds = [
 
-  // No current-build photos yet — these would be systems that are
-  // listed or in progress right now. See builds.js for the actual
-  // for-sale listings; this is just supplementary gallery photos.
+  { src: "images/EliteBook.jpg",          alt: "HP EliteBook 840 G10 — available now" },
+  { src: "images/EliteBook_screen.jpg",   alt: "HP EliteBook 840 G10, screen — available now" },
+  { src: "images/EliteBook_keyboard.jpg", alt: "HP EliteBook 840 G10, keyboard — available now" },
+  { src: "images/EliteBook_left.jpg",     alt: "HP EliteBook 840 G10, left side — available now" },
+  { src: "images/EliteBook_right.jpg",    alt: "HP EliteBook 840 G10, right side — available now" },
+  { src: "images/EliteBook_bottom.jpg",   alt: "HP EliteBook 840 G10, bottom — available now" }
 
 ];
 
@@ -52,6 +55,12 @@ const completedBuilds = [
   { src: "images/3600_RTX2060_IO.jpg",    alt: "Ryzen 5 3600 / RTX 2060 build, rear I/O — previously sold" },
   { src: "images/3600_RTX2060_BACK.jpg",  alt: "Ryzen 5 3600 / RTX 2060 build, back panel — previously sold" },
 
-  { src: "images/may26-01-main.jpg",      alt: "Ryzen 5 5500 / RTX 2070 Super build — previously sold" }
+  { src: "images/may26-01-main.jpg",      alt: "Ryzen 5 5500 / RTX 2070 Super build — previously sold" },
+
+  { src: "images/5500_5700XT.jpg",        alt: "Ryzen 5 5500 / RX 5700 XT build — previously sold" },
+  { src: "images/5500_5700XT_FRONT.jpg",  alt: "Ryzen 5 5500 / RX 5700 XT build, front panel — previously sold" },
+  { src: "images/5500_5700XT_SIDE.jpg",   alt: "Ryzen 5 5500 / RX 5700 XT build, side panel — previously sold" },
+  { src: "images/5500_5700XT_IO.jpg",     alt: "Ryzen 5 5500 / RX 5700 XT build, rear I/O — previously sold" },
+  { src: "images/5500_5700XT_BACK.jpg",   alt: "Ryzen 5 5500 / RX 5700 XT build, back panel — previously sold" }
 
 ];

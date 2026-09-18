@@ -91,9 +91,9 @@
 - [x] Added first real part box inventory (5 box types, real
       quantities/pricing/condition, no photos yet by owner's choice).
       See DECISIONS.md D36.
-- [ ] Confirm "MSI MAG A650BE" — owner wrote "MG A650BE"; corrected
-      as a likely typo (MSI's PSU line is "MAG," not "MG"). Worth a
-      quick check next time it comes up.
+- [x] Confirm "MSI MAG A650BE" — owner wrote "MG A650BE"; corrected
+      as a likely typo (MSI's PSU line is "MAG," not "MG"). Owner
+      confirmed correct. See DECISIONS.md D42.
 - [x] Evaluated the Impeccable design-critique tool (owner asked).
       Fixed 2 real issues + 1 text-size inconsistency it surfaced.
       See DECISIONS.md D37 for the full list of what was fixed vs.
@@ -130,6 +130,12 @@
       D41.
 - [x] Confirm the brand for the "B550-PLUS AC-HES" part box (D41) —
       owner confirmed ASUS.
+- [x] Carried the 2 D34-migrated builds' photos into `gallery.js`:
+      the sold RX 5700 XT set into Completed Builds, the available
+      EliteBook set into Current Builds (previously empty). Found and
+      fixed along the way: those same 11 photos were never run
+      through the D13 image-optimization pass — done now, 6.72MB →
+      3.35MB, no GPS data found this time. See DECISIONS.md D42.
 
 ## Recommended
 
@@ -137,8 +143,9 @@
       D27 audit fixes) yourself, on your own machine — done, confirmed
       it looks fine; see DECISIONS.md D24/D27/D28
 - [x] Fill in `[Your Name]` placeholder in `about.html` — done, "Jacob Skrove"
-- [ ] Decide whether to carry over the "sold" builds from the old site into
-      the new sold-PC gallery, or start that section fresh
+- [x] Decide whether to carry over the "sold" builds from the old site into
+      the new sold-PC gallery, or start that section fresh — carry
+      over; done, see DECISIONS.md D42
 - [x] Decide on business email handling — going with the personal
       Gmail for now, managed with inbox rules; see DECISIONS.md D29
 - [ ] Before actual launch: turn phone/Facebook back on with real
@@ -147,9 +154,10 @@
 - [ ] Testimonials — collect any real ones that exist, or leave the
       section off (toggle is already safe either way; owner confirmed
       leaving it off for now)
-- [ ] Part boxes: no real inventory yet — `partBoxes.js` is empty on
-      purpose, same as builds.js started. Add real box types whenever
-      ready; the page already handles 0/1/many gracefully.
+- [x] Part boxes: real inventory added (11 total across D36 + D41) —
+      this line was stale, left over from before that inventory
+      existed; the page still handles 0/1/many gracefully if the
+      count changes again.
 
 ## Optional
 

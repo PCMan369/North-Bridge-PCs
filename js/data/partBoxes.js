@@ -98,9 +98,8 @@ const partBoxes = [
   {
     id: "box-05",
     brand: "MSI",
-    model: "MAG A650BE", // owner wrote "mg a650be" — MSI's PSU line is
-                          // branded "MAG," so read as a likely typo and
-                          // corrected; flag if a different model was meant
+    model: "MAG A650BE", // owner wrote "mg a650be" — corrected to MSI's
+                          // "MAG" PSU line; confirmed correct by owner
     category: "PSU Box",
     quantity: 1,
     price: "$3",
