@@ -653,6 +653,22 @@ script, which is expected, so the existing known-noise filter was
 scoped to exclude that specific case without weakening its ability to
 catch a real local script-path bug. See DECISIONS.md D40.
 
+## Second part box batch added
+
+6 more part boxes added (11 total now): an ID-Cooling air cooler
+box, 2 separate ASUS TUF Gaming A520 motherboard-box listings (owner
+noted one has a cardboard insert and one doesn't, split into 2
+listings rather than combined — owner's explicit call left to
+Claude), an MSI motherboard box, a motherboard box with an
+unconfirmed brand (left blank rather than guessed, flagged for the
+owner), and a Rosewill cooler box. 2 new categories introduced
+(Motherboard Box, Cooler Box) with pricing given directly by the
+owner. Found and fixed a real bug while adding the blank-brand entry:
+the card label builder always prepended "brand + space," which would
+have shown a stray leading space for any box with no brand set — now
+only does that when a brand is actually present. See DECISIONS.md
+D41.
+
 ## Not started yet
 
 - Phase 6 remainder: general visual/micro-interaction polish (image

@@ -124,6 +124,12 @@
       `<!--ANALYTICS-->` marker + `js/partials/analytics.html` —
       exactly once per page on all 11 pages, verified in the built
       output. See DECISIONS.md D40.
+- [x] Second part box batch added (6 more, 11 total) — 2 new
+      categories (Motherboard Box, Cooler Box), found and fixed a
+      real empty-brand rendering bug along the way. See DECISIONS.md
+      D41.
+- [x] Confirm the brand for the "B550-PLUS AC-HES" part box (D41) —
+      owner confirmed ASUS.
 
 ## Recommended
 

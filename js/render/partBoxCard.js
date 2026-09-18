@@ -9,7 +9,7 @@
 */
 
 function renderPartBoxCard(box) {
-  var label = box.brand + ' ' + box.model;
+  var label = box.brand ? box.brand + ' ' + box.model : box.model;
 
   var image = box.media && box.media.images && box.media.images[0];
   var imageHtml = image

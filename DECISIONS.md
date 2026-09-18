@@ -2181,6 +2181,71 @@ literal ask.
 
 ---
 
+### D41 — Second part box batch added (6 more, 2 new categories); found and fixed a real empty-brand rendering bug
+
+**Ask:** add more part boxes.
+
+**Owner-provided inventory**, structured here same as D36:
+
+- ID-Cooling SE-214 XT-V2 (cooler) — qty 1, good condition, no
+  inserts, $3
+- ASUS TUF Gaming A520 (motherboard) — qty 2, but the owner noted one
+  has a cardboard insert and one doesn't. Split into 2 separate
+  listings (qty 1 each) rather than one combined qty-2 listing — the
+  owner explicitly left this choice to Claude. Matches this file's
+  existing pattern of a new listing per real difference (e.g. the 2
+  different PSU models are already 2 separate entries), and means a
+  customer sees the insert difference immediately from the listing
+  itself rather than having to read a combined description carefully.
+- MSI PRO B550M VC WIFI (motherboard) — qty 2, good condition,
+  includes inserts, $5
+- A motherboard box the owner wrote as just "B550-PLUS AC-HES" with
+  no brand — a few real "B550-PLUS"-family boards exist across
+  different brands, so rather than guess, `brand` was left empty and
+  flagged inline in `partBoxes.js` and here. Still added and live
+  (as "B550-PLUS AC-HES" alone) rather than held back entirely, since
+  the rest of the listing (condition, price, quantity) was given with
+  full confidence.
+- Rosewill CPU Air Cooler with Digital Display (cooler) — qty 1, good
+  condition, no inserts, $3
+
+**Pricing/categories:** motherboard and cooler boxes are new
+categories not seen in D36 — owner gave $5 for the motherboard boxes
+and $3 for both cooler boxes directly, so no guessing needed there.
+
+**Real bug found and fixed**: `partBoxCard.js` built every box's
+display label as `box.brand + ' ' + box.model` unconditionally — fine
+for every box until this batch's intentionally-blank-brand entry,
+which would have rendered with a stray leading space (`" B550-PLUS
+AC-HES"`). Fixed to only prepend the brand and the separating space
+when a brand is actually set. Confirmed via direct DOM inspection
+that the fix propagates everywhere the label is used — the card,
+the order summary, and the hidden form fields all read from the same
+`data-label` attribute this function sets, so one fix covered all of
+them.
+
+**Verified:** `stitch.py` rebuild clean; `smoke-test.js` all pages
+pass. Direct DOM check confirms all 11 boxes (5 from D36 + 6 new)
+render with correct labels — including confirming the empty-brand
+entry now shows cleanly with no leading space. Simulated selecting
+the empty-brand box plus the Rosewill cooler and confirmed the
+summary, the $8 total, and the hidden form fields all matched
+exactly. Real-Chromium screenshots at desktop (1440px) and mobile
+(390px) of the full 11-box grid — zero overflow, the two ASUS
+listings read clearly distinct from each other, new category badges
+(Motherboard Box, Cooler Box) display correctly alongside the
+existing CPU/PSU ones.
+
+**Decided by:** owner (full inventory, pricing, and the ASUS
+listing-split choice given directly, the last explicitly left to
+Claude's judgment). The empty-brand handling and its bug fix are
+Claude's.
+
+**Update:** owner confirmed the brand — "ASUS B550-PLUS AC-HES."
+`brand` set accordingly; the flag above is resolved.
+
+---
+
 ## Still open
 
 - Whether any real testimonials exist to seed that system (owner
