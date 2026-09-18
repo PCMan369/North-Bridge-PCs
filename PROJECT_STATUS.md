@@ -687,6 +687,22 @@ exist in the project, so the placeholder is showing for every
 visitor, not just AI crawlers. Owner separately confirmed the "MSI
 MAG A650BE" PSU box model name is correct. See DECISIONS.md D42.
 
+## Unused CSS cleanup pass
+
+Owner asked for the on-record cleanup pass (3 unused rules:
+`.highlight-box`, `.card`, `.step-list-num`). Confirmed each against
+every HTML file (built and `pages-src/`) and every render script
+before touching anything. Found along the way: `.step-list-num`'s
+3 sibling rules — `.step-list`, `.step-list-item`, and
+`.step-list-text strong`/`p` — were also completely dead, never
+separately flagged. All removed. `.two-col`/`.two-col.center` (same
+section as the step-list rules) confirmed still in real use, kept.
+Numbered section-comment placeholders left in place for the removed
+sections, matching the existing convention from the Batch 2 redesign
+(D24) rather than renumbering every section after. Verified with a
+brace-balance check and a full smoke-test re-run — all pages still
+pass clean. See DECISIONS.md D43.
+
 ## Not started yet
 
 - Phase 6 remainder: general visual/micro-interaction polish (image
@@ -704,9 +720,6 @@ MAG A650BE" PSU box model name is correct. See DECISIONS.md D42.
   doesn't fit a non-gaming laptop anyway. Needs a decision on what,
   if anything, belongs there (a different kind of note entirely,
   general productivity/battery comments, or just leave it empty).
-- 2 unused CSS rules (`.highlight-box`, `.step-list-num`, plus now
-  also the unused `.card`) are candidates for deletion whenever a
-  cleanup pass is wanted — not urgent, nothing references them.
 - Whether the intentional amber glow on buttons/back-to-top/focus
   rings (flagged by Impeccable's "dark-glow" rule, unchanged in D39)
   is worth revisiting — this is part of the approved Forge identity,

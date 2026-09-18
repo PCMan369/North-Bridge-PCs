@@ -113,9 +113,11 @@
       Impeccable CLI afterward to confirm both findings are fully
       resolved. See DECISIONS.md D39.
 - [x] Marked aug26-01 (Ryzen 5 5500/RX 5700 XT) as sold.
-- [ ] 3 unused CSS rules now on record (`.highlight-box`,
-      `.step-list-num`, `.card`) — worth a deletion pass whenever one's
-      wanted, not urgent.
+- [x] 3 unused CSS rules deleted (`.highlight-box`, `.card`,
+      `.step-list-num`) — found 3 more sibling rules were dead too
+      while removing it (`.step-list`, `.step-list-item`,
+      `.step-list-text strong/p`), never separately on record. All
+      gone now. See DECISIONS.md D43.
 - [ ] Impeccable's "dark-glow" finding is unchanged (38, D39) — it's
       flagging the intentional amber glow on buttons/back-to-top/focus
       rings, part of the already-approved Forge identity. Not touched;

@@ -601,29 +601,6 @@ strong {
   flex-wrap: wrap;
 }
 
-/* highlight box (subtle blue tinted card) */
-.highlight-box {
-  background-color: rgba(242,167,27,0.06);
-  border: 1px solid rgba(242,167,27,0.18);
-  border-radius: var(--radius);
-  padding: 1.4rem 1.5rem;
-  transition: border-color var(--ease);
-}
-
-.highlight-box:hover {
-  border-color: rgba(242,167,27,0.35);
-}
-
-.highlight-box h3 {
-  font-size: 1rem;
-  margin-bottom: 0.4rem;
-}
-
-.highlight-box p {
-  font-size: 0.9rem;
-  line-height: 1.65;
-}
-
 /* Disclaimer text */
 .disclaimer {
   font-size: 0.78rem;
@@ -636,32 +613,13 @@ strong {
 
 
 /* ============================================================
-   9. Feature Cards
+   9. (Removed — cleanup pass)
+   Was .card, a generic feature-card style. Every actual usage
+   sitewide had already moved to a page-specific compound class
+   (service-hub-card, tier-card, form-card, etc.) that doesn't
+   extend .card, so it had no remaining references. See
+   DECISIONS.md D43.
    ============================================================ */
-
-.card {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.75rem;
-  transition: border-color var(--ease), box-shadow var(--ease), transform var(--ease);
-}
-
-.card:hover {
-  border-color: var(--border-l);
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
-}
-
-.card h3 {
-  margin-bottom: 0.6rem;
-  font-size: 1.1rem;
-}
-
-.card p {
-  font-size: 0.93rem;
-  line-height: 1.7;
-}
 
 
 /* ============================================================
@@ -686,47 +644,6 @@ strong {
 
 .two-col.center {
   align-items: center;
-}
-
-/* Numbered step list used in custom builds section & page */
-.step-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-}
-
-.step-list-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.step-list-num {
-  flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  background-color: rgba(242,167,27,0.1);
-  border: 1px solid rgba(242,167,27,0.25);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent-text);
-  font-weight: 700;
-  font-size: 0.82rem;
-  margin-top: 0.1rem;
-}
-
-.step-list-text strong {
-  display: block;
-  font-size: 0.97rem;
-  margin-bottom: 0.2rem;
-}
-
-.step-list-text p {
-  font-size: 0.875rem;
-  line-height: 1.6;
-  margin: 0;
 }
 
 

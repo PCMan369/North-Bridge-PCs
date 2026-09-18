@@ -2309,6 +2309,50 @@ surfaced while doing the requested work.
 
 ---
 
+### D43 — Unused CSS cleanup pass: 3 rules on record, 3 more sibling rules found dead too
+
+**Ask:** delete the 3 unused CSS rules already on record
+(`.highlight-box`, `.card`, `.step-list-num`).
+
+**Confirmed each independently before deleting anything** — searched
+every built HTML page, every `pages-src/*.html` source, and every
+`js/render/*.js` file (in case a class gets built dynamically in a
+template string) for each selector. All 3 came back with zero
+matches outside their own CSS definitions.
+
+**Found along the way, not something being looked for:**
+`.step-list-num` turned out to have 3 sibling rules in the same
+block — `.step-list`, `.step-list-item`, and `.step-list-text
+strong`/`.step-list-text p` — that were also completely dead, never
+separately flagged in TODO.md or here. A search for the bare string
+`step-list` across every HTML/JS file in the project (not just the
+one class already on record) came back empty. Removed all of it as
+one unit. `.two-col`/`.two-col.center`, which shared the same numbered
+CSS section, were checked the same way and confirmed still genuinely
+in use (`custom-build.html`, `index.html`) — kept untouched.
+
+**How the removal was done:** matched the project's existing
+convention from the Batch 2 redesign (D24), where a fully-removed
+numbered section (`10. (Removed — Redesign Batch 2)`) kept its
+section-comment placeholder explaining what used to be there and why,
+instead of deleting the heading and renumbering every section after
+it. Section 9 (`Feature Cards`, was `.card`) got the same treatment.
+The step-list block wasn't its own numbered section — it lived
+inside section 11 (`Two-Column Sections`) alongside `.two-col` — so
+it was deleted outright, leaving `.two-col`/`.two-col.center` and the
+section heading in place.
+
+**Verified:** brace count before/after confirmed balanced (263/263)
+after all edits — no syntax break from the deletions. Full
+`smoke-test.js` re-run across all pages, clean pass, same as before
+the change (expected, since nothing removed had any live references).
+
+**Decided by:** owner (asked for the cleanup pass). The 3 additional
+dead sibling rules are Claude's own finding, surfaced while doing the
+requested deletion.
+
+---
+
 ## Still open
 
 - Whether any real testimonials exist to seed that system (owner
