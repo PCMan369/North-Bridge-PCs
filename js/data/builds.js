@@ -115,6 +115,56 @@
 
 const builds = [
 
+{
+    id: "aug26-02",
+    title: "HP EliteBook 840 G10",
+    status: "sold",
+    price: "$400",
+    eventId: null,
+    eventPrice: null,
+
+    summary: "A lightweight business laptop, cleaned and tested. Not built for gaming.",
+
+    components: {
+      cpu: { model: "Intel Core i5" }, // exact generation/SKU not confirmed — visible on the unit's palm-rest badge but not fully legible in the source photos
+      ram: { model: "24GB DDR5 5200MHz" },
+      storage: { model: "512GB NVMe SSD" },
+      os:  { model: "Windows" } // visibly running Windows in the source photos; exact version (10 vs 11) not confirmed
+    },
+
+    // No performance section for this one — see notes below. Deliberately
+    // left empty rather than guessing; flagged for the owner to fill in
+    // properly (see PROJECT_STATUS.md).
+    performance: {
+      isEstimate: true,
+      items: []
+    },
+
+    media: {
+      images: [
+        "images/EliteBook.jpg",
+        "images/EliteBook_screen.jpg",
+        "images/EliteBook_keyboard.jpg",
+        "images/EliteBook_left.jpg",
+        "images/EliteBook_right.jpg",
+        "images/EliteBook_bottom.jpg"
+      ],
+      videos: []
+    },
+
+    condition: "",
+    testingNotes: "",
+    listedDate: "2026-08-01",
+    notes: "Given that this is not a gaming PC and does not have dedicated graphics, it will not perform very well in most PC games."
+  },
+
+
+  
+
+
+
+
+  
   {
     id: "aug26-01",
     title: "Ryzen 5 5500 / RX 5700 XT",
@@ -159,49 +209,14 @@ const builds = [
     notes: ""
   },
 
-  {
-    id: "aug26-02",
-    title: "HP EliteBook 840 G10",
-    status: "available",
-    price: "$400",
-    eventId: null,
-    eventPrice: null,
 
-    summary: "A lightweight business laptop, cleaned and tested. Not built for gaming.",
 
-    components: {
-      cpu: { model: "Intel Core i5" }, // exact generation/SKU not confirmed — visible on the unit's palm-rest badge but not fully legible in the source photos
-      ram: { model: "24GB DDR5 5200MHz" },
-      storage: { model: "512GB NVMe SSD" },
-      os:  { model: "Windows" } // visibly running Windows in the source photos; exact version (10 vs 11) not confirmed
-    },
 
-    // No performance section for this one — see notes below. Deliberately
-    // left empty rather than guessing; flagged for the owner to fill in
-    // properly (see PROJECT_STATUS.md).
-    performance: {
-      isEstimate: true,
-      items: []
-    },
 
-    media: {
-      images: [
-        "images/EliteBook.jpg",
-        "images/EliteBook_screen.jpg",
-        "images/EliteBook_keyboard.jpg",
-        "images/EliteBook_left.jpg",
-        "images/EliteBook_right.jpg",
-        "images/EliteBook_bottom.jpg"
-      ],
-      videos: []
-    },
+  
 
-    condition: "",
-    testingNotes: "",
-    listedDate: "2026-08-01",
-    notes: "Given that this is not a gaming PC and does not have dedicated graphics, it will not perform very well in most PC games."
-  },
 
+  
   {
     id: "jul26-01",
     title: "Ryzen 5 3600 / RTX 2070 Super",
@@ -246,6 +261,15 @@ const builds = [
     notes: ""
   },
 
+
+
+
+
+
+
+
+
+  
   {
     id: "jun26-01",
     title: "Ryzen 5 3600 / RTX 2060",
@@ -290,6 +314,15 @@ const builds = [
     notes: ""
   },
 
+
+
+
+
+
+
+
+
+  
   {
     id: "may26-01",
     title: "Ryzen 5 5500 / RTX 2070 Super",
