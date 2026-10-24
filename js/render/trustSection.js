@@ -28,8 +28,8 @@ function renderTrustEvidence() {
   return (
     '<div class="evidence evidence-compact">' +
       '<div>' +
-        '<p class="evidence-lead">Every system gets <span class="accent">cleaned, stress tested under load, and temperature-checked</span> before it goes anywhere.</p>' +
-        '<p class="evidence-sub">The specs listed are accurate — performance estimates are based on real-world expectations for that hardware, not cherry-picked benchmark runs. If a system has a limitation, I\'ll tell you. Based in Southern Oregon, pickup is in person — if you hit a snag after getting it home, you\'re reaching an actual person, not a ticket queue.</p>' +
+        '<p class="evidence-lead">Five steps <span class="accent">before it\'s yours.</span></p>' +
+        '<p class="evidence-sub">Performance figures are estimates based on real-world expectations for that hardware, not benchmarks I ran. There are no returns, but if you hit a snag after getting it home, email me and I\'ll help you troubleshoot.</p>' +
       '</div>' +
       '<div class="evidence-checklist">' +
         '<div class="evidence-row">' +
@@ -42,7 +42,7 @@ function renderTrustEvidence() {
         '</div>' +
         '<div class="evidence-row">' +
           '<span class="mark">03</span>' +
-          '<div><h3>Temps checked</h3><p>Thermals verified under load. Nothing runs hot, no surprises after pickup.</p></div>' +
+          '<div><h3>Temps checked</h3><p>Temperatures checked under load.</p></div>' +
         '</div>' +
         '<div class="evidence-row">' +
           '<span class="mark">04</span>' +
@@ -50,7 +50,7 @@ function renderTrustEvidence() {
         '</div>' +
         '<div class="evidence-row">' +
           '<span class="mark">05</span>' +
-          '<div><h3>Ready to use</h3><p>Plugged in and confirmed working on pickup. A finished computer, not a box of parts.</p></div>' +
+          '<div><h3>Ready to use</h3><p>Confirmed working, then handed over. A finished computer, not a box of parts.</p></div>' +
         '</div>' +
       '</div>' +
     '</div>'

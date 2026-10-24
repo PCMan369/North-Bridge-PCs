@@ -12,6 +12,15 @@
 
   Load order: js/data/config.js and js/data/events.js should load
   before this file if any build uses event pricing.
+
+  Image visibility note (Visual Redesign, home page decision 3):
+  the <img> used to stay at opacity:0 until an inline onload handler
+  added a .loaded class. Removed — if a renderer/crawler doesn't fire
+  onload the way a real browser does, that left a correctly-loading
+  image invisible indefinitely, which is worse than a missing one.
+  The image is now visible by default; onerror (still present) is a
+  non-load-bearing nicety for actually-broken image files, not
+  something normal rendering depends on. See VISUAL_REDESIGN.md.
   ================================================================
 */
 
@@ -24,7 +33,6 @@ function renderBuildCard(build) {
   var image = build.media && build.media.images && build.media.images[0];
   var imageHtml = image
     ? '<img src="' + image + '" alt="' + build.title + '" loading="lazy" ' +
-      'onload="this.classList.add(\'loaded\')" ' +
       'onerror="this.parentElement.innerHTML=\'<div class=build-img-placeholder><svg width=&quot;1em&quot; height=&quot;1em&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;2.5&quot; y=&quot;4&quot; width=&quot;19&quot; height=&quot;13&quot; rx=&quot;1.5&quot;/><line x1=&quot;8&quot; y1=&quot;20&quot; x2=&quot;16&quot; y2=&quot;20&quot;/><line x1=&quot;12&quot; y1=&quot;17&quot; x2=&quot;12&quot; y2=&quot;20&quot;/></svg></div>\'">'
     : '<div class="build-img-placeholder"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="13" rx="1.5"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="17" x2="12" y2="20"/></svg></div>';
 
@@ -88,11 +96,11 @@ function renderEmptyBuildsState() {
   return (
     '<div class="empty-state-forge">' +
       '<span class="icon"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="13" rx="1.5"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="17" x2="12" y2="20"/></svg></span>' +
-      '<h3>No Systems Listed Right Now</h3>' +
-      '<p>Nothing available at the moment — check back soon, or get notified when something comes in.</p>' +
+      '<h3>Nothing Listed Right Now</h3>' +
+      '<p>Everything I\'ve listed so far has sold. Get notified by email when the next one is ready, or ask about a custom build.</p>' +
       '<div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">' +
         '<a href="builds.html" class="btn btn-primary">Get Notified &rarr;</a>' +
-        '<a href="custom-build.html" class="btn btn-secondary">Custom Builds</a>' +
+        '<a href="custom-build.html" class="btn btn-secondary">Start a Custom Build</a>' +
       '</div>' +
     '</div>'
   );

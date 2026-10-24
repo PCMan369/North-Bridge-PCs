@@ -10,11 +10,11 @@
 
   Reliability: the actual submission is a real <form action="..."> POST
   (baked in at build time by stitch.py from config.js, same pattern as
-  contact.html/services.html/the build-detail inquiry form), not a
+  contact.html/the build-detail inquiry form), not a
   fetch()/AJAX call — it doesn't depend on that specific request
   succeeding at submit time the way the old fetch()-based version did.
   updateSummary() below keeps two hidden fields (items_requested,
-  estimated_total) in sync with the visible summary on every selection
+  total) in sync with the visible summary on every selection
   change, so the real POST always matches what's shown on screen. See
   DECISIONS.md D31 for the reliability fix and why part-boxes.html was
   the one form still on the old pattern.
@@ -39,10 +39,10 @@ function initPartBoxOrder() {
   if (window.location.search.indexOf('ordered=true') !== -1) {
     summary.style.display = '';
     summary.innerHTML =
-      '<div class="notify-success">' +
-        '<span class="success-icon" style="color:var(--accent);">&#10003;</span>' +
-        '<h3>Request Sent</h3>' +
-        '<p>I\'ll follow up by email to arrange pickup and payment.</p>' +
+      '<div class="success-state">' +
+        '<span class="success-mark" aria-hidden="true">&#10003;</span>' +
+        '<h2 class="success-title">Request Sent</h2>' +
+        '<p>Thanks. I\'ll reply by email, usually within a day or two, to arrange pickup and payment.</p>' +
       '</div>';
     return;
   }
@@ -84,7 +84,7 @@ function initPartBoxOrder() {
     });
 
     if (!lines.length) {
-      itemsEl.innerHTML = '<p class="order-summary-empty">No boxes selected yet.</p>';
+      itemsEl.innerHTML = '<p class="order-summary-empty">No boxes selected yet. Use the + on any box to add it.</p>';
       totalWrap.style.display = 'none';
       formWrap.style.display = 'none';
       if (itemsHiddenEl) itemsHiddenEl.value = '';

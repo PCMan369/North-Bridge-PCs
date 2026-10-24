@@ -9,7 +9,7 @@
 
   Reliability: this is a real <form action="..."> that posts straight
   to FormSubmit — the same zero-JS-dependent pattern already used by
-  contact.html, services.html, and the build-detail inquiry form. It
+  contact.html and the build-detail inquiry form. It
   works even if JavaScript never runs. The only thing JS adds is
   swapping in a nicer "you're on the list" message after the redirect
   back (same progressive-enhancement pattern as contact.html).
@@ -43,10 +43,10 @@ function renderNotifyBox() {
           '<span class="section-label" style="display:block; margin-bottom:0.75rem;">Nothing Listed Right Now</span>' +
           '<h2>Get Notified When Something Comes In</h2>' +
           '<p>Leave your email and a note about what you\'re looking for. ' +
-          'When I have something that fits, I\'ll reach out directly. ' +
-          'No spam, no mailing list — just a one-time heads up.</p>' +
+          'I\'ll email you when I have something that fits. ' +
+          'No spam, no mailing list.</p>' +
           '<p style="margin-top:1rem; font-size:0.88rem;">' +
-            'In the meantime, <a href="custom-build.html" style="color:var(--accent); text-decoration:underline;">custom builds</a> are always available ' +
+            'In the meantime, <a href="custom-build.html" style="color:var(--accent-text); text-decoration:underline;">custom builds</a> are always available ' +
             'if you have something specific in mind.' +
           '</p>' +
         '</div>' +
@@ -74,7 +74,7 @@ function renderNotifyBox() {
             'new listings. It won\'t be shared or used for anything else.</p>' +
           '</div>' +
           '<button type="submit" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;" id="notify-submit">' +
-            'Notify Me &rarr;' +
+            'Get Notified &rarr;' +
           '</button>' +
         '</form>' +
       '</div>' +
@@ -91,10 +91,10 @@ function wireNotifyBox() {
     var box = document.getElementById('notify-box');
     if (box) {
       box.outerHTML =
-        '<div class="notify-success">' +
-          '<span class="success-icon" style="color:var(--accent);">&#10003;</span>' +
-          '<h2>You\'re on the list</h2>' +
-          '<p>I\'ll reach out when something comes in that might be a good fit. ' +
+        '<div class="success-state">' +
+          '<span class="success-mark" aria-hidden="true">&#10003;</span>' +
+          '<h2 class="success-title">You\'re on the list</h2>' +
+          '<p>I\'ll email you when I list something that might be a good fit. ' +
           'In the meantime, feel free to <a href="contact.html">send a message</a> ' +
           'if you have questions.</p>' +
         '</div>';

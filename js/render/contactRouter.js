@@ -2,11 +2,10 @@
   ================================================================
   js/render/contactRouter.js — Contact Page Situation Router
   ================================================================
-  contact.html presents 6 "what do you need help with" options.
-  Two of them (PC Service/Repair, Part Box) are plain links to their
-  own existing dedicated pages/forms (services.html, part-boxes.html)
-  — there's nothing to route for those, they're just normal <a>
-  navigation and need no JS at all.
+  contact.html presents 5 "what do you need help with" options.
+  One of them (Part Box) is a plain link to its own existing dedicated
+  page/form (part-boxes.html) — there's nothing to route for that, it's
+  just normal <a> navigation and needs no JS at all.
 
   The other four map to 3 real <form> panels on this page: Buying a
   Gaming PC, Custom PC, and one shared panel for General Question /
@@ -34,18 +33,20 @@ function initContactRouter() {
   // works without this via its own _next redirect; this just swaps
   // in a nicer confirmation when JS is available). Same dynamic-
   // injection-into-a-role=status-region pattern used everywhere else
-  // on the site (notifyBox.js, services.html, build-detail form),
+  // on the site (notifyBox.js, build-detail form),
   // rather than a plain display toggle, since that's the pattern
   // already confirmed to announce correctly to screen readers.
   if (window.location.search.indexOf('sent=true') !== -1) {
     flow.style.display = 'none';
     liveRegion.innerHTML =
-      '<div style="text-align:center; padding:3rem 1rem;">' +
-        '<div style="font-size:3rem; margin-bottom:1.25rem; color:var(--accent);">&#10003;</div>' +
-        '<h3 style="margin-bottom:0.75rem; font-size:1.3rem;">Message Sent</h3>' +
-        '<p style="font-size:1rem; max-width:420px; margin:0 auto 2rem;">Thanks for reaching out. I\'ll get back to you by email within a day or two.</p>' +
-        '<a href="index.html" class="btn btn-secondary">Back to Home</a>' +
-      '</div>';
+      '<section class="section"><div class="container">' +
+        '<div class="success-state">' +
+          '<span class="success-mark" aria-hidden="true">&#10003;</span>' +
+          '<h2 class="success-title">Message Sent</h2>' +
+          '<p>Thanks for reaching out. I\'ll reply by email, usually within a day or two.</p>' +
+          '<a href="index.html" class="btn btn-secondary">Back to Home</a>' +
+        '</div>' +
+      '</div></section>';
     return;
   }
 
@@ -65,8 +66,8 @@ function initContactRouter() {
       target.style.display = 'block';
 
       // The General Question / Other-not-sure buttons share one
-      // panel — relabel its heading, intro line, hidden subject, and
-      // hidden situation tag to match whichever button was clicked.
+      // panel — relabel its heading, hidden subject, and hidden
+      // situation tag (and its intro line, only if the button has its own) to match whichever button was clicked.
       var label = btn.getAttribute('data-situation-label');
       if (label) {
         var heading = target.querySelector('.situation-heading');
@@ -74,7 +75,7 @@ function initContactRouter() {
         var tagInput = target.querySelector('.situation-tag-input');
         var subjectInput = target.querySelector('.situation-subject-input');
         if (heading) heading.textContent = label;
-        if (lead) lead.textContent = btn.getAttribute('data-situation-lead') || '';
+        if (lead && btn.hasAttribute('data-situation-lead')) lead.textContent = btn.getAttribute('data-situation-lead');
         if (tagInput) tagInput.value = btn.getAttribute('data-situation-tag') || label;
         if (subjectInput) subjectInput.value = btn.getAttribute('data-situation-subject') || label;
       }

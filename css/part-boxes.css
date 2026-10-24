@@ -17,13 +17,25 @@
 }
 
 /* ---- Box grid ---- */
+/* Visual Redesign, part-boxes "Portrait photo cards", Option B (A-021).
+   The part-box photos are portrait (3:4, 1350x1800) and must never be
+   cropped (owner requirement). The old 4:3 frame with object-fit: cover
+   showed only about 56% of each photo. Cards are now horizontal: a 3:4
+   photo column on the left, the details on the right, two cards per row
+   (a 792px grid column beside the order summary). The price + quantity
+   row needs 198px (measured, today's stock counts), so a card needs about
+   376px (144px photo + 2px border + 32px body padding + 198px), about 382px
+   with a two-digit stock count; 380px lets two columns fit the 792px grid
+   and below that the grid drops to one column. */
 .box-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
   gap: 1.25rem;
 }
 
 .box-card {
+  display: grid;
+  grid-template-columns: 144px 1fr;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -36,21 +48,19 @@
 }
 
 .box-image {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 4;
+  align-self: start;
   background: var(--placeholder-solid);
   overflow: hidden;
 }
 
+/* Visual redesign, sitewide image-opacity fix: no longer gated behind
+   a .loaded class added by an inline onload handler — see
+   js/render/partBoxCard.js. Visible immediately. */
 .box-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity var(--ease);
-}
-
-.box-image img.loaded {
-  opacity: 1;
+  object-fit: contain; /* never crop; a non-3:4 photo letterboxes instead */
 }
 
 .box-img-placeholder {
@@ -64,6 +74,8 @@
 }
 
 .box-body {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
 }
 
@@ -73,11 +85,12 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--accent-text);
-  background: rgba(242,167,27,0.12);
+  color: var(--accent-text-tint);
+  background: rgba(139,63,94,0.12);
   border-radius: 999px;
   padding: 0.15rem 0.55rem;
   margin-bottom: 0.5rem;
+  align-self: flex-start; /* the body is a flex column now; keep the chip its natural width */
 }
 
 .box-title {
@@ -100,7 +113,7 @@
   justify-content: space-between;
   gap: 0.75rem;
   flex-wrap: wrap;
-  margin-top: 0.5rem;
+  margin-top: auto; /* pins price + quantity to the card bottom so the pickers line up across a row */
 }
 
 .box-price-wrap {
@@ -121,10 +134,16 @@
 }
 
 /* ---- Quantity picker ---- */
+/* Visual Redesign, part-boxes "Quantity picker and order confirmation"
+   (A-023): the picker is a form control, so it gets the same boundary the
+   form fields got (--border-field, ~3.1:1 against the card; --border was
+   1.29:1). It keeps overflow:hidden for the rounded corners, which clips
+   any outline drawn outside a button, so the keyboard focus indicator is
+   drawn INSIDE (see the :focus-visible rule below). */
 .qty-picker {
   display: flex;
   align-items: stretch;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-field);
   border-radius: var(--radius-sm);
   overflow: hidden;
 }
@@ -145,21 +164,37 @@
 }
 
 .qty-btn:hover {
-  background: var(--accent-h); /* was --accent — white text on it only reached 3.68:1 */
+  background: var(--accent); /* solid accent fill, white text on it (--accent-h merged into --accent, A-040) */
   color: white;
+}
+
+/* Keyboard focus: an inset 2px accent edge. The sitewide 2px offset outline
+   was clipped by .qty-picker's overflow:hidden, so focus was invisible. */
+.qty-btn:focus-visible,
+.qty-input:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--accent-text);
 }
 
 .qty-input {
   width: 40px;
   border: none;
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
+  border-left: 1px solid var(--border-field);
+  border-right: 1px solid var(--border-field);
   background: var(--bg);
   color: var(--text);
   text-align: center;
   font-size: 0.9rem;
   font-weight: 600;
   -moz-appearance: textfield;
+}
+
+/* Touch screens: 16px so iOS Safari does not zoom the page on focus (see the
+   comment on .form-input in style.css, A-041). */
+@media (pointer: coarse) {
+  .qty-input {
+    font-size: 16px;
+  }
 }
 
 .qty-input::-webkit-outer-spin-button,
@@ -241,6 +276,14 @@
   margin-bottom: 0.85rem;
 }
 
+/* The order confirmation (the shared .success-state from style.css) sits
+   inside this panel, which is already a card, so it drops its own box. */
+.order-summary .success-state {
+  background: none;
+  border: 0;
+  padding: 1.25rem 0.25rem;
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 900px) {
   .part-boxes-layout {
@@ -253,7 +296,70 @@
 }
 
 @media (max-width: 480px) {
+  /* one column of horizontal cards on a phone (two columns of 165px cards
+     cannot hold a 150px photo); a slightly narrower photo column keeps the
+     price + quantity row on one line */
   .box-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .box-card {
+    grid-template-columns: 110px 1fr;
+  }
+}
+
+/* very small phones (320-380px): the quantity picker is 130px wide, so a
+   narrower photo column keeps it inside the card */
+@media (max-width: 380px) {
+  .box-card {
+    grid-template-columns: 96px 1fr;
+  }
+}
+
+/* Phones 389px and below, Visual Redesign "Part-box cards on small phones",
+   Option B (A-036): the card is two rows. Photo + text on top, then a ruled
+   footer across the whole card with the price on the left and the quantity
+   picker on the right, the same pattern wider phones show beside the photo.
+   Before this the price wrapped above the picker at 321-375px and again at
+   381-388px (the photo column jumps from 96px to 110px at 381px). .box-body
+   becomes display: contents so its text can sit in the card grid beside the
+   photo while the footer spans both columns; row 3 is 1fr so extra photo
+   height never opens gaps between the text lines. 390px and up unchanged. */
+@media (max-width: 389px) {
+  .box-card {
+    grid-template-columns: 96px 1fr;
+    grid-template-rows: auto auto 1fr auto;
+  }
+
+  .box-image {
+    grid-row: 1 / span 3;
+  }
+
+  .box-body {
+    display: contents;
+  }
+
+  .box-category,
+  .box-title,
+  .box-condition {
+    grid-column: 2;
+    margin-left: 0.9rem;
+    margin-right: 1rem;
+  }
+
+  .box-category {
+    justify-self: start;
+  }
+
+  .box-body > :first-child {
+    margin-top: 1rem;
+  }
+
+  .box-footer {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    margin: 0.25rem 1rem 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
   }
 }

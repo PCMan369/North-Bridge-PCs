@@ -62,7 +62,7 @@ button, input, select, textarea {
   position: absolute;
   top: -40px;
   left: 0.5rem;
-  background: var(--accent-h); /* was --accent — white text on it only reached 3.68:1 */
+  background: var(--accent); /* solid accent fill, white text on it (--accent-h merged into --accent, A-040) */
   color: #fff;
   padding: 0.6rem 1rem;
   border-radius: var(--radius-sm);

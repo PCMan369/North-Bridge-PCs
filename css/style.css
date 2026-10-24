@@ -41,7 +41,7 @@ a {
 }
 
 a:hover {
-  color: var(--accent-text); /* was --accent-h (#2563eb), which only reached
+  color: var(--accent-text); /* was the old blue --accent-h (#2563eb, removed A-040), which only reached
                                  3.45:1 against dark --bg — fails WCAG AA.
                                  Keeping the same color as the resting accent-text
                                  state and relying on underline for hover feedback,
@@ -121,6 +121,35 @@ strong {
   font-size: 1.05rem;
 }
 
+/* Left-aligned variant — same label/heading/accent-line pieces as the
+   centered default above, for a section-header that's introducing one
+   column of a two-column layout rather than standing alone above
+   full-width content (Visual Redesign, home page decision 2, Option
+   B). Alignment differs; the shared parts (label styling, accent-line
+   styling, h2-to-p rhythm) come from the base rules above. */
+.section-header.align-left {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.section-header.align-left > p {
+  max-width: 52ch;
+  margin: 0;
+}
+
+.section-header.align-left .accent-line {
+  margin: 0.85rem 0 0;
+}
+
+/* Balanced line breaks for a heading that wraps in a half-width column.
+   Added for custom-build's "Not Sure What Hardware You Need?" (Visual
+   Redesign, custom-build "Not Sure section layout"): without it the
+   heading broke as "...Hardware You / Need?" with a one-word second
+   line. Opt-in per heading; not applied to other headings. */
+.text-balance {
+  text-wrap: balance;
+}
+
 .section-label {
   display: inline-block;
   font-size: 0.72rem;
@@ -134,7 +163,7 @@ strong {
 .accent-line {
   width: 40px;
   height: 3px;
-  background-color: var(--accent);
+  background-color: var(--accent-text);
   border-radius: 2px;
   margin: 0.85rem auto 0;
 }
@@ -221,7 +250,10 @@ strong {
 }
 
 .brand-tagline {
-  font-size: 0.62rem;
+  font-size: 0.7rem; /* was 0.62rem (9.92px) — below the 11px legibility
+                         floor for functional text; bumped to match
+                         .brand-sub. Relies on --dim vs --muted to keep
+                         some size-independent hierarchy between the two. */
   color: var(--dim);
   font-weight: 400;
   margin-top: 0.08rem;
@@ -252,25 +284,41 @@ strong {
 }
 
 .nav-link.active {
-  color: var(--accent-text);
-  background-color: rgba(242,167,27,0.12);
+  color: var(--accent-text-tint);
+  background-color: rgba(139,63,94,0.12);
 }
 
 .nav-cta {
-  background-color: var(--accent-h) !important; /* was --accent — white text on it only reached 3.68:1 */
+  background-color: var(--accent) !important; /* solid accent fill, white text on it (--accent-h merged into --accent, A-040) */
   color: white !important;
   font-weight: 600;
   padding: 0.5rem 1.1rem;
   margin-left: 0.4rem;
+  /* Found while verifying decision 9: .nav-link explicitly resets this
+     (line ~246) but .nav-cta never did, so the global a:hover rule's
+     underline was showing on this button on hover — a pre-existing
+     gap, not something decision 9 introduced, just noticed while
+     touching this exact hover state. !important needed: a:hover
+     (element+pseudo-class) otherwise outranks a plain .nav-cta class
+     rule on specificity, same reason every other property in this
+     block already needs it. */
+  text-decoration: none !important;
 }
 
 .nav-cta:hover {
-  background-color: var(--accent-h2) !important; /* was --accent-h, now needs to be darker than the new resting state */
+  /* Decision 9 (see .btn-primary above): brightness instead of a
+     fill-color swap — also removes the need for a separate
+     contrast check against a second, darker background. */
+  filter: brightness(1.12);
   color: white !important;
 }
 
 .nav-cta.active {
-  background-color: var(--accent-h2) !important; /* was --accent-h, moved one step darker to keep it visually distinct from the (now darker) resting state */
+  /* Static brightness bump (no hover involved) so the current-page
+     indicator uses the same "stay on one color, vary brightness"
+     principle as every other accent-filled control, instead of the
+     old swap to a second fill color. */
+  filter: brightness(1.12);
 }
 
 /* ---- Dropdown ("For Sale") ---- */
@@ -342,8 +390,8 @@ strong {
 }
 
 .nav-dropdown-link.active {
-  color: var(--accent-text);
-  background-color: rgba(242,167,27,0.12);
+  color: var(--accent-text-tint);
+  background-color: rgba(139,63,94,0.12);
 }
 
 
@@ -468,8 +516,8 @@ strong {
 }
 
 .nav-sublink.active {
-  color: var(--accent-text);
-  background-color: rgba(242,167,27,0.12);
+  color: var(--accent-text-tint);
+  background-color: rgba(139,63,94,0.12);
 }
 
 
@@ -506,43 +554,12 @@ strong {
   flex-wrap: wrap;
 }
 
-.hero-image-wrap {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  position: relative;
-}
-
-.hero-image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.hero-image-wrap:hover img {
-  transform: scale(1.02);
-}
-
-.hero-img-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  background: linear-gradient(135deg, var(--placeholder-start) 0%, var(--placeholder-end) 100%);
-  color: var(--dim);
-  font-size: 0.85rem;
-}
-
-.hero-img-placeholder .icon {
-  font-size: 4rem;
-  opacity: 0.5;
-}
+/* .hero-image-wrap / .hero-img-placeholder — REMOVED (dead code,
+   found while implementing the Visual Redesign's home page decision
+   1). Pre-dated the Forge redesign's photo treatment
+   (`.hero-media-frame`/`.hero-placeholder` in theme.css, itself now
+   also removed by that same decision going text-only); confirmed zero
+   references in any HTML or JS across the project before removing. */
 
 
 /* ============================================================
@@ -552,7 +569,7 @@ strong {
 .page-hero {
   padding: 56px 0 48px;
   border-bottom: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(242,167,27,0.05) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(139,63,94,0.05) 0%, transparent 100%);
 }
 
 .page-hero .section-label {
@@ -594,6 +611,15 @@ strong {
   font-size: 1.05rem;
 }
 
+/* Only present on the homepage's Contact CTA (Visual Redesign, home
+   page decision 2) — every other .cta-box on the site has no
+   .accent-line child, so this is a no-op everywhere else. .cta-box > p
+   already carries the gap above it; this only needs a bottom margin
+   before the buttons that follow. */
+.cta-box .accent-line {
+  margin: 0 auto 2rem;
+}
+
 .btn-group {
   display: flex;
   gap: 1rem;
@@ -616,7 +642,8 @@ strong {
    9. (Removed — cleanup pass)
    Was .card, a generic feature-card style. Every actual usage
    sitewide had already moved to a page-specific compound class
-   (service-hub-card, tier-card, form-card, etc.) that doesn't
+   (situation-option [then service-hub-card], tier-card, form-card,
+   etc.) that doesn't
    extend .card, so it had no remaining references. See
    DECISIONS.md D43.
    ============================================================ */
@@ -646,6 +673,64 @@ strong {
   align-items: center;
 }
 
+/* ---- About page: story section ----------------------------------------
+   Visual Redesign, about "Story section layout", Option A (A-026). It was
+   one 720px block centered on the page (text starting at x=360 while the
+   hero started at x=154), three paragraphs at 95-100 characters per line,
+   and an opening line barely larger than the body. Now two columns on the
+   page grid: the opening line is a large statement on the left and stays
+   pinned while you read (top: 6rem clears the sticky site header), the
+   paragraphs sit in the right column at 65-76 characters per line. Below
+   900px it is one column and nothing is pinned. Copy is unchanged. */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-side {
+  position: sticky;
+  top: 6rem;
+}
+
+.about-side .lede {
+  font-size: 1.6rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.about-side .accent-line {
+  margin: 1.1rem 0 0; /* left-aligned; the base .accent-line is centered */
+}
+
+.about-body p {
+  margin: 0 0 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.about-body p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-side {
+    position: static;
+  }
+
+  /* one column: keep the paragraphs at the desktop line length instead of
+     letting them run the full width (97-110 characters per line at 900px) */
+  .about-body {
+    max-width: 34rem;
+  }
+}
+
 
 /* ============================================================
    12. Build Cards
@@ -656,14 +741,20 @@ strong {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: border-color var(--ease), box-shadow var(--ease), transform var(--ease);
+  transition: border-color var(--ease), transform var(--ease);
   display: flex;
   flex-direction: column;
 }
 
 .build-card:hover {
+  /* Visual redesign: box-shadow removed (Impeccable flagged the
+     combination of this card's existing hairline border with a wide,
+     diffuse hover shadow as gpt-thin-border-wide-shadow — a
+     "recurring generated-UI signature"). Border-color shift + lift
+     alone carries the hover cue now, matching the flat/no-shadow
+     language the rest of the site already uses at rest. See
+     VISUAL_REDESIGN.md. */
   border-color: var(--border-l);
-  box-shadow: var(--shadow-lg);
   transform: translateY(-3px);
 }
 
@@ -683,16 +774,15 @@ strong {
   background-color: var(--placeholder-solid);
 }
 
+/* Visual redesign, home page decision 3 (image visibility): opacity
+   is no longer gated behind a .loaded class added by an inline onload
+   handler — see js/render/buildCard.js for why. The image is visible
+   immediately; only the hover zoom still transitions. */
 .build-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  opacity: 0;
-}
-
-.build-image img.loaded {
-  opacity: 1;
+  transition: transform 0.4s ease;
 }
 
 .build-card:hover .build-image img {
@@ -754,11 +844,22 @@ strong {
   flex-shrink: 0;
 }
 
+/* Visual redesign, decision 3 part A (Available Systems performance
+   callout) — REVISED. Originally Option A2: matched
+   .listing-perf-card's then-current treatment (neutral card + left
+   accent edge). Revised the same way and for the same reason as that
+   rule itself — see the decision-7 comment in css/build-detail.css for
+   the full Impeccable side-tab story and the tested alternatives.
+   Unboxed to match: .build-perf is now a plain wrapper (no
+   background/border/padding), label and items carry hairline
+   dividers instead. margin-bottom kept — this card's internal layout
+   uses plain stacked margins, not a flex-gap parent like the
+   build-detail page's .listing-details. Label/item font-size still
+   kept at this component's own smaller scale (0.68rem/0.8rem vs the
+   detail page's 0.72rem/0.9rem) for the same reason as before — this
+   card runs its own smaller type scale throughout. See
+   VISUAL_REDESIGN.md. */
 .build-perf {
-  background-color: rgba(242,167,27,0.08);
-  border: 1px solid rgba(242,167,27,0.18);
-  border-radius: var(--radius-sm);
-  padding: 0.7rem 0.85rem;
   margin-bottom: 1rem;
 }
 
@@ -768,14 +869,30 @@ strong {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-text);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .perf-item {
+  font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--muted);
-  padding: 0.1rem 0;
-  line-height: 1.5;
+  padding: 0.3rem 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.perf-item:last-child {
+  border-bottom: none;
+}
+
+.perf-item::before {
+  content: '\2022';
+  color: var(--accent-text);
+  flex-shrink: 0;
 }
 
 .build-footer {
@@ -857,9 +974,9 @@ strong {
 }
 
 .badge-available {
-  background-color: rgba(34,197,94,0.12);
+  background: none;
   color: var(--success);
-  border: 1px solid rgba(34,197,94,0.28);
+  border: 1px solid rgba(34,197,94,0.5);
 }
 
 .badge-available::before {
@@ -867,14 +984,22 @@ strong {
 }
 
 .badge-sold {
-  background-color: rgba(239,68,68,0.1);
+  background: none;
   color: var(--danger);
-  border: 1px solid rgba(239,68,68,0.22);
+  border: 1px solid rgba(239,68,68,0.45);
 }
 
 .badge-sold::before {
   background-color: var(--danger);
 }
+
+/* Visual redesign, A-043 (owner chose Option C): ONE badge everywhere, an
+   outlined pill (thin coloured border, no fill, round dot) on the listing
+   cards (builds page, homepage) and on the build-detail page and its sold
+   notice. It replaces the filled pill on cards and the .badge-quiet variant
+   (dot + text, no pill) that decision 5 gave the detail page. Text colours are
+   unchanged (--success, --danger); the outline carries the status shape. See
+   docs-archive/VISUAL_REDESIGN-mobile-pass.md, M6. */
 
 
 /* ============================================================
@@ -892,7 +1017,13 @@ strong {
   border-radius: var(--radius-sm);
   border: none;
   cursor: pointer;
-  text-decoration: none;
+  /* !important needed: a:hover (element+pseudo-class) otherwise
+     outranks this plain-class rule on specificity during actual
+     hover, so the global a:hover underline (line ~50) would show on
+     every .btn anchor — same root cause just fixed on .nav-cta above,
+     turns out to affect every button sitewide since they're all <a>
+     tags. Found while verifying decision 9. */
+  text-decoration: none !important;
   transition: all var(--ease);
   white-space: nowrap;
   font-family: inherit;
@@ -900,16 +1031,39 @@ strong {
 }
 
 .btn-primary {
-  background-color: var(--accent-h); /* was --accent — white text on it only reached 3.68:1, below WCAG AA's 4.5:1 for this text size */
+  background-color: var(--accent); /* solid accent fill, white text on it (--accent-h merged into --accent, A-040) */
   color: white;
-  box-shadow: 0 4px 14px rgba(242,167,27,0.28); /* was a hardcoded old-blue rgba() that theme.css silently overrode to this exact amber value sitewide — corrected here so the base file is honest about what actually renders, not dependent on remembering the override exists */
+  /* Visual redesign, decision 9 (button treatment — Option C,
+     approved, sitewide): flat neutral shadow instead of a colored
+     glow — same depth language the cards already use. See
+     VISUAL_REDESIGN.md. */
+  box-shadow: var(--shadow);
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-h2); /* was --accent-h, now needs to be darker than the new resting state */
-  color: white;
-  box-shadow: 0 6px 20px rgba(242,167,27,0.38); /* see note on .btn-primary above */
+  /* Decision 9: brightness+lift instead of swapping to a second,
+     darker fill color. This isn't just stylistic — a flat color-swap
+     hover is what caused the text-contrast failures found while
+     testing Copper and Terracotta (dark text can pass on one shade of
+     an accent and fail on a darker one, or vice versa, depending on
+     the specific hue). Brightening the same color sidesteps that
+     structurally, for whatever accent color is eventually chosen. */
+  filter: brightness(1.12);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-1px);
+  /* Found via Impeccable's low-contrast finding (2.0:1, needs 4.5:1):
+     this rule never redeclared color, so on an <a> element the global
+     a:hover { color: var(--accent-text) } (one type selector + one
+     pseudo-class) silently outranked .btn-primary's plain-class
+     `color: white` the instant it was hovered — accent-text text on
+     the still-solid accent background, exactly Impeccable's number.
+     Confirmed live with a real hover (not just read from the CSS):
+     computed color was rgb(174,121,142) on rgb(139,63,94) before this
+     fix. Same root cause already diagnosed and worked around for
+     .nav-cta (see its comment above) but never applied here. Explicit
+     redeclaration at equal (0,2,0) specificity beats a:hover's (0,1,1)
+     cleanly, so no !important needed here the way .nav-cta needed it. */
+  color: white;
 }
 
 .btn-secondary {
@@ -928,12 +1082,12 @@ strong {
 .btn-ghost {
   background-color: transparent;
   color: var(--accent-text);
-  border: 1px solid rgba(242,167,27,0.35);
+  border: 1px solid rgba(174,121,142,0.35);
 }
 
 .btn-ghost:hover {
-  background-color: rgba(242,167,27,0.08);
-  border-color: var(--accent);
+  background-color: rgba(139,63,94,0.08);
+  border-color: var(--accent-text);
   color: var(--accent-text);
 }
 
@@ -957,35 +1111,39 @@ strong {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2rem;
-  transition: border-color var(--ease), box-shadow var(--ease), transform var(--ease);
+  transition: border-color var(--ease), transform var(--ease);
   display: flex;
   flex-direction: column;
 }
 
 .tier-card:hover {
-  border-color: rgba(242,167,27,0.4);
-  box-shadow: var(--shadow-lg);
+  /* box-shadow removed — see .build-card:hover's comment above for
+     why (Impeccable gpt-thin-border-wide-shadow). */
+  border-color: rgba(174,121,142,0.4);
   transform: translateY(-2px);
 }
 
 .tier-card.featured {
-  border-color: rgba(242,167,27,0.45);
+  border-color: rgba(174,121,142,0.45);
   background: linear-gradient(160deg, var(--card) 0%, var(--card-h) 100%);
   position: relative;
 }
 
+/* Visual redesign, custom-build page decision (tier badge — quiet,
+   approved): dropped the filled-pill treatment entirely in favor of
+   the same plain kicker-label language used sitewide (.section-label
+   etc.) — no background, no border, just styled text. Unlike the
+   availability badge (home page decision 3B, kept as a pill), this is
+   a category label, not a status someone needs to scan for across
+   cards, so the scanning argument for a pill didn't carry over. */
 .tier-badge {
   display: inline-block;
-  background-color: rgba(242,167,27,0.14);
   color: var(--accent-text);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
   margin-bottom: 1rem;
-  border: 1px solid rgba(242,167,27,0.3);
 }
 
 .tier-price {
@@ -1007,32 +1165,65 @@ strong {
   color: var(--muted);
   margin-bottom: 1.25rem;
   line-height: 1.65;
-  flex: 1;
+  /* flex: 1 moved to .tier-features (see its comment). */
 }
 
+/* Visual redesign, custom-build page decision (tier-card feature
+   lists — Option B, approved): flush-left ruled rows, no check marks.
+   Three fixes in one:
+   1. The list had `list-style: none` but kept the browser's default
+      40px padding-left, so it sat 40px right of the badge/price/
+      description edge. `padding: 0` fixes that.
+   2. The ✓ marks are dropped. They read as "included in this tier",
+      which doesn't fit: there are no ✗ rows and the cards share items
+      (e.g. "Linux available on request"). Hairline rows carry the
+      structure instead — same device as .cb-list/.cb-row above it on
+      this page and the Evidence section on the home page, and the same
+      var(--border) as the card edge.
+   3. flex: 1 moved here from .tier-desc. With ruled rows, any
+      difference in wrapped lines between cards shifted each list's top
+      rule to a different height (measured: 2033/2014/2012px). Now the
+      list starts right after the description and any slack falls below
+      it, above the button, so the three top rules line up (all 2012px
+      at 1440px) and the buttons stay bottom-aligned. */
 .tier-features {
   list-style: none;
+  padding: 0;
   margin-bottom: 1.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  flex: 1;
+  border-top: 1px solid var(--border);
 }
 
 .tier-features li {
   font-size: 0.88rem;
   color: var(--muted);
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
   line-height: 1.5;
 }
 
-.tier-features li::before {
-  content: '✓';
-  color: var(--accent-text);
-  font-weight: 700;
-  flex-shrink: 0;
-  font-size: 0.85rem;
+.tier-features li:last-child {
+  border-bottom: none;
+}
+
+/* Tablet widths, Visual Redesign "Tier cards at tablet widths", Option A (A-035):
+   at 641px and up the six parts of each card (badge, price, price label,
+   description, list, button) sit on rows shared across the cards (subgrid), so
+   the list rules and buttons line up whatever the descriptions wrap to. Before
+   this the top rules were 23-24px apart at 661-681 and 751-781px. Needs each
+   .tier-card to have exactly six children (hence span 6). Browsers without
+   subgrid keep the flex layout above. Phones (640px and below) are unchanged. */
+@media (min-width: 641px) {
+  @supports (grid-template-rows: subgrid) {
+    .grid-3 > .tier-card {
+      display: grid;
+      grid-row: span 6;
+      grid-template-rows: subgrid;
+      row-gap: 0;
+    }
+  }
 }
 
 
@@ -1055,27 +1246,40 @@ strong {
   gap: 1.25rem;
 }
 
+/* Visual Redesign, gallery "Photo tile shape", Option B (A-027). Tiles were
+   1:1 squares with object-fit: cover, but 16 of the 22 gallery photos are
+   3:4 portrait (1350x1800) and 5 are 4:3 landscape, so most lost a quarter
+   of their height (the lightbox shows the whole photo). Tiles are now 3:4
+   and the image is contained, so portrait photos show whole; 4:3 photos sit
+   whole inside the tile with bars above and below (the card colour).
+   align-self: stretch makes a tile fill its grid row exactly: the featured
+   first tile (theme.css, spans 2x2 columns/rows) has a 3:4 height of about
+   741px against two rows of 357px + a 20px gap, and without stretch the
+   tiles beside it would end 3.5px short of its edge. This grid is shared
+   with the homepage preview. */
 .gallery-item {
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 4;
+  align-self: stretch;
   background-color: var(--card);
   border: 1px solid var(--border);
-  transition: border-color var(--ease), transform var(--ease), box-shadow var(--ease);
+  transition: border-color var(--ease), transform var(--ease);
   cursor: pointer;
 }
 
 .gallery-item:hover {
-  border-color: var(--accent);
+  /* box-shadow removed — see .build-card:hover's comment above for
+     why (Impeccable gpt-thin-border-wide-shadow). */
+  border-color: var(--accent-text);
   transform: scale(1.015);
-  box-shadow: var(--shadow-lg);
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* never crop; see the comment on .gallery-item */
   transition: transform 0.4s ease;
 }
 
@@ -1116,26 +1320,43 @@ strong {
 
 /* ============================================================
    18. FAQ Accordion
+   ============================================================
+   Visual Redesign, FAQ "Accordion", Option B (A-030). Replaces the six
+   full-width boxed cards (supersedes home decision 7, "boxed accordion
+   item"). Hairline-divided rows in an 800px column on the page grid, the
+   same ruled-row language as the process list, the situation picker and
+   the tier lists. Shared by the FAQ page and the homepage FAQ preview.
+
+   Also fixed here:
+   - The question is a real <button> (js/render/faqList.js) so a keyboard
+     can reach and operate it; focus uses the sitewide :focus-visible ring.
+   - The answer reveals by its real height (grid-template-rows 0fr -> 1fr)
+     instead of animating max-height up to a hardcoded 600px, which would
+     have clipped any longer answer and made closing lag. A closed answer is
+     visibility: hidden so screen readers do not read it; the visibility
+     switch is delayed so the closing animation still shows.
+   - The answer wrapper carries no vertical padding or border of its own
+     (they would stay as invisible space when it collapses to zero height);
+     the bottom space is on the last paragraph, which the wrapper clips.
+   - The <h2> inside each question used to keep its default margins on top
+     of the row padding (88px rows); rows are now 66px.
+   - Answer lines are capped at 65ch (they ran 139 characters per line).
    ============================================================ */
 
 .faq-list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
   max-width: 800px;
-  margin: 0 auto;
+  border-top: 1px solid var(--border);
 }
 
 .faq-item {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: border-color var(--ease);
+  border-bottom: 1px solid var(--border);
 }
 
-.faq-item.open {
-  border-color: rgba(242,167,27,0.4);
+.faq-heading {
+  margin: 0;
+  font-size: inherit;
 }
 
 .faq-question {
@@ -1143,17 +1364,17 @@ strong {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.2rem 1.4rem;
+  width: 100%;
+  padding: 1.25rem 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
   cursor: pointer;
-  user-select: none;
-  transition: background-color var(--ease);
 }
 
-.faq-question:hover {
-  background-color: rgba(255,255,255,0.025);
-}
-
-.faq-question h2 {
+.faq-q-text {
   font-size: 0.97rem;
   font-weight: 600;
   color: var(--text);
@@ -1164,8 +1385,8 @@ strong {
   flex-shrink: 0;
   width: 26px;
   height: 26px;
-  background-color: rgba(242,167,27,0.1);
-  border: 1px solid rgba(242,167,27,0.2);
+  background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-text) 20%, transparent);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1177,36 +1398,44 @@ strong {
   transition: all 0.28s ease;
 }
 
+/* The box's hover tint is gone with the box; the icon takes over as the
+   hover cue. */
+.faq-question:hover .faq-icon {
+  border-color: var(--accent-text);
+}
+
 .faq-item.open .faq-icon {
-  background-color: var(--accent-h); /* was --accent — white text/glyph on it only reached 3.68:1 */
+  background-color: var(--accent); /* solid accent fill, white text on it (--accent-h merged into --accent, A-040) */
   color: white;
   transform: rotate(45deg);
 }
 
 .faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.32s ease;
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.32s ease, visibility 0s linear 0.32s;
 }
 
 .faq-item.open .faq-answer {
-  max-height: 600px;
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition-delay: 0s;
 }
 
 .faq-answer-inner {
-  padding: 0 1.4rem 1.2rem;
-  border-top: 1px solid var(--border);
+  min-height: 0;
+  overflow: hidden;
 }
 
 .faq-answer-inner p {
   font-size: 0.93rem;
   line-height: 1.78;
-  padding-top: 1rem;
+  max-width: 65ch;
 }
 
-/* Wide variant used on faq.html — no max-width constraint */
-.faq-list.full-width {
-  max-width: 100%;
+.faq-answer-inner p:last-child {
+  padding-bottom: 1.25rem;
 }
 
 
@@ -1284,7 +1513,7 @@ strong {
 .form-select,
 .form-textarea {
   background-color: var(--bg);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-field); /* ~3.1:1 against the card; --border was 1.29:1 (contact "Form fields", A-012) */
   border-radius: var(--radius-sm);
   color: var(--text);
   font-family: inherit;
@@ -1296,21 +1525,39 @@ strong {
   -webkit-appearance: none;
 }
 
+/* Touch screens: 16px text in fields. iOS Safari zooms the whole page when a
+   field with text under 16px gets focus, and can leave the page zoomed and
+   scrolling sideways after the field loses focus (owner report, iPhone 8, iOS
+   16.7, A-041). Not a viewport lock (maximum-scale would block pinch zoom).
+   Applies to every field class here; .qty-input is in part-boxes.css. */
+@media (pointer: coarse) {
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 16px;
+  }
+}
+
 .form-input::placeholder,
 .form-textarea::placeholder {
   color: var(--dim);
 }
 
+/* Focus: one solid 2px accent edge (the 1px border plus a 1px outline with
+   no offset), no glow. Replaces the old accent border + 3px 15%-opacity
+   glow; a ring with a gap around a field read as a busy double ring.
+   (Visual Redesign, contact "Form fields", Option A, A-012.) */
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(242,167,27,0.15); /* was a hardcoded old-blue rgba() at 0.1 opacity; theme.css silently overrode both the color and opacity sitewide — corrected here to match what actually renders */
+  border-color: var(--accent-text);
+  box-shadow: none;
+  outline: 1px solid var(--accent-text);
+  outline-offset: 0;
 }
 
 .form-select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238f8a7d' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 2.5rem;
@@ -1329,8 +1576,8 @@ strong {
 }
 
 .form-privacy {
-  background-color: rgba(242,167,27,0.06);
-  border: 1px solid rgba(242,167,27,0.16);
+  background-color: rgba(139,63,94,0.06);
+  border: 1px solid rgba(174,121,142,0.16);
   border-radius: var(--radius-sm);
   padding: 1rem 1.2rem;
   margin-top: 0.25rem;
@@ -1341,11 +1588,42 @@ strong {
   font-size: 0.8rem;
   color: var(--dim);
   line-height: 1.65;
+  /* margin: 0 — the paragraph's default 12.8px top/bottom margins used to
+     stack inside the box padding, so a one-line note was an 81px box (now
+     56px) on the contact page, with the same extra height in the notify
+     box on builds.html and the build-detail form. Found in the contact
+     form-panel decision (VISUAL_REDESIGN.md); owner approved applying it
+     here at the root, A-011. */
+  margin: 0;
 }
 
 .form-privacy strong {
   color: var(--muted);
   font-size: 0.78rem;
+}
+
+/* Contact page form panels (Visual Redesign, contact "Form panel width
+   and placement", Option A). The panel stays full container width; three
+   internal fixes:
+   1. The panel's intro paragraph is capped at 52ch (the site's lead
+      measure). Uncapped it ran ~142 characters per line.
+   2. The submit buttons lost their inline `width:100%` (markup change in
+      pages-src/contact.html): a 1058px-wide button on a full-width panel.
+   3. The privacy note's stray paragraph margins (81px box, now 56px) are
+      fixed at the root `.form-privacy p` rule above, which also covers the
+      build-detail form and the notify box (A-011). */
+.situation-form-panel > p {
+  max-width: 52ch;
+}
+
+/* The buttons were full width at every size before (inline style). At
+   640px and below that is the right call on a phone, so it is kept
+   there; only wider layouts get the natural-width button. */
+@media (max-width: 640px) {
+  .situation-form-panel button[type="submit"] {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* Honeypot — hidden from humans, catches bots */
@@ -1473,19 +1751,14 @@ strong {
     display: none;
   }
 
-  .hero-inner {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  /* On mobile, image goes above text */
-  .hero-image-wrap {
-    order: -1;
-  }
-
-  .hero {
-    padding: 48px 0 64px;
-  }
+  /* .hero-inner grid-template-columns/gap, .hero-image-wrap order, and
+     .hero padding — REMOVED (dead code, found while implementing the
+     Visual Redesign's home page decision 1). All three were already
+     fully inert before this change too: theme.css loads after this
+     file and has always set its own unconditional `.hero`/`.hero-inner`
+     rules at equal specificity, so these never won the cascade at any
+     viewport width. `.hero-image-wrap` itself no longer exists in any
+     markup regardless. */
 
   .grid-3 {
     grid-template-columns: repeat(2, 1fr);
@@ -1587,13 +1860,6 @@ strong {
   }
 }
 
-/* Very small screens */
-@media (max-width: 420px) {
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* ============================================================
    Back to Top Button
    ============================================================ */
@@ -1604,7 +1870,7 @@ strong {
   right: 1.5rem;
   width: 44px;
   height: 44px;
-  background-color: var(--accent-h); /* was --accent — white text on it only reached 3.68:1 */
+  background-color: var(--accent); /* solid accent fill, white text on it (--accent-h merged into --accent, A-040) */
   color: white;
   border: none;
   border-radius: 50%;
@@ -1613,7 +1879,8 @@ strong {
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  box-shadow: 0 4px 14px rgba(242,167,27,0.28); /* was a hardcoded old-blue rgba() at 0.4 opacity; theme.css groups this with .btn-primary and overrides both color and opacity sitewide — corrected here to match what actually renders */
+  /* Decision 9 (see .btn-primary above): flat neutral shadow. */
+  box-shadow: var(--shadow);
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
@@ -1628,24 +1895,24 @@ strong {
 }
 
 .back-to-top:hover {
-  background-color: var(--accent-h2); /* was --accent-h, now needs to be darker than the new resting state */
-  box-shadow: 0 6px 20px rgba(242,167,27,0.38); /* see note on .back-to-top's base shadow above */
+  /* Decision 9: brightness+lift instead of a fill-color swap. */
+  filter: brightness(1.12);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
 }
 
 
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  opacity: 0;
-}
-
-.gallery-item img.loaded {
-  opacity: 1;
-}
+/* .gallery-item img / .gallery-item img.loaded — REMOVED (Visual
+   redesign, sitewide image-opacity fix). This was a duplicate of the
+   already-correct `.gallery-item img` rule above (~line 1151, no
+   opacity gating) — because this file cascades in source order and
+   both selectors are equal specificity, THIS later, redundant block
+   was the one actually winning for `opacity`, silently gating
+   visibility behind galleryGrid.js's onload handler even though a
+   clean definition already existed earlier in the same file. Removed
+   outright rather than just de-gated, since the earlier rule already
+   covers everything this one did (including the hover-zoom
+   transition). See VISUAL_REDESIGN.md. */
 
 
 /* ============================================================
@@ -1698,29 +1965,60 @@ strong {
   gap: 1rem;
 }
 
-.notify-success {
-  grid-column: 1 / -1;
+/* ---- Shared success / confirmation state ----------------------------
+   Visual Redesign, contact "Success states", Option B (A-013). One
+   component for the three confirmations the owner approved: contact.html
+   ("Message Sent"), the notify box on builds.html ("You're on the list")
+   and the build-detail inquiry form. Centered neutral card, the check in
+   a 56px outlined circle in --accent-text (--accent is only ~2.5-2.8:1),
+   a real h2 (contact and build-detail used an h3 straight under the h1).
+   Inside .listing-form-card it drops its own box so there is no card in
+   a card. Replaces the inline-styled blocks in contactRouter.js,
+   notifyBox.js and buildDetail.js, and (A-023) the old .notify-success
+   class (a card with a hardcoded green border) that the part-boxes order
+   confirmation in js/render/partBoxOrder.js still used; that class is
+   gone. Inside the part-boxes .order-summary panel it also drops its box:
+   see css/part-boxes.css. */
+.success-state {
+  grid-column: 1 / -1; /* the notify box sits in a grid on builds.html; harmless elsewhere */
   text-align: center;
   padding: 3rem 2rem;
   background: var(--card);
-  border: 1px solid rgba(34,197,94,0.25);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
 }
 
-.notify-success .success-icon {
-  font-size: 2.5rem;
-  display: block;
-  margin-bottom: 1rem;
+.success-mark {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 auto 1.25rem;
+  border: 1px solid var(--accent-text);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--accent-text);
 }
 
-.notify-success h2 {
-  margin-bottom: 0.5rem;
+.success-title {
+  font-size: 1.4rem;
+  margin: 0 0 0.6rem;
 }
 
-.notify-success p {
-  font-size: 0.92rem;
-  max-width: 400px;
+.success-state p {
+  max-width: 52ch;
   margin: 0 auto;
+}
+
+.success-state .btn {
+  margin-top: 1.75rem;
+}
+
+.listing-form-card .success-state {
+  background: none;
+  border: 0;
+  padding: 1.5rem 0.5rem;
 }
 
 @media (max-width: 900px) {
@@ -1743,7 +2041,7 @@ strong {
    ============================================================ */
 
 #event-banner {
-  background-color: var(--accent-h); /* was --accent — white text on it only reached 3.68:1 */
+  background-color: var(--accent); /* solid accent fill, white text on it (--accent-h merged into --accent, A-040) */
   color: white;
   width: 100%;
   z-index: 1001;

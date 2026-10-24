@@ -13,18 +13,18 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Photo gallery of gaming PC builds from North Bridge PCs in Southern Oregon — current listings and completed systems.">
-  <title>Build Gallery — North Bridge PCs | Southern Oregon Gaming PCs</title>
+  <meta name="description" content="Photos of systems sold by North Bridge PCs near Grants Pass, Oregon, shown from several angles.">
+  <title>Gallery | North Bridge PCs</title>
 <link rel="canonical" href="https://pcman369.github.io/North-Bridge-PCs/gallery.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="North Bridge PCs">
-<meta property="og:title" content="Build Gallery — North Bridge PCs | Southern Oregon Gaming PCs">
-<meta property="og:description" content="Photo gallery of gaming PC builds from North Bridge PCs in Southern Oregon — current listings and completed systems.">
+<meta property="og:title" content="Gallery | North Bridge PCs">
+<meta property="og:description" content="Photos of systems sold by North Bridge PCs near Grants Pass, Oregon, shown from several angles.">
 <meta property="og:url" content="https://pcman369.github.io/North-Bridge-PCs/gallery.html">
 <meta property="og:image" content="https://pcman369.github.io/North-Bridge-PCs/images/may26-01-main.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Build Gallery — North Bridge PCs | Southern Oregon Gaming PCs">
-<meta name="twitter:description" content="Photo gallery of gaming PC builds from North Bridge PCs in Southern Oregon — current listings and completed systems.">
+<meta name="twitter:title" content="Gallery | North Bridge PCs">
+<meta name="twitter:description" content="Photos of systems sold by North Bridge PCs near Grants Pass, Oregon, shown from several angles.">
 <meta name="twitter:image" content="https://pcman369.github.io/North-Bridge-PCs/images/may26-01-main.jpg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="css/tokens.css">
@@ -46,7 +46,7 @@
 
     <a href="index.html" class="header-brand">
       <span class="brand-name">North Bridge <span>PCs</span></span>
-      <span class="brand-sub">Southern Oregon Gaming PCs</span>
+      <span class="brand-sub">Gaming PCs, honestly built and tested.</span>
       <span class="brand-tagline">Local Pickup &bull; Custom Builds &bull; Linux Available</span>
     </a>
 
@@ -66,7 +66,6 @@
         </div>
       </div>
 
-      <a href="services.html" class="nav-link ">Services</a>
       <a href="about.html"    class="nav-link ">About</a>
       <a href="gallery.html"  class="nav-link active">Gallery</a>
       <a href="faq.html"      class="nav-link ">FAQ</a>
@@ -95,7 +94,6 @@
       <a href="part-boxes.html"   class="nav-sublink ">Part Boxes</a>
     </div>
 
-    <a href="services.html" class="nav-link ">Services</a>
     <a href="about.html"    class="nav-link ">About</a>
     <a href="gallery.html"  class="nav-link active">Gallery</a>
     <a href="faq.html"      class="nav-link ">FAQ</a>
@@ -110,16 +108,19 @@
     <div class="container">
       <span class="section-label">Photos</span>
       <h1>Gallery</h1>
-      <p>Photos of gaming PCs built and sold in Grants Pass, Oregon. Current listings and completed builds, serving Southern Oregon. Click any photo to view it larger.</p>
+      <p>A look at the PCs I've built and sold. Click or tap any photo to see it larger.</p>
     </div>
   </section>
 
-  <section class="section">
+  <!-- "Current Builds" is hidden while currentBuilds (js/data/gallery.js) is empty and
+       shows by itself once a photo is added there. See VISUAL_REDESIGN.md, "Gallery
+       page: empty Current Builds". -->
+  <section class="section" id="gallery-current-section">
     <div class="container">
-      <div class="section-header" style="text-align:left; margin-bottom:2rem;">
+      <div class="section-header align-left">
         <span class="section-label">For Sale</span>
-        <h2>Current Builds</h2>
-        <p>Systems that are currently available or in progress.</p>
+        <h2>Available Now</h2>
+        <p>Systems listed for sale right now.</p>
       </div>
       <div id="gallery-current" class="gallery-grid"></div>
     </div>
@@ -127,10 +128,10 @@
 
   <section class="section section-alt">
     <div class="container">
-      <div class="section-header" style="text-align:left; margin-bottom:2rem;">
-        <span class="section-label">Past Work</span>
-        <h2>Completed Builds</h2>
-        <p>Sold systems, detail shots, and past builds.</p>
+      <div class="section-header align-left">
+        <span class="section-label">Sale History</span>
+        <h2>Past Systems</h2>
+        <p>Every one has gone to a new owner. Close-ups of the front, sides and ports.</p>
       </div>
       <div id="gallery-completed" class="gallery-grid"></div>
     </div>
@@ -139,11 +140,11 @@
   <section class="section">
     <div class="container">
       <div class="cta-box">
-        <h2>See Something You Like?</h2>
-        <p>If a listed system catches your eye, reach out and ask about it. Or if you're thinking about a custom build, I'm happy to talk through what's possible.</p>
+        <h2>Want One Like These?</h2>
+        <p>Browse what's available now, or tell me your budget and the games you play and I'll build something to fit.</p>
         <div class="btn-group">
-          <a href="builds.html"       class="btn btn-primary btn-lg">Browse Available Systems &rarr;</a>
-          <a href="custom-build.html" class="btn btn-secondary btn-lg">Custom Builds</a>
+          <a href="builds.html"       class="btn btn-primary btn-lg">Browse Gaming PCs &rarr;</a>
+          <a href="custom-build.html" class="btn btn-secondary btn-lg">Start a Custom Build</a>
         </div>
       </div>
     </div>
@@ -155,7 +156,7 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="brand-name">North Bridge <span style="color:var(--accent);">PCs</span></div>
+        <div class="brand-name">North Bridge <span>PCs</span></div>
         <p>Southern Oregon</p>
         <!-- Populated by chrome.js only if phone/social are enabled in
              config.js. Stays empty (and invisible) otherwise. -->
@@ -166,7 +167,6 @@
         <a href="builds.html">Gaming PCs</a>
         <a href="custom-build.html">Custom Builds</a>
         <a href="part-boxes.html">Part Boxes</a>
-        <a href="services.html">Services</a>
         <a href="about.html">About</a>
         <a href="gallery.html">Gallery</a>
         <a href="faq.html">FAQ</a>
@@ -191,7 +191,11 @@
   <script src="js/render/chrome.js"></script>
 
   <script>
-    renderGalleryGrid(currentBuilds,   'gallery-current');
+    if (currentBuilds.length) {
+      renderGalleryGrid(currentBuilds, 'gallery-current');
+    } else {
+      document.getElementById('gallery-current-section').hidden = true;
+    }
     renderGalleryGrid(completedBuilds, 'gallery-completed');
   </script>
 

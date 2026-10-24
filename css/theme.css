@@ -8,11 +8,11 @@
 
   Loaded LAST (after tokens.css/base.css/style.css/any page-specific
   CSS) so its :root variable values win the cascade — tokens.css's own
-  :root block (including its light-mode @media override) is defined
-  earlier in the document, so this simply overrides it, regardless of
-  the visitor's system color-scheme setting. This is intentional: the
-  approved Forge direction is dark-first, not a light/dark toggle (see
-  DECISIONS.md D23) — now applied everywhere, not just the homepage.
+  :root block is defined earlier in the document, so this simply
+  overrides it. The site is dark-only: the approved Forge direction is
+  dark-first, not a light/dark toggle (see DECISIONS.md D23) — applied
+  everywhere, not just the homepage. There is no light mode at all (the
+  leftover light-mode block in tokens.css was removed in A-022).
 
   Existing components already read their colors from CSS custom
   properties (--accent, --bg, --card, etc.) defined in tokens.css.
@@ -23,7 +23,7 @@
 
   Two kinds of things DON'T re-theme automatically and get explicit
   overrides below: (1) rules that hardcode `color: white` on top of
-  `var(--accent-h)` — safe with the old blue, fails contrast badly on
+  the solid accent fill — safe with the old blue, fails contrast badly on
   amber; (2) rules that hardcode the old blue as a raw rgba() (mostly
   tints, box-shadows, and focus rings) instead of referencing a token.
   Batch 1 swept every instance findable from the homepage; Batch 2
@@ -43,16 +43,38 @@
   --bg: #0c0c0e;
   --card: #17171a;
   --card-h: #202024;
-  --accent: #f2a71b;
-  --accent-h: #f2a71b;
-  --accent-h2: #c9860f;
+  --accent: #8b3f5e;
+  --accent-h2: #763650;
   --text: #f2efe9;
   --muted: #b6b2a9;
   --dim: #8f8a7d;
   --border: #2c2c30;
   --border-l: #3a3a3f;
-  --accent-2: #f7c467;
-  --accent-text: #f2b93d;
+  /* Form field boundary (Visual Redesign, contact "Form fields", Option A,
+     A-012). A warm gray at ~3.1:1 against --card, which is the 3:1 WCAG
+     1.4.11 asks for to identify a form control; --border is only 1.29:1
+     against --card. Used by .form-input/.form-select/.form-textarea. */
+  --border-field: #6a665e;
+  --accent-2: #cba9b7;
+  --accent-text: #ae798e;
+  /* Accent text that sits ON the accent tint (rgba(139,63,94,0.10-0.12)):
+     active nav / dropdown / mobile sublink, .faq-icon, .box-category. The
+     tint darkens the surface, so --accent-text drops to 4.68:1 there (the
+     scanner's static estimate: 4.24:1); this ~6% lighter shade gives 5.13:1
+     (4.64:1 in the scanner's worst case). Visual Redesign M5, A-039. Not for
+     text on plain --card/--bg, and never on the solid accent fill. */
+  --accent-text-tint: #b38195;
+  /* Visual redesign, decision 14 (accent color — Cask, approved):
+     accent-text is deliberately lightened further from --accent than
+     it needed to be under amber (30% lighten vs. amber's much smaller
+     step) — Cask's base value only clears 2.5-2.8:1 against --card/--bg,
+     which is fine for a solid button fill with white text but fails
+     as a thin border, outline, or small text/icon. --accent-text
+     (~5:1 against --card) is now the one used everywhere accent color
+     appears as a border, outline, or text/icon rather than a filled
+     background — see the sweep noted throughout this file and in
+     build-detail.css/style.css/part-boxes.css. See
+     VISUAL_REDESIGN.md. */
   /* .badge-sold's text color. Originally just a small nudge from
      #ef4444 was tried (4.3:1 in isolation, matching the audit), but
      verifying against the actual rendered page revealed the real
@@ -92,165 +114,137 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
 }
 
-/* ---- Shared-component overrides: hardcoded white-on-accent + raw
-   blue rgba() that won't pick up the token change automatically --- */
+/* ---- Shared-component overrides: hardcoded white-on-accent won't
+   pick up the token change automatically. (The box-shadow override
+   that used to live here is gone as of decision 9 — style.css now
+   uses the neutral var(--shadow)/var(--shadow-lg) tokens directly, so
+   there's nothing theme-specific left to override.) ----
+   Decision 14 (Cask): white text replaces amber's dark #1a1200 here —
+   white on Cask's base reaches 7.07:1, comfortably clearing WCAG AA,
+   while dark text only reached 2.79:1. */
 .btn-primary,
 .back-to-top {
-  color: #1a1200;
-  box-shadow: 0 4px 14px rgba(242,167,27,0.28);
-}
-.btn-primary:hover,
-.back-to-top:hover {
-  color: #1a1200;
-  box-shadow: 0 6px 20px rgba(242,167,27,0.38);
+  color: #ffffff;
 }
 /* .nav-cta (header "Contact" button, incl. mobile menu) and .skip-link
-   both hardcode white text on an amber background. Under the old blue
-   palette --accent-h was a genuinely darker shade than --accent, so
-   white worked; under Forge, --accent-h equals --accent (see :root
-   above), so white text only reaches 2.04:1 — badly fails WCAG AA
-   (needs 4.5:1). Same dark text already used for .btn-primary/
-   .back-to-top fixes it here too: 9.13:1 at rest, 6.1:1 on the darker
-   :hover/.active state (white was failing there too, at 3.04:1 — not
-   caught by a static contrast scan since it only checks the resting
-   state, but real regardless). */
+   both hardcode a button text color rather than deriving it, since
+   the right choice (dark vs white) depends on the specific accent
+   hue's lightness, not something derivable from the hue alone.
+   Amber needed dark text (white only reached 2.04:1); Cask needs
+   white (8.62:1 at rest vs. dark text's 2.15:1). Same value as
+   .btn-primary/.back-to-top above, so there's one text-color decision
+   per accent, not two to keep in sync. */
 .nav-cta,
 .nav-cta:hover,
 .nav-cta.active,
 .skip-link {
-  color: #1a1200 !important;
+  color: #ffffff !important;
 }
 .btn-ghost {
-  border-color: rgba(242,167,27,0.35);
+  border-color: rgba(174,121,142,0.35);
 }
 .btn-ghost:hover {
-  background-color: rgba(242,167,27,0.08);
-  border-color: var(--accent);
+  background-color: rgba(139,63,94,0.08);
+  border-color: var(--accent-text);
 }
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus {
-  box-shadow: 0 0 0 3px rgba(242,167,27,0.15);
-}
+/* The .form-input/.form-select/.form-textarea :focus box-shadow glow
+   override REMOVED (Visual Redesign, contact "Form fields", Option A,
+   A-012): style.css now gives fields a solid 2px accent edge on focus
+   (border + outline) and no glow, so there is nothing left for this theme
+   layer to override. Leaving the old rgba(139,63,94,0.15) rule here would
+   have brought the glow back, since this file loads after style.css. */
 :focus-visible {
-  outline-color: var(--accent);
+  outline-color: var(--accent-text);
 }
 .nav-link.active,
 .nav-dropdown-link.active,
 .nav-sublink.active {
-  background-color: rgba(242,167,27,0.12);
-}
-.faq-item.open {
-  border-color: rgba(242,167,27,0.4);
+  background-color: rgba(139,63,94,0.12);
 }
 .faq-icon {
-  background-color: rgba(242,167,27,0.1);
-  border: 1px solid rgba(242,167,27,0.2);
+  background-color: rgba(139,63,94,0.1);
+  border: 1px solid rgba(174,121,142,0.2);
 }
 .form-privacy {
-  background-color: rgba(242,167,27,0.06);
-  border: 1px solid rgba(242,167,27,0.16);
+  background-color: rgba(139,63,94,0.06);
+  border: 1px solid rgba(174,121,142,0.16);
 }
-.build-perf {
-  background-color: rgba(242,167,27,0.08);
-  border: 1px solid rgba(242,167,27,0.18);
-}
+/* .build-perf's old full-tint override REMOVED (Visual Redesign,
+   home page decision 3 part A, Option A2): style.css now sets this
+   component's background/border directly with tokens (var(--card),
+   var(--border), var(--accent-text)), so there's nothing left for
+   this theme layer to override — same reasoning as decision 9's
+   button-shadow cleanup. Leaving the old rgba(139,63,94,...) override
+   in place here would have silently undone the new treatment, since
+   this file loads after style.css. */
 
 /* ---- Batch 2 additions: hardcoded-blue instances only reachable
    from the other 9 pages (not visible from the homepage alone) ---- */
 .page-hero {
-  background: linear-gradient(180deg, rgba(242,167,27,0.05) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(139,63,94,0.05) 0%, transparent 100%);
 }
-.tier-badge {
-  background-color: rgba(242,167,27,0.14);
-  border: 1px solid rgba(242,167,27,0.3);
-  color: var(--accent-text);
-}
+/* .tier-badge's old filled-pill rgba override REMOVED (quiet
+   treatment now, see style.css — no background/border left to
+   re-theme here). */
 .tier-card:hover {
-  border-color: rgba(242,167,27,0.4);
+  border-color: rgba(174,121,142,0.4);
 }
 .tier-card.featured {
-  border-color: rgba(242,167,27,0.45);
+  border-color: rgba(174,121,142,0.45);
 }
 .build-card.is-sold .spec-label {
   color: var(--sold-spec-label);
 }
 .box-category {
-  background: rgba(242,167,27,0.12);
+  background: rgba(139,63,94,0.12);
 }
-.listing-perf-card {
-  background: rgba(242,167,27,0.07);
-  border: 1px solid rgba(242,167,27,0.18);
-}
-.listing-system-badge {
-  background: rgba(242,167,27,0.08);
-  border: 1px solid rgba(242,167,27,0.2);
-}
-.listing-form-card {
-  border: 1px solid rgba(242,167,27,0.25);
-}
+/* .listing-perf-card / .listing-system-badge / .listing-form-card
+   overrides USED to live here, hardcoding the pre-decision-7/8 full
+   amber-tint treatment. Found during decision 14's sitewide sweep:
+   because this file loads after build-detail.css, this block's plain
+   `border`/`background` shorthands were winning the cascade over
+   build-detail.css's decision-7/8 rules (neutral border + accent-text
+   left edge) for every property they both set — meaning those two
+   approved, "DONE"/"Implemented" decisions had not actually been
+   rendering since they were made. Removed rather than updated to
+   Cask, since the correct rules already exist in build-detail.css and
+   don't need a parallel copy here. See
+   VISUAL_REDESIGN.md, decision 14. */
 
 /* ================================================================
-   HERO (homepage) — full-bleed-leaning photo treatment. Gracefully
-   handles the current placeholder state (no real hero photo yet) as
-   well as a real photo once one exists.
+   HERO (homepage) — text-focused, no image slot (Visual Redesign,
+   home page decision 1: Option C, approved over a full-bleed-photo
+   treatment and a side-by-side layout). No real hero photo exists
+   yet, and every real product photo is a portrait 3:4 shot — the
+   wrong shape for a wide hero regardless of photo availability.
+   Not a permanent verdict against photography: full-bleed (a real
+   landscape shot) is worth reconsidering once one exists — see
+   VISUAL_REDESIGN.md, home page decision 1, for the full comparison.
    ================================================================ */
 .hero {
-  padding: 0;
-  position: relative;
+  padding: clamp(4.5rem, 3rem + 6vw, 7.5rem) 0 clamp(3.5rem, 2.25rem + 5vw, 5.5rem);
+  text-align: center;
 }
 .hero-inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  position: relative;
+  display: block;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
-.hero-media-frame {
-  position: relative;
-  aspect-ratio: 16/10;
-  overflow: hidden;
-  background: var(--card);
-}
-.hero-media-frame img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-}
-.hero-scrim {
-  position: absolute; inset: 0;
-  background: linear-gradient(0deg, rgba(12,12,14,0.96) 0%, rgba(12,12,14,0.55) 45%, rgba(12,12,14,0.15) 75%);
-}
-.hero-placeholder {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 0.75rem;
-  color: var(--dim);
-  font-size: 0.92rem;
-  text-align: center;
-  padding: 2rem;
-}
-.hero-placeholder .icon { font-size: 2rem; opacity: 0.5; }
-.hero-copy {
-  position: relative;
-  padding: 3rem 1.5rem 3rem;
-}
-.hero-copy-inner { max-width: 720px; margin: 0 auto; }
 .hero h1 {
-  font-size: clamp(2rem, 6vw, 3.6rem);
-  line-height: 1.05;
+  font-size: clamp(2.1rem, 1.3rem + 3.2vw, 3.4rem);
+  line-height: 1.08;
   font-weight: 700;
-  margin: 0 0 1.1rem;
-  max-width: 18ch;
+  margin: 0 0 1.25rem;
 }
 .hero-body {
-  font-size: 1.08rem;
+  font-size: 1.1rem;
   color: var(--muted);
   max-width: 52ch;
-  margin: 0 0 1.75rem;
+  margin: 0 auto 2.25rem;
 }
-@media (min-width: 900px) {
-  .hero-inner { display: block; }
-  .hero-media-frame { aspect-ratio: auto; height: 82vh; min-height: 520px; max-height: 760px; }
-  .hero-copy { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 2.5rem 3.5rem; }
-  .hero-copy-inner { max-width: 1180px; margin: 0 auto; }
+.hero-buttons {
+  justify-content: center;
 }
 
 /* ================================================================
@@ -293,15 +287,20 @@ h1, h2, h3, h4 {
   line-height: 1.4;
   margin: 0 0 1.25rem;
 }
-.evidence-lead .accent { color: var(--accent); }
+.evidence-lead .accent { color: var(--accent-text); }
 .evidence-sub { color: var(--muted); font-size: 1.02rem; max-width: 46ch; }
 .evidence-checklist { border-top: 1px solid var(--border); }
 .evidence-row {
   display: flex; gap: 1.25rem; padding: 1.35rem 0; border-bottom: 1px solid var(--border);
 }
 .evidence-row .mark {
-  font-family: var(--font-mono); color: var(--accent); font-size: 0.85rem; flex-shrink: 0; width: 1.6rem; padding-top: 0.15rem;
+  font-family: var(--font-mono); color: var(--accent-text); font-size: 0.85rem; flex-shrink: 0; width: 1.6rem; padding-top: 0.15rem;
 }
+/* Selling-points strip on the home page (B-055): hairline rule, heading, one line.
+   Same type as .evidence-row; sits in a plain .grid-3. */
+.point { border-top: 1px solid var(--border); padding-top: 1.1rem; }
+.point h3 { margin: 0 0 0.3rem; font-size: 1.05rem; font-family: var(--font-heading); font-weight: 600; }
+.point p { margin: 0; color: var(--muted); font-size: 0.97rem; }
 .evidence-row h3 { margin: 0 0 0.3rem; font-size: 1.05rem; font-family: var(--font-heading); font-weight: 600; }
 .evidence-row p { margin: 0; color: var(--muted); font-size: 0.97rem; }
 
@@ -334,7 +333,7 @@ h1, h2, h3, h4 {
    circle badge. */
 .cb-row .cb-num {
   font-family: var(--font-mono);
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 0.85rem;
   margin-right: 0.6rem;
 }
@@ -342,7 +341,7 @@ h1, h2, h3, h4 {
 .budget-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.92rem; }
 .budget-table tr { border-bottom: 1px solid var(--border); }
 .budget-table td { padding: 0.9rem 0.25rem; vertical-align: top; }
-.budget-table td:first-child { color: var(--accent); white-space: nowrap; padding-right: 1.25rem; }
+.budget-table td:first-child { color: var(--accent-text); white-space: nowrap; padding-right: 1.25rem; }
 .budget-table td:last-child { color: var(--muted); font-family: var(--font-body); font-size: 0.93rem; }
 .budget-note { font-size: 0.82rem; color: var(--dim); font-style: italic; margin-top: 1rem; }
 
@@ -357,13 +356,32 @@ h1, h2, h3, h4 {
   .gallery-grid { grid-template-columns: repeat(4, 1fr); }
   .gallery-grid .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
 }
+/* The homepage preview loads 5 photos so the desktop bento fills (featured 2x2 +
+   4 around it). Below 700px there is no bento (2 columns, then 1), and 5 tall
+   tiles would be a very long strip on a phone, so only the first 3 show there.
+   The gallery page (#gallery-completed) is unaffected. */
+@media (max-width: 699px) {
+  #gallery-preview .gallery-item:nth-child(n+4) { display: none; }
+}
+/* Phones and small tablets, Visual Redesign "Phone gallery grid", Option C (A-033):
+   the first photo runs full width and the rest sit in two columns, the desktop
+   bento scaled down. Replaces the old 1-column rule at 420px, which put iPhone
+   Plus / Pro Max widths (428-430px) in a different layout from smaller iPhones
+   and made the 22-photo gallery 10,452px tall at 390px. The homepage preview
+   (3 visible tiles) becomes 1 big + 2 small, so no tile is alone on a row. On
+   the gallery pages, a last tile that would sit alone (even photo count) spans
+   the full width. */
+@media (max-width: 699px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .gallery-grid .gallery-item:nth-child(1) { grid-column: span 2; }
+  .gallery-grid:not(#gallery-preview) .gallery-item:last-child:nth-child(even) { grid-column: span 2; }
+}
 .gallery-item { border-radius: 4px; }
 
 /* ================================================================
    FAQ — dark cards, amber toggle, no other structural change.
    ================================================================ */
-.faq-item { border-radius: 4px; }
-.faq-icon { color: var(--accent); }
+.faq-icon { color: var(--accent-text-tint); }
 
 /* ================================================================
    CTA / waitlist / notify block
@@ -387,7 +405,7 @@ h1, h2, h3, h4 {
    ================================================================ */
 .section { padding: 5rem 0; }
 .section-label { font-family: var(--font-mono); letter-spacing: 0.03em; }
-.accent-line { background: var(--accent); }
+.accent-line { background: var(--accent-text); }
 
 @media (max-width: 640px) {
   .section { padding: 3rem 0; }
@@ -405,7 +423,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 3.5rem;
-  color: var(--accent);
+  color: var(--accent-text);
   letter-spacing: 0.02em;
   margin-bottom: 0.75rem;
 }

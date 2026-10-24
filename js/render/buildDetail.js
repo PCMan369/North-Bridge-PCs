@@ -14,6 +14,13 @@
 
   Requires (load order): config.js, events.js, builds.js,
   trustSection.js.
+
+  Image/video visibility note (Visual Redesign, sitewide image-opacity
+  fix): the main gallery image/video no longer depends on an
+  onload/onloadeddata handler to become visible — same fix as
+  js/render/buildCard.js. This was the most consequential instance of
+  that bug: the primary product photo for the page. See
+  VISUAL_REDESIGN.md.
   ================================================================
 */
 
@@ -44,16 +51,16 @@ function initBuildDetailPage() {
         '<span class="empty-icon"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="13" rx="1.5"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="17" x2="12" y2="20"/></svg></span>' +
         '<h1>System Not Found</h1>' +
         '<p>This listing may have been removed or the link is incorrect.</p>' +
-        '<a href="builds.html" class="btn btn-primary" style="margin-top:1.5rem;">Browse Available Systems &rarr;</a>' +
+        '<a href="builds.html" class="btn btn-primary" style="margin-top:1.5rem;">Browse Gaming PCs &rarr;</a>' +
       '</div>';
     return;
   }
 
   // ---- Page title / meta description ----
-  document.title = build.title + ' \u2014 North Bridge PCs';
+  document.title = build.title + ' | North Bridge PCs';
   var metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) {
-    metaDesc.content = build.title + ' for sale \u2014 ' + build.price + '. North Bridge PCs, Southern Oregon.';
+    metaDesc.content = build.title + ', ' + build.price + '. Built and tested by North Bridge PCs. Pickup in person near Grants Pass, Oregon.';
   }
 
   var isAvailable = build.status === 'available';
@@ -79,14 +86,14 @@ function initBuildDetailPage() {
         if (m.type === 'video') {
           return '<video class="gallery-main-img' + (i === 0 ? ' active' : '') + '" ' +
             (m.poster ? 'poster="' + m.poster + '" ' : '') +
-            'controls playsinline preload="none" onloadeddata="this.classList.add(\'loaded\')">' +
+            'controls playsinline preload="none">' +
             '<source src="' + m.src + '">' +
             '</video>';
         }
         return '<img class="gallery-main-img' + (i === 0 ? ' active' : '') + '" src="' + m.src + '" ' +
           'alt="' + build.title + ' \u2014 photo ' + (i + 1) + '" ' +
           'loading="' + (i === 0 ? 'eager' : 'lazy') + '" ' +
-          'onload="this.classList.add(\'loaded\')" onerror="this.style.display=\'none\'">';
+          'onerror="this.style.display=\'none\'">';
       }).join('')
     : '<div class="gallery-main-placeholder"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="13" rx="1.5"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="17" x2="12" y2="20"/></svg></div>';
 
@@ -181,8 +188,8 @@ function initBuildDetailPage() {
     var nextUrl = pageUrl + '&sent=true';
     formHtml =
       '<div class="listing-form-card">' +
-        '<div class="listing-form-title">Inquire About This System</div>' +
-        '<div class="listing-form-sub">Fill out the form and I\'ll get back to you by email.</div>' +
+        '<div class="listing-form-title">Ask About This System</div>' +
+        '<div class="listing-form-sub">Send a message and I\'ll reply by email, usually within a day or two.</div>' +
         '<div class="listing-system-badge"><span>Asking about:</span> <strong>' + build.title + '</strong></div>' +
         '<form action="https://formsubmit.co/' + CONTACT.email + '" method="POST" aria-live="polite" aria-atomic="true">' +
           '<input type="hidden" name="_subject" value="Inquiry: ' + build.title + ' \u2014 North Bridge PCs">' +
@@ -208,7 +215,7 @@ function initBuildDetailPage() {
             '<div class="form-group"><label class="form-label" for="notes">Anything else? <span class="optional">(optional)</span></label>' +
               '<textarea id="notes" name="additional_notes" class="form-textarea" style="min-height:90px;" placeholder="Questions, preferences, anything at all..."></textarea></div>' +
             '<div class="form-privacy"><p><strong>Privacy:</strong> Your email is only used to respond to your message. It won\'t be shared or used for anything else.</p></div>' +
-            '<button type="submit" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;">Send Message &rarr;</button>' +
+            '<button type="submit" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;">Send a Message &rarr;</button>' +
           '</div>' +
         '</form>' +
       '</div>';
@@ -216,8 +223,8 @@ function initBuildDetailPage() {
     formHtml =
       '<div class="sold-notice">' +
         '<span class="badge badge-sold" style="margin-bottom:0.5rem;">Sold</span>' +
-        '<p>This system has already been sold. Check the listings page for what\'s currently available.</p>' +
-        '<a href="builds.html" class="btn btn-secondary" style="margin-top:1rem;">Browse Available Systems &rarr;</a>' +
+        '<p>This system has been sold. See what\'s listed now, or ask about a custom build.</p>' +
+        '<a href="builds.html" class="btn btn-secondary" style="margin-top:1rem;">Browse Gaming PCs &rarr;</a>' +
       '</div>';
   }
 
@@ -240,11 +247,11 @@ function initBuildDetailPage() {
   // ---- Browse more CTA ----
   var ctaHtml =
     '<div class="cta-box" style="margin-top:3rem;">' +
-      '<h2>Browse More Systems</h2>' +
-      '<p>Looking for something different? See everything that\'s currently available.</p>' +
+      '<h2>More Gaming PCs</h2>' +
+      '<p>Looking for something different? See what\'s listed now, or start a custom build.</p>' +
       '<div class="btn-group">' +
-        '<a href="builds.html" class="btn btn-primary btn-lg">View All Systems &rarr;</a>' +
-        '<a href="custom-build.html" class="btn btn-secondary btn-lg">Custom Builds</a>' +
+        '<a href="builds.html" class="btn btn-primary btn-lg">Browse Gaming PCs &rarr;</a>' +
+        '<a href="custom-build.html" class="btn btn-secondary btn-lg">Start a Custom Build</a>' +
       '</div>' +
     '</div>';
 
@@ -259,8 +266,7 @@ function initBuildDetailPage() {
         '<div class="listing-header"><h1 class="listing-title">' + build.title + '</h1>' + badge + '</div>' +
         '<div class="listing-price-row">' +
           '<div class="listing-price-wrap">' + priceHtml + '</div>' +
-          '<div style="flex:1;"></div>' +
-          '<div style="font-size:0.8rem; color:var(--dim); text-align:right; line-height:1.5;">Local pickup<br>Grants Pass, OR</div>' +
+          '<div class="listing-pickup-note">Pickup in person near Grants Pass</div>' +
         '</div>' +
         specsHtml + conditionHtml + perfHtml + formHtml +
       '</div>' +
@@ -321,11 +327,11 @@ function initBuildDetailPage() {
     var form = contentEl.querySelector('.listing-form-card form');
     if (form) {
       form.innerHTML =
-        '<div style="text-align:center; padding:2rem 1rem;">' +
-          '<div style="font-size:2.5rem; margin-bottom:1rem; color:var(--accent);">&#10003;</div>' +
-          '<h3 style="margin-bottom:0.5rem; font-size:1.1rem;">Message Sent</h3>' +
-          '<p style="font-size:0.9rem; margin-bottom:1.5rem;">Thanks for reaching out. I\'ll get back to you by email within a day or two.</p>' +
-          '<a href="builds.html" class="btn btn-secondary btn-sm">Browse More Systems</a>' +
+        '<div class="success-state">' +
+          '<span class="success-mark" aria-hidden="true">&#10003;</span>' +
+          '<h2 class="success-title">Message Sent</h2>' +
+          '<p>Thanks for reaching out. I\'ll reply by email, usually within a day or two.</p>' +
+          '<a href="builds.html" class="btn btn-secondary btn-sm">Browse Gaming PCs</a>' +
         '</div>';
     }
   }

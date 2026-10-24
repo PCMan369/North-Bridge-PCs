@@ -42,11 +42,17 @@
   font-size: 1rem;
 }
 
-/* ---- Listing layout ---- */
+/* ---- Listing layout ----
+   Visual redesign, decision 1 (build-detail page layout — Option C,
+   approved): asymmetric split instead of an even 1fr/1fr. The content
+   column (specs/performance/form) gets more width than the photo, and
+   a thin rule divides them instead of a bare gap — "spec sheet next to
+   the object" rather than two equal boxes. Photo stays sticky, same as
+   before. See VISUAL_REDESIGN.md. */
 .listing-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 0.8fr 1fr;
+  gap: 0;
   align-items: start;
 }
 
@@ -54,11 +60,17 @@
 .listing-gallery {
   position: sticky;
   top: calc(var(--header-h) + 1.5rem);
+  padding-right: 2.5rem;
+  border-right: 1px solid var(--border);
 }
 
 .gallery-main {
   position: relative;
-  aspect-ratio: 1 / 1;
+  /* Visual redesign, decision 2 (build-detail photo treatment — Option
+     B, approved): real product photos are shot portrait (3:4), so a
+     forced 1:1 crop was cutting real content off every listing. See
+     VISUAL_REDESIGN.md. */
+  aspect-ratio: 3 / 4;
   background: var(--placeholder-solid);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -66,27 +78,20 @@
   margin-bottom: 0.75rem;
 }
 
+/* Visual redesign, sitewide image-opacity fix: no longer gated behind
+   a .loaded class added by an inline onload/onloadeddata handler —
+   see js/render/buildDetail.js. Visible immediately for both images
+   and video, so the video-specific opacity override this used to need
+   (further down) is gone too. */
 .gallery-main-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: none;
-  opacity: 0;
-  transition: opacity 0.25s ease;
 }
 
 .gallery-main-img.active {
   display: block;
-}
-
-.gallery-main-img.loaded {
-  opacity: 1;
-}
-
-/* Videos don't get the fade-in treatment images do — their own
-   controls make immediate visibility more useful. */
-video.gallery-main-img.active {
-  opacity: 1;
 }
 
 .gallery-main-placeholder {
@@ -174,7 +179,7 @@ video.gallery-main-img.active {
 }
 
 .gallery-thumb.active {
-  border-color: var(--accent);
+  border-color: var(--accent-text);
 }
 
 .gallery-thumb:not(.active) {
@@ -202,6 +207,7 @@ video.gallery-main-img.active {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  padding-left: 2.5rem;
 }
 
 .listing-header {
@@ -218,21 +224,35 @@ video.gallery-main-img.active {
   line-height: 1.2;
 }
 
+/* Visual redesign, decision 4 (price presentation — Option B,
+   approved): freed from the bordered-card treatment so it doesn't
+   read as equal weight to the specs/performance cards below it —
+   it's the one number that actually drives the buying decision.
+   Pickup location drops to a small caption underneath instead of
+   sitting beside it. See VISUAL_REDESIGN.md. */
 .listing-price-row {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.25rem;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
+/* Visual redesign, decision 13 (typography — Option B, approved):
+   price and spec/performance values switch to the mono font already
+   used sitewide for technical content (budget tables, evidence
+   rows) — labels and the title stay in the body/heading fonts. Space
+   Mono only ships 400/700, so 900 steps down to 700, the heaviest
+   available. See VISUAL_REDESIGN.md. */
 .listing-price {
-  font-size: 2rem;
-  font-weight: 900;
+  font-family: var(--font-mono);
+  font-size: 3rem;
+  font-weight: 700;
   color: var(--text);
   line-height: 1;
+}
+
+.listing-pickup-note {
+  font-size: 0.8rem;
+  color: var(--dim);
 }
 
 .listing-specs-card {
@@ -273,17 +293,31 @@ video.gallery-main-img.active {
 }
 
 .listing-spec-value {
+  font-family: var(--font-mono);
   color: var(--text);
-  font-weight: 500;
+  font-weight: 400;
 }
 
-.listing-perf-card {
-  background: rgba(242,167,27,0.07);
-  border: 1px solid rgba(242,167,27,0.18);
-  border-radius: var(--radius);
-  padding: 1.25rem;
-}
-
+/* Visual redesign, decision 7 (performance section) — REVISED.
+   Originally Option C: neutral background/border + a left-edge accent
+   rule, chosen at the time as "call it out without a full color wash."
+   Revisited after running the Impeccable anti-slop detector
+   (github.com/pbakaus/impeccable) against the live site: that left
+   edge is exactly its "side-tab" rule — described there as "the most
+   recognizable tell of AI-generated UIs." Tested three replacements
+   as real mockups against the actual detector before picking one (not
+   just eyeballed): unboxed, a top accent rule instead of left, and a
+   plain box with an icon beside the label. The top-rule variant still
+   tripped a different rule (border-accent-on-rounded — a thick accent
+   border still clashes with rounded corners regardless of which edge
+   it's on); unboxed and icon+box both came back clean. Chose unboxed:
+   no card at all now, just the label and a hairline-divided list,
+   same device already proven out sitewide on the Evidence section and
+   the cb-list rows. Card-level background/border/padding removed
+   entirely — .listing-perf-card is now a plain wrapper div with no
+   visual properties; spacing to its siblings already comes from
+   .listing-details' own flex gap, not this card's padding. See
+   VISUAL_REDESIGN.md. */
 .listing-perf-title {
   font-size: 0.72rem;
   font-weight: 700;
@@ -291,15 +325,23 @@ video.gallery-main-img.active {
   text-transform: uppercase;
   color: var(--accent-text);
   margin-bottom: 0.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .listing-perf-item {
+  font-family: var(--font-mono);
   font-size: 0.9rem;
   color: var(--muted);
-  padding: 0.25rem 0;
+  padding: 0.35rem 0;
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.listing-perf-item:last-child {
+  border-bottom: none;
 }
 
 .listing-perf-item::before {
@@ -309,9 +351,21 @@ video.gallery-main-img.active {
 }
 
 /* ---- Inquiry form ---- */
+/* Visual redesign, decision 8 (inquiry form) — REVISED. Originally
+   Option C: neutral border + the same left-edge accent rule as the
+   performance card, so the two "pay attention here" regions shared
+   one device. Revisited alongside decision 7 after the Impeccable
+   side-tab finding (see that comment above) — the left edge is the
+   same flagged pattern here. Unlike the performance card, this one
+   keeps its box: real input fields need an actual boundary, so
+   "unboxed" doesn't translate. Just dropped the accent edge; now
+   matches .listing-specs-card exactly (plain neutral card). The
+   labeled form fields already carry enough visual interest on their
+   own without a border accent. Old border was also a hardcoded
+   rgba(242,167,27,...), not a token. See VISUAL_REDESIGN.md. */
 .listing-form-card {
   background: var(--card);
-  border: 1px solid rgba(242,167,27,0.25);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.5rem;
 }
@@ -328,12 +382,17 @@ video.gallery-main-img.active {
   margin-bottom: 1.25rem;
 }
 
+/* Visual redesign, decision 8 continued (approved alongside the form
+   card above): fully neutral now, matching the same background/border
+   as the form-input fields right below it, so it reads as part of the
+   same quiet form surface rather than its own highlighted chip. Old
+   values were also a hardcoded rgba(242,167,27,...), not a token. */
 .listing-system-badge {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(242,167,27,0.08);
-  border: 1px solid rgba(242,167,27,0.2);
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 0.6rem 0.85rem;
   margin-bottom: 1.25rem;
@@ -382,6 +441,12 @@ video.gallery-main-img.active {
 
   .listing-gallery {
     position: static;
+    padding-right: 0;
+    border-right: none;
+  }
+
+  .listing-details {
+    padding-left: 0;
   }
 
   .listing-title {

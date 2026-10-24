@@ -23,10 +23,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         list.querySelectorAll('.faq-item').forEach(function (el) {
           el.classList.remove('open');
+          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
         });
 
         if (!isOpen) {
           item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
         }
       });
     });

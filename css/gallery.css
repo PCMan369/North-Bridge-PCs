@@ -2,10 +2,10 @@
   ================================================================
   css/gallery.css — Lightbox
   ================================================================
-  Loaded only by gallery.html. The .gallery-grid/.gallery-item styles
-  themselves already live in the shared style.css (the homepage preview
-  uses them too) — this file is just the click-to-enlarge lightbox,
-  which is new and gallery-page-only.
+  Loaded by gallery.html and index.html (the homepage preview uses the
+  lightbox too). The .gallery-grid/.gallery-item styles themselves live
+  in the shared style.css — this file is just the click-to-enlarge
+  lightbox.
   ================================================================
 */
 

@@ -24,6 +24,10 @@
   while it's open; closing (via Escape, the close button, or clicking
   the overlay) returns focus to that original element. See DECISIONS.md
   D20, D22.
+
+  Image visibility note (Visual Redesign, sitewide image-opacity fix):
+  same fix as js/render/buildCard.js — the <img> no longer depends on
+  an onload handler to become visible. See VISUAL_REDESIGN.md.
   ================================================================
 */
 
@@ -47,7 +51,6 @@ function renderGalleryGrid(images, containerId) {
 
     var mediaHtml = thumbSrc
       ? '<img src="' + thumbSrc + '" alt="' + img.alt + '" loading="lazy" ' +
-          'onload="this.classList.add(\'loaded\')" ' +
           'onerror="this.parentElement.innerHTML=\'<div class=gallery-placeholder><span class=gp-icon><svg width=&quot;1em&quot; height=&quot;1em&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M4 8a1.5 1.5 0 0 1 1.5-1.5h2l1-2h7l1 2h2A1.5 1.5 0 0 1 20 8v10a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18Z&quot;/><circle cx=&quot;12&quot; cy=&quot;13&quot; r=&quot;3.3&quot;/></svg></span><span>Photo coming soon</span></div>\'">'
       : '<div class="gallery-placeholder"><span class="gp-icon"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 4.6 5h3.6L6.6 9.5Z"/><path d="M9 9.5 10.6 5h3.6L12.6 9.5Z"/><path d="M15 9.5 16.6 5H20L18.4 9.5Z"/><rect x="3" y="9.5" width="18" height="9.5" rx="1"/></svg></span><span>' + img.alt + '</span></div>';
 
@@ -91,10 +94,19 @@ function _ensureLightbox() {
   el.innerHTML =
     '<button class="lightbox-close" aria-label="Close">&times;</button>' +
     '<button class="lightbox-arrow lightbox-prev" aria-label="Previous photo">&lsaquo;</button>' +
-    '<img class="lightbox-img" alt="">' +
     '<video class="lightbox-video" controls playsinline></video>' +
     '<button class="lightbox-arrow lightbox-next" aria-label="Next photo">&rsaquo;</button>' +
     '<div class="lightbox-counter"></div>';
+
+  // The photo <img> is built here, not in the markup string above: it has no
+  // src until _renderLightboxItem() sets one, and an <img> with an empty src
+  // in markup is what the Impeccable detector reports as broken-image (a false
+  // positive: the lightbox is display:none until a photo is set). Same place
+  // in the DOM as before, between the prev button and the video.
+  var photo = document.createElement('img');
+  photo.className = 'lightbox-img';
+  photo.alt = '';
+  el.insertBefore(photo, el.querySelector('.lightbox-video'));
 
   document.body.appendChild(el);
 

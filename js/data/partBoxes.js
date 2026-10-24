@@ -54,8 +54,8 @@ const partBoxes = [
     category: "CPU Box",
     quantity: 3,
     price: "$5",
-    condition: "Good condition — includes foam inserts.",
-    media: { images: [], videos: [] },
+    condition: "Good condition. Includes foam inserts.",
+    media: { images: ["images/box-01.jpg"], videos: [] },
     notes: ""
   },
 
@@ -66,20 +66,20 @@ const partBoxes = [
     category: "CPU Box",
     quantity: 2,
     price: "$5",
-    condition: "Good condition — includes foam inserts.",
-    media: { images: [], videos: [] },
+    condition: "Good condition. Includes foam inserts.",
+    media: { images: ["images/box-02.jpg"], videos: [] },
     notes: ""
   },
 
   {
     id: "box-03",
     brand: "AMD",
-    model: "Ryzen 7 5700X3D",
+    model: "Ryzen 7 5800X3D",
     category: "CPU Box",
     quantity: 1,
     price: "$5",
-    condition: "Fair condition.",
-    media: { images: [], videos: [] },
+    condition: "Fair condition. No inserts.",
+    media: { images: ["images/box-03.jpg"], videos: [] },
     notes: ""
   },
 
@@ -90,8 +90,8 @@ const partBoxes = [
     category: "PSU Box",
     quantity: 4,
     price: "$3",
-    condition: "Good condition — includes foam inserts.",
-    media: { images: [], videos: [] },
+    condition: "Good condition. Includes foam inserts.",
+    media: { images: ["images/box-04.jpg"], videos: [] },
     notes: ""
   },
 
@@ -103,8 +103,8 @@ const partBoxes = [
     category: "PSU Box",
     quantity: 1,
     price: "$3",
-    condition: "Good condition — includes foam inserts.",
-    media: { images: [], videos: [] },
+    condition: "Good condition. Includes foam inserts.",
+    media: { images: ["images/box-05.jpg"], videos: [] },
     notes: ""
   },
 
@@ -115,8 +115,8 @@ const partBoxes = [
     category: "Cooler Box",
     quantity: 1,
     price: "$3",
-    condition: "Good condition. No inserts.",
-    media: { images: [], videos: [] },
+    condition: "Good condition. Includes insert(s).",
+    media: { images: ["images/box-06.jpg"], videos: [] },
     notes: ""
   },
 
@@ -127,8 +127,8 @@ const partBoxes = [
     category: "Motherboard Box",
     quantity: 1,
     price: "$5",
-    condition: "Good condition — includes cardboard insert.",
-    media: { images: [], videos: [] },
+    condition: "Good condition. Includes insert(s).",
+    media: { images: ["images/box-07.jpg"], videos: [] },
     notes: ""
   },
 
@@ -139,8 +139,8 @@ const partBoxes = [
     category: "Motherboard Box",
     quantity: 1,
     price: "$5",
-    condition: "Good condition. No cardboard insert.",
-    media: { images: [], videos: [] },
+    condition: "Good condition. No inserts.",
+    media: { images: ["images/box-08.jpg"], videos: [] },
     notes: ""
   },
 
@@ -149,10 +149,22 @@ const partBoxes = [
     brand: "MSI",
     model: "PRO B550M VC WIFI",
     category: "Motherboard Box",
-    quantity: 2,
+    quantity: 1,
     price: "$5",
-    condition: "Good condition — includes inserts.",
-    media: { images: [], videos: [] },
+    condition: "Good condition. Includes insert(s).",
+    media: { images: ["images/box-09.jpg"], videos: [] },
+    notes: ""
+  },
+
+  {
+    id: "box-12",
+    brand: "MSI",
+    model: "PRO B550M VC WIFI",
+    category: "Motherboard Box",
+    quantity: 1,
+    price: "$5",
+    condition: "Good condition. No inserts.",
+    media: { images: ["images/box-12.jpg"], videos: [] },
     notes: ""
   },
 
@@ -163,8 +175,8 @@ const partBoxes = [
     category: "Motherboard Box",
     quantity: 1,
     price: "$5",
-    condition: "Good condition. No cardboard insert.",
-    media: { images: [], videos: [] },
+    condition: "Good condition. No inserts.",
+    media: { images: ["images/box-10.jpg"], videos: [] },
     notes: ""
   },
 
@@ -176,7 +188,7 @@ const partBoxes = [
     quantity: 1,
     price: "$3",
     condition: "Good condition. No inserts.",
-    media: { images: [], videos: [] },
+    media: { images: ["images/box-11.jpg"], videos: [] },
     notes: ""
   }
 

@@ -115,56 +115,61 @@
 
 const builds = [
 
-{
-    id: "aug26-02",
-    title: "HP EliteBook 840 G10",
-    status: "sold",
-    price: "$400",
+  {
+    id: "oct26-01",
+    title: "Ryzen 5 3600 / RX 5700 XT",
+    status: "available",
+    price: "$650",
     eventId: null,
     eventPrice: null,
 
-    summary: "A lightweight business laptop, cleaned and tested. Not built for gaming.",
+    summary: "Cleaned and stress tested 1080p gaming build with RGB lighting.",
 
     components: {
-      cpu: { model: "Intel Core i5" }, // exact generation/SKU not confirmed — visible on the unit's palm-rest badge but not fully legible in the source photos
-      ram: { model: "24GB DDR5 5200MHz" },
-      storage: { model: "512GB NVMe SSD" },
-      os:  { model: "Windows" } // visibly running Windows in the source photos; exact version (10 vs 11) not confirmed
+      cpu: { model: "AMD Ryzen 5 3600" },
+      gpu: { model: "MSI Radeon RX 5700 XT MECH OC BV Dual Fan" },
+      motherboard: { model: "Gigabyte B550M K (mATX)" },
+      ram: { model: "GeIL Super Luce RGB Sync 2x8GB 3000MHz" },
+      storage: { model: "500GB SATA SSD (PNY CS900)" },
+      psu: { model: "Alecia Prestige 600W" },
+      case: { model: "Okies Aqua Uno (black)" },
+      cooler: { model: "ID-Cooling SE-214 XT-V2, stock case fans" },
+      os: { model: "Windows 11 Home (activated)" },
+      networking: { model: "Wi-Fi and Bluetooth dongle included" },
+      accessories: ["Power cable"]
     },
 
-    // No performance section for this one — see notes below. Deliberately
-    // left empty rather than guessing; flagged for the owner to fill in
-    // properly (see PROJECT_STATUS.md).
     performance: {
       isEstimate: true,
-      items: []
+      items: [
+        { game: "Fortnite",       fps: "~100fps",  settings: "1080p High" },
+        { game: "Minecraft",      fps: "~180fps+", settings: "1080p High" },
+        { game: "Marvel Rivals",  fps: "~70fps",   settings: "1080p High" },
+        { game: "Cyberpunk 2077", fps: "~50fps",   settings: "1080p High" }
+      ]
     },
 
     media: {
       images: [
-        "images/EliteBook.jpg",
-        "images/EliteBook_screen.jpg",
-        "images/EliteBook_keyboard.jpg",
-        "images/EliteBook_left.jpg",
-        "images/EliteBook_right.jpg",
-        "images/EliteBook_bottom.jpg"
+        "images/oct26-01-blue-angle.jpg",
+        "images/oct26-01-red-angle.jpg",
+        "images/oct26-01-green-angle.jpg",
+        "images/oct26-01-blue-front.jpg",
+        "images/oct26-01-red-front.jpg",
+        "images/oct26-01-green-front.jpg",
+        "images/oct26-01-blue-close.jpg",
+        "images/oct26-01-red-close.jpg",
+        "images/oct26-01-green-close.jpg"
       ],
       videos: []
     },
 
-    condition: "",
+    condition: "Good condition. Everything is used except the case and power supply, which are new.",
     testingNotes: "",
-    listedDate: "2026-08-01",
-    notes: "Given that this is not a gaming PC and does not have dedicated graphics, it will not perform very well in most PC games."
+    listedDate: "2026-10-24",
+    notes: "Lighting: the RAM is controlled with OpenRGB and the fans with a remote. Photos show blue, red and green."
   },
 
-
-  
-
-
-
-
-  
   {
     id: "aug26-01",
     title: "Ryzen 5 5500 / RX 5700 XT",
@@ -209,14 +214,49 @@ const builds = [
     notes: ""
   },
 
+  {
+    id: "aug26-02",
+    title: "HP EliteBook 840 G10",
+    status: "sold",
+    price: "$400",
+    eventId: null,
+    eventPrice: null,
 
+    summary: "A lightweight business laptop, cleaned and tested. Not built for gaming.",
 
+    components: {
+      cpu: { model: "Intel Core i5" }, // exact generation/SKU not confirmed — visible on the unit's palm-rest badge but not fully legible in the source photos
+      ram: { model: "24GB DDR5 5200MHz" },
+      storage: { model: "512GB NVMe SSD" },
+      os:  { model: "Windows" } // visibly running Windows in the source photos; exact version (10 vs 11) not confirmed
+    },
 
+    // No performance section for this one — see notes below. Deliberately
+    // left empty rather than guessing; flagged for the owner to fill in
+    // properly (see PROJECT_STATUS.md).
+    performance: {
+      isEstimate: true,
+      items: []
+    },
 
-  
+    media: {
+      images: [
+        "images/EliteBook.jpg",
+        "images/EliteBook_screen.jpg",
+        "images/EliteBook_keyboard.jpg",
+        "images/EliteBook_left.jpg",
+        "images/EliteBook_right.jpg",
+        "images/EliteBook_bottom.jpg"
+      ],
+      videos: []
+    },
 
+    condition: "",
+    testingNotes: "",
+    listedDate: "2026-08-01",
+    notes: "Given that this is not a gaming PC and does not have dedicated graphics, it will not perform very well in most PC games."
+  },
 
-  
   {
     id: "jul26-01",
     title: "Ryzen 5 3600 / RTX 2070 Super",
@@ -261,15 +301,6 @@ const builds = [
     notes: ""
   },
 
-
-
-
-
-
-
-
-
-  
   {
     id: "jun26-01",
     title: "Ryzen 5 3600 / RTX 2060",
@@ -314,15 +345,6 @@ const builds = [
     notes: ""
   },
 
-
-
-
-
-
-
-
-
-  
   {
     id: "may26-01",
     title: "Ryzen 5 5500 / RTX 2070 Super",

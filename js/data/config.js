@@ -52,13 +52,15 @@ const CONTACT = {
   // confirmation email to this address — click the link to activate it).
   email: "jacobskrove@gmail.com", // TODO: replace with a dedicated business email when available
 
-  // FormSubmit endpoint is derived from `email` above — see
-  // js/render/contactForm.js (Phase 4) for how this gets used.
+  // FormSubmit endpoint is derived from `email` above. stitch.py fills it
+  // into pages-src/contact.html and part-boxes.html ({{CONTACT_EMAIL}}), so
+  // re-run stitch.py after changing it; js/render/buildDetail.js and
+  // notifyBox.js read it at runtime.
 
   // Future: once inquiry-type routing exists, different inquiry types
   // could point at different addresses/rules here without touching any
   // form markup.
-  responseTimeNote: "I typically respond within a day or two."
+  responseTimeNote: "I usually reply within a day or two."
 };
 
 const features = {
