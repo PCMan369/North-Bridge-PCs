@@ -131,7 +131,7 @@ const builds = [
       motherboard: { model: "Gigabyte B550M K (mATX)" },
       ram: { model: "GeIL Super Luce RGB Sync 2x8GB 3000MHz" },
       storage: { model: "500GB SATA SSD (PNY CS900)" },
-      psu: { model: "Alecia Prestige 600W" },
+      psu: { model: "Apevia Prestige 600W" },
       case: { model: "Okies Aqua Uno (black)" },
       cooler: { model: "ID-Cooling SE-214 XT-V2, stock case fans" },
       os: { model: "Windows 11 Home (activated)" },
