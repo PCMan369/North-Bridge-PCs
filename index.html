@@ -13,7 +13,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Custom gaming PCs built around your budget, plus ready-to-buy systems. Every one tested before pickup near Grants Pass, Oregon.">
+  <meta name="description" content="Custom gaming PCs built around your budget, plus ready-to-buy systems when I have them. Every one tested before pickup near Grants Pass, Oregon.">
   <meta name="geo.region" content="US-OR">
   <meta name="geo.placename" content="Southern Oregon">
   <title>Gaming PCs in Grants Pass, Oregon | North Bridge PCs</title>
@@ -21,12 +21,12 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="North Bridge PCs">
 <meta property="og:title" content="Gaming PCs in Grants Pass, Oregon | North Bridge PCs">
-<meta property="og:description" content="Custom gaming PCs built around your budget, plus ready-to-buy systems. Every one tested before pickup near Grants Pass, Oregon.">
+<meta property="og:description" content="Custom gaming PCs built around your budget, plus ready-to-buy systems when I have them. Every one tested before pickup near Grants Pass, Oregon.">
 <meta property="og:url" content="https://pcman369.github.io/North-Bridge-PCs/index.html">
 <meta property="og:image" content="https://pcman369.github.io/North-Bridge-PCs/images/may26-01-main.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Gaming PCs in Grants Pass, Oregon | North Bridge PCs">
-<meta name="twitter:description" content="Custom gaming PCs built around your budget, plus ready-to-buy systems. Every one tested before pickup near Grants Pass, Oregon.">
+<meta name="twitter:description" content="Custom gaming PCs built around your budget, plus ready-to-buy systems when I have them. Every one tested before pickup near Grants Pass, Oregon.">
 <meta name="twitter:image" content="https://pcman369.github.io/North-Bridge-PCs/images/may26-01-main.jpg">
 <script type="application/ld+json">
 {
@@ -141,7 +141,7 @@
       <h1>Local Gaming PCs, Built in Grants Pass</h1>
       <p class="hero-body">
         I build gaming PCs, test every one, and tell you exactly what you're getting, good and
-        bad. Ready-to-buy systems and custom builds, picked up in person.
+        bad. Gaming PCs and custom builds, picked up in person.
       </p>
       <div class="hero-buttons">
         <a href="builds.html"       class="btn btn-primary btn-lg">Browse Gaming PCs</a>
@@ -181,7 +181,7 @@
   <section class="section section-alt">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Ready to Buy</span>
+        <span class="section-label" id="home-availability-label">Recent Builds</span>
         <h2>Systems I've Built and Listed</h2>
         <p>New listings are added as I finish them. Each one has real specs and an estimated performance for popular games.</p>
         <div class="accent-line"></div>
@@ -395,6 +395,7 @@
     </div>
     <div class="footer-copy">
       <p>Availability changes regularly — if you don't see what you're looking for, or aren't sure what's currently available, just send a message.</p>
+      <p>This site uses Google Analytics to count visits.</p>
       <p>&copy; <span id="footer-year"></span> North Bridge PCs &mdash; Southern Oregon</p>
     </div>
   </div>
@@ -429,6 +430,8 @@
       if (!container) return;
 
       var available = builds.filter(function (b) { return b.status === 'available'; }).slice(0, 3);
+      var lbl = document.getElementById('home-availability-label');
+      if (lbl) lbl.textContent = available.length ? 'Available Now' : 'Recent Builds';
       container.innerHTML = available.length
         ? available.map(renderBuildCard).join('')
         : renderEmptyBuildsState();

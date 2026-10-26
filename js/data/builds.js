@@ -123,7 +123,7 @@ const builds = [
     eventId: null,
     eventPrice: null,
 
-    summary: "Cleaned and stress tested 1080p gaming build with RGB lighting.",
+    summary: "Cleaned 1080p gaming build with RGB lighting.",
 
     components: {
       cpu: { model: "AMD Ryzen 5 3600" },
@@ -131,7 +131,7 @@ const builds = [
       motherboard: { model: "Gigabyte B550M K (mATX)" },
       ram: { model: "GeIL Super Luce RGB Sync 2x8GB 3000MHz" },
       storage: { model: "500GB SATA SSD (PNY CS900)" },
-      psu: { model: "Alecia Prestige 600W" },
+      psu: { model: "Apevia Prestige 600W" },
       case: { model: "Okies Aqua Uno (black)" },
       cooler: { model: "ID-Cooling SE-214 XT-V2, stock case fans" },
       os: { model: "Windows 11 Home (activated)" },
@@ -212,49 +212,6 @@ const builds = [
     testingNotes: "",
     listedDate: "2026-08-01",
     notes: ""
-  },
-
-  {
-    id: "aug26-02",
-    title: "HP EliteBook 840 G10",
-    status: "sold",
-    price: "$400",
-    eventId: null,
-    eventPrice: null,
-
-    summary: "A lightweight business laptop, cleaned and tested. Not built for gaming.",
-
-    components: {
-      cpu: { model: "Intel Core i5" }, // exact generation/SKU not confirmed — visible on the unit's palm-rest badge but not fully legible in the source photos
-      ram: { model: "24GB DDR5 5200MHz" },
-      storage: { model: "512GB NVMe SSD" },
-      os:  { model: "Windows" } // visibly running Windows in the source photos; exact version (10 vs 11) not confirmed
-    },
-
-    // No performance section for this one — see notes below. Deliberately
-    // left empty rather than guessing; flagged for the owner to fill in
-    // properly (see PROJECT_STATUS.md).
-    performance: {
-      isEstimate: true,
-      items: []
-    },
-
-    media: {
-      images: [
-        "images/EliteBook.jpg",
-        "images/EliteBook_screen.jpg",
-        "images/EliteBook_keyboard.jpg",
-        "images/EliteBook_left.jpg",
-        "images/EliteBook_right.jpg",
-        "images/EliteBook_bottom.jpg"
-      ],
-      videos: []
-    },
-
-    condition: "",
-    testingNotes: "",
-    listedDate: "2026-08-01",
-    notes: "Given that this is not a gaming PC and does not have dedicated graphics, it will not perform very well in most PC games."
   },
 
   {

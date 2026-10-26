@@ -36,7 +36,7 @@ const faqItems = [
   {
     id: "fortnite",
     question: "Can it run Fortnite?",
-    answer: "Yes — every gaming PC I build is capable of running Fortnite. Entry-level builds handle it at 1080p on medium settings, usually well above 60 fps. Stronger builds push higher frame rates, higher settings or higher resolutions.",
+    answer: "Yes. Entry-level builds typically handle Fortnite at 1080p on medium settings, usually well above 60 fps. Stronger builds push higher frame rates, higher settings or higher resolutions.",
     answerExtra: "Each listing includes estimated performance numbers for common titles, so you can get a sense of what to expect before buying. Keep in mind that Fortnite's performance varies a lot by mode (zero build vs. standard), chapter updates, and the settings you choose.",
     featured: true
   },
@@ -44,7 +44,7 @@ const faqItems = [
   {
     id: "war-thunder",
     question: "Can it run War Thunder?",
-    answer: "Yes. War Thunder runs well on all the gaming PCs I build. It's worth knowing that the game leans heavier on CPU in ground battles (especially with lots of players on screen), so builds with stronger CPUs tend to do better in those scenarios. Air battles are generally easier to run.",
+    answer: "Yes. War Thunder generally runs well on my builds. It's worth knowing that the game leans heavier on CPU in ground battles (especially with lots of players on screen), so builds with stronger CPUs tend to do better in those scenarios. Air battles are generally easier to run.",
     answerExtra: "Performance estimates on each listing reflect typical gameplay, not just the best-case scenario. If War Thunder is your main game, mention it when you reach out — I'll make sure the build makes sense for it specifically.",
     featured: false
   },
@@ -52,7 +52,7 @@ const faqItems = [
   {
     id: "linux",
     question: "Do you offer Linux?",
-    answer: "Yes. Linux installation is available on request. It's free for common distributions like Ubuntu, Fedora, Pop!_OS or Linux Mint; anything more advanced, like Arch or a custom configuration, may cost extra, and I'll tell you before I start. Mention what you'd like when you reach out, or ask about something different and I'll tell you what's possible. I'll set it up before pickup.",
+    answer: "Yes. I install Linux at no extra charge for common distributions like Ubuntu, Fedora, Pop!_OS or Linux Mint. Anything more advanced, like Arch or a custom configuration, may cost extra, and I'll tell you before I start. Mention what you'd like when you reach out, or ask about something different and I'll tell you what's possible. I'll set it up before pickup.",
     answerExtra: "If you're not sure which distro to go with, I'm happy to suggest something based on what you're planning to use the machine for. For gaming specifically, Pop!_OS and Fedora tend to be solid starting points with good driver support out of the box.",
     featured: true
   },
@@ -68,7 +68,7 @@ const faqItems = [
   {
     id: "pickup-payment",
     question: "How do pickup and payment work?",
-    answer: "We meet in person at a spot between us near Grants Pass, and you can see the system running. Payment is typically cash; if you'd rather pay another way, ask and I'll see what's possible. If you'd rather not travel, I may be able to deliver for a fee.",
+    answer: "We meet in person near Grants Pass, usually at a place we agree on, and you can see the system running. Payment is typically cash; if you'd rather pay another way, ask and I'll see what's possible. If you'd rather not travel, I may be able to deliver for a fee, depending on distance and timing.",
     answerExtra: "",
     featured: false
   },

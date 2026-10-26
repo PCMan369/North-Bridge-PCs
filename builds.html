@@ -13,18 +13,18 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Gaming PCs built and tested by one person in Grants Pass, Oregon. Current listings with real specs and estimated performance, plus recent builds.">
-  <title>Ready-to-Buy Gaming PCs | North Bridge PCs</title>
+  <meta name="description" content="Gaming PCs built and tested by one person in Grants Pass, Oregon. Real specs and estimated performance for every listing, including recent builds.">
+  <title>Gaming PCs | North Bridge PCs</title>
 <link rel="canonical" href="https://pcman369.github.io/North-Bridge-PCs/builds.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="North Bridge PCs">
-<meta property="og:title" content="Ready-to-Buy Gaming PCs | North Bridge PCs">
-<meta property="og:description" content="Gaming PCs built and tested by one person in Grants Pass, Oregon. Current listings with real specs and estimated performance, plus recent builds.">
+<meta property="og:title" content="Gaming PCs | North Bridge PCs">
+<meta property="og:description" content="Gaming PCs built and tested by one person in Grants Pass, Oregon. Real specs and estimated performance for every listing, including recent builds.">
 <meta property="og:url" content="https://pcman369.github.io/North-Bridge-PCs/builds.html">
 <meta property="og:image" content="https://pcman369.github.io/North-Bridge-PCs/images/may26-01-main.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ready-to-Buy Gaming PCs | North Bridge PCs">
-<meta name="twitter:description" content="Gaming PCs built and tested by one person in Grants Pass, Oregon. Current listings with real specs and estimated performance, plus recent builds.">
+<meta name="twitter:title" content="Gaming PCs | North Bridge PCs">
+<meta name="twitter:description" content="Gaming PCs built and tested by one person in Grants Pass, Oregon. Real specs and estimated performance for every listing, including recent builds.">
 <meta name="twitter:image" content="https://pcman369.github.io/North-Bridge-PCs/images/may26-01-main.jpg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="css/tokens.css">
@@ -105,7 +105,7 @@
 
   <section class="page-hero">
     <div class="container">
-      <span class="section-label">Ready to Buy</span>
+      <span class="section-label" id="availability-label">Recent Builds</span>
       <h1>Gaming PCs</h1>
       <p>Each system has real specs and an estimated performance for popular games. Sold ones stay below for reference.</p>
     </div>
@@ -154,6 +154,7 @@
     </div>
     <div class="footer-copy">
       <p>Availability changes regularly — if you don't see what you're looking for, or aren't sure what's currently available, just send a message.</p>
+      <p>This site uses Google Analytics to count visits.</p>
       <p>&copy; <span id="footer-year"></span> North Bridge PCs &mdash; Southern Oregon</p>
     </div>
   </div>
@@ -178,6 +179,8 @@
 
       var available = builds.filter(function (b) { return b.status === 'available'; });
       var sold = builds.filter(function (b) { return b.status === 'sold'; });
+
+      document.getElementById('availability-label').textContent = available.length ? 'Available Now' : 'Recent Builds';
 
       if (available.length) {
         availableEl.innerHTML = available.map(renderBuildCard).join('');

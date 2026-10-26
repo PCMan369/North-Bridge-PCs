@@ -55,12 +55,6 @@ const currentBuilds = [
 
 const completedBuilds = [
 
-  { src: "images/EliteBook.jpg",          alt: "HP EliteBook 840 G10 — previously sold" },
-  { src: "images/EliteBook_screen.jpg",   alt: "HP EliteBook 840 G10, screen — previously sold" },
-  { src: "images/EliteBook_keyboard.jpg", alt: "HP EliteBook 840 G10, keyboard — previously sold" },
-  { src: "images/EliteBook_left.jpg",     alt: "HP EliteBook 840 G10, left side — previously sold" },
-  { src: "images/EliteBook_right.jpg",    alt: "HP EliteBook 840 G10, right side — previously sold" },
-  { src: "images/EliteBook_bottom.jpg",   alt: "HP EliteBook 840 G10, bottom — previously sold" },
 
   { src: "images/5500_5700XT.jpg",        alt: "Ryzen 5 5500 / RX 5700 XT build — previously sold" },
   { src: "images/5500_5700XT_FRONT.jpg",  alt: "Ryzen 5 5500 / RX 5700 XT build, front panel — previously sold" },

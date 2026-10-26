@@ -43,8 +43,8 @@ function renderNotifyBox() {
           '<span class="section-label" style="display:block; margin-bottom:0.75rem;">Nothing Listed Right Now</span>' +
           '<h2>Get Notified When Something Comes In</h2>' +
           '<p>Leave your email and a note about what you\'re looking for. ' +
-          'I\'ll email you when I have something that fits. ' +
-          'No spam, no mailing list.</p>' +
+          'I\'ll email you only when I list something that might fit. ' +
+          'No newsletter, no other emails.</p>' +
           '<p style="margin-top:1rem; font-size:0.88rem;">' +
             'In the meantime, <a href="custom-build.html" style="color:var(--accent-text); text-decoration:underline;">custom builds</a> are always available ' +
             'if you have something specific in mind.' +
@@ -70,8 +70,8 @@ function renderNotifyBox() {
               'placeholder="Budget, games you play, anything specific — or just leave it blank"></textarea>' +
           '</div>' +
           '<div class="form-privacy">' +
-            '<p><strong>Privacy:</strong> Your email is only used to notify you about ' +
-            'new listings. It won\'t be shared or used for anything else.</p>' +
+            '<p><strong>Privacy:</strong> Your email goes to me through FormSubmit, a form service. ' +
+            'I\'ll only use it to tell you about new listings that might fit, and I won\'t share it.</p>' +
           '</div>' +
           '<button type="submit" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;" id="notify-submit">' +
             'Get Notified &rarr;' +

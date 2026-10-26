@@ -214,7 +214,7 @@ function initBuildDetailPage() {
               '</select></div>' +
             '<div class="form-group"><label class="form-label" for="notes">Anything else? <span class="optional">(optional)</span></label>' +
               '<textarea id="notes" name="additional_notes" class="form-textarea" style="min-height:90px;" placeholder="Questions, preferences, anything at all..."></textarea></div>' +
-            '<div class="form-privacy"><p><strong>Privacy:</strong> Your email is only used to respond to your message. It won\'t be shared or used for anything else.</p></div>' +
+            '<div class="form-privacy"><p><strong>Privacy:</strong> Your message is sent to me through FormSubmit, a form service. I only use your email to reply, and I won\'t share it.</p></div>' +
             '<button type="submit" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;">Send a Message &rarr;</button>' +
           '</div>' +
         '</form>' +
@@ -223,8 +223,7 @@ function initBuildDetailPage() {
     formHtml =
       '<div class="sold-notice">' +
         '<span class="badge badge-sold" style="margin-bottom:0.5rem;">Sold</span>' +
-        '<p>This system has been sold. See what\'s listed now, or ask about a custom build.</p>' +
-        '<a href="builds.html" class="btn btn-secondary" style="margin-top:1rem;">Browse Gaming PCs &rarr;</a>' +
+        '<p>This system has been sold. You can see what\'s available or start a custom build below.</p>' +
       '</div>';
   }
 
@@ -248,7 +247,7 @@ function initBuildDetailPage() {
   var ctaHtml =
     '<div class="cta-box" style="margin-top:3rem;">' +
       '<h2>More Gaming PCs</h2>' +
-      '<p>Looking for something different? See what\'s listed now, or start a custom build.</p>' +
+      '<p>Looking for something different? See what\'s available now, or start a custom build.</p>' +
       '<div class="btn-group">' +
         '<a href="builds.html" class="btn btn-primary btn-lg">Browse Gaming PCs &rarr;</a>' +
         '<a href="custom-build.html" class="btn btn-secondary btn-lg">Start a Custom Build</a>' +
