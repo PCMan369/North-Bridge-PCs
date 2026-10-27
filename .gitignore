@@ -1,0 +1,23 @@
+# Keep the public GitHub repository to what the website, the admin and the
+# publisher need. Everything below stays on your computer (and in the project
+# ZIPs for Claude chats) but is never added to the repository.
+
+# Documentation and notes
+*.md
+docs-archive/
+
+# Checks and tests (run in Claude chats, not by the publisher)
+smoke-test.js
+visual-check.py
+build-tools/test-content.py
+build-tools/test-render.js
+
+# Scratch and build leftovers
+screenshots/
+node_modules/
+__pycache__/
+*.pyc
+_site/
+design-prototypes/
+*.tmp
+.DS_Store

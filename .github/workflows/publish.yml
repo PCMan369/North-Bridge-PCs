@@ -11,7 +11,8 @@
 #   3. rebuilds the data files and pages and saves them to the repository
 #   4. publishes the site to GitHub Pages
 #
-# One-time setup is in ADMIN_SETUP.md (Pages must be set to "GitHub Actions").
+# One-time setup is in ADMIN_SETUP.md in the project folder (kept off GitHub on purpose;
+# Pages must be set to "GitHub Actions").
 
 name: Publish site
 
@@ -77,27 +78,3 @@ jobs:
       - name: Publish to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-  # Extra safety checks. These do NOT block publishing; a red mark here means
-  # "tell Claude", not "your listing is broken".
-  tests:
-    runs-on: ubuntu-latest
-    needs: build
-    continue-on-error: true
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-      - run: pip install pillow pillow-heif
-      - name: Listing and photo tests
-        run: python3 build-tools/test-content.py
-      - name: Page rendering tests
-        run: |
-          npm install jsdom --no-save --no-audit --no-fund
-          node build-tools/test-render.js
