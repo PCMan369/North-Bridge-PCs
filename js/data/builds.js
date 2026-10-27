@@ -231,7 +231,7 @@ const builds = [
     "id": "jun26-01",
     "title": "Ryzen 5 3600 / RTX 2060",
     "status": "sold",
-    "price": "$549",
+    "price": "$550",
     "eventId": null,
     "eventPrice": null,
     "summary": "Cleaned and stress tested 1080p gaming build.",
@@ -247,6 +247,12 @@ const builds = [
       },
       "storage": {
         "model": "480GB SSD"
+      },
+      "psu": {
+        "model": "MSI MAG A550BN"
+      },
+      "os": {
+        "model": "Windows 11 Home"
       }
     },
     "performance": {
