@@ -2,13 +2,14 @@
   "id": "may26-01",
   "title": "Ryzen 5 5500 / RTX 2070 Super",
   "status": "sold",
-  "price": 649,
+  "price": 650,
   "summary": "Cleaned and stress tested 1080p/1440p gaming build.",
   "components": {
     "cpu": "Ryzen 5 5500",
     "gpu": "RTX 2070 Super",
     "ram": "16GB DDR4 3000MHz",
-    "storage": "512GB NVMe SSD"
+    "storage": "512GB NVMe SSD",
+    "psu": "MSI MAG A550BN"
   },
   "performance": {
     "isEstimate": true,
@@ -38,9 +39,5 @@
   "images": [
     "/images/may26-01-main.jpg"
   ],
-  "videos": [],
-  "condition": "",
-  "testingNotes": "",
-  "notes": "",
   "listedDate": "2026-05-01"
 }
