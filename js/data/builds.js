@@ -299,7 +299,7 @@ const builds = [
     "id": "may26-01",
     "title": "Ryzen 5 5500 / RTX 2070 Super",
     "status": "sold",
-    "price": "$649",
+    "price": "$650",
     "eventId": null,
     "eventPrice": null,
     "summary": "Cleaned and stress tested 1080p/1440p gaming build.",
@@ -315,6 +315,9 @@ const builds = [
       },
       "storage": {
         "model": "512GB NVMe SSD"
+      },
+      "psu": {
+        "model": "MSI MAG A550BN"
       }
     },
     "performance": {
