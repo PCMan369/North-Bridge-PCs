@@ -44,6 +44,8 @@ function initBuildDetailPage() {
   var params = new URLSearchParams(window.location.search);
   var id = params.get('id');
   var build = builds.find(function (b) { return b.id === id; }) || null;
+  // Only available or sold listings have a public page; anything else is "not found".
+  if (build && build.status !== 'available' && build.status !== 'sold') build = null;
 
   if (!build) {
     contentEl.innerHTML =
@@ -85,13 +87,13 @@ function initBuildDetailPage() {
     ? media.map(function (m, i) {
         if (m.type === 'video') {
           return '<video class="gallery-main-img' + (i === 0 ? ' active' : '') + '" ' +
-            (m.poster ? 'poster="' + m.poster + '" ' : '') +
+            (m.poster ? 'poster="' + escapeHtml(m.poster) + '" ' : '') +
             'controls playsinline preload="none">' +
-            '<source src="' + m.src + '">' +
+            '<source src="' + escapeHtml(m.src) + '">' +
             '</video>';
         }
-        return '<img class="gallery-main-img' + (i === 0 ? ' active' : '') + '" src="' + m.src + '" ' +
-          'alt="' + build.title + ' \u2014 photo ' + (i + 1) + '" ' +
+        return '<img class="gallery-main-img' + (i === 0 ? ' active' : '') + '" src="' + escapeHtml(m.src) + '" ' +
+          'alt="' + escapeHtml(build.title) + ' \u2014 photo ' + (i + 1) + '" ' +
           'loading="' + (i === 0 ? 'eager' : 'lazy') + '" ' +
           'onerror="this.style.display=\'none\'">';
       }).join('')
@@ -112,7 +114,7 @@ function initBuildDetailPage() {
           var label = (m.type === 'video' ? 'Play video ' : 'View photo ') + (i + 1);
           return '<div class="gallery-thumb' + (i === 0 ? ' active' : '') + '" data-idx="' + i + '" ' +
             'tabindex="0" role="button" aria-label="' + label + '">' +
-            '<img src="' + thumbSrc + '" alt="Photo ' + (i + 1) + '" loading="lazy">' +
+            '<img src="' + escapeHtml(thumbSrc) + '" alt="Photo ' + (i + 1) + '" loading="lazy">' +
             (m.type === 'video' ? '<span class="gallery-thumb-video-icon"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5Z"/></svg></span>' : '') +
           '</div>';
         }).join('') +
@@ -126,7 +128,7 @@ function initBuildDetailPage() {
     .map(function (pair) {
       return '<div class="listing-spec-row">' +
         '<span class="listing-spec-label">' + pair[1] + '</span>' +
-        '<span class="listing-spec-value">' + c[pair[0]].model + '</span>' +
+        '<span class="listing-spec-value">' + escapeHtml(c[pair[0]].model) + '</span>' +
       '</div>';
     }).join('');
 
@@ -148,7 +150,7 @@ function initBuildDetailPage() {
     perfHtml = '<div class="listing-perf-card">' +
       '<div class="listing-perf-title">' + perfLabel + '</div>' +
       build.performance.items.map(function (p) {
-        return '<div class="listing-perf-item">' + p.game + ': ' + p.fps + ' @ ' + p.settings + '</div>';
+        return '<div class="listing-perf-item">' + escapeHtml(p.game) + ': ' + escapeHtml(p.fps) + ' @ ' + escapeHtml(p.settings) + '</div>';
       }).join('') +
       '<p style="font-size:0.75rem; color:var(--dim); margin-top:0.75rem; font-style:italic;">' +
         'Performance varies based on game settings, resolution, and title.' +
@@ -161,22 +163,22 @@ function initBuildDetailPage() {
   if (build.condition || build.testingNotes || build.notes) {
     conditionHtml = '<div class="listing-specs-card">' +
       '<div class="listing-specs-title">Good to Know</div>' +
-      (build.condition ? '<p style="font-size:0.9rem; margin-bottom:0.75rem;">' + build.condition + '</p>' : '') +
-      (build.testingNotes ? '<p style="font-size:0.9rem; margin-bottom:0.75rem;">' + build.testingNotes + '</p>' : '') +
-      (build.notes ? '<p style="font-size:0.9rem;">' + build.notes + '</p>' : '') +
+      (build.condition ? '<p style="font-size:0.9rem; margin-bottom:0.75rem;">' + escapeHtml(build.condition) + '</p>' : '') +
+      (build.testingNotes ? '<p style="font-size:0.9rem; margin-bottom:0.75rem;">' + escapeHtml(build.testingNotes) + '</p>' : '') +
+      (build.notes ? '<p style="font-size:0.9rem;">' + escapeHtml(build.notes) + '</p>' : '') +
     '</div>';
   }
 
   // ---- Price (with event pricing if this build's event is active) ----
-  var priceHtml = '<div class="listing-price">' + build.price + '</div>';
+  var priceHtml = '<div class="listing-price">' + escapeHtml(build.price) + '</div>';
   if (isAvailable && build.eventId && build.eventPrice && typeof getActiveEvent === 'function') {
     var activeEvent = getActiveEvent();
     if (activeEvent && activeEvent.id === build.eventId) {
       priceHtml =
-        '<div class="price-original">' + build.price + '</div>' +
+        '<div class="price-original">' + escapeHtml(build.price) + '</div>' +
         '<div style="display:flex; align-items:center; gap:0.6rem;">' +
-          '<div class="price-event">' + build.eventPrice + '</div>' +
-          '<span class="event-badge">' + activeEvent.name + '</span>' +
+          '<div class="price-event">' + escapeHtml(build.eventPrice) + '</div>' +
+          '<span class="event-badge">' + escapeHtml(activeEvent.name) + '</span>' +
         '</div>';
     }
   }
@@ -190,14 +192,14 @@ function initBuildDetailPage() {
       '<div class="listing-form-card">' +
         '<div class="listing-form-title">Ask About This System</div>' +
         '<div class="listing-form-sub">Send a message and I\'ll reply by email, usually within a day or two.</div>' +
-        '<div class="listing-system-badge"><span>Asking about:</span> <strong>' + build.title + '</strong></div>' +
+        '<div class="listing-system-badge"><span>Asking about:</span> <strong>' + escapeHtml(build.title) + '</strong></div>' +
         '<form action="https://formsubmit.co/' + CONTACT.email + '" method="POST" aria-live="polite" aria-atomic="true">' +
-          '<input type="hidden" name="_subject" value="Inquiry: ' + build.title + ' \u2014 North Bridge PCs">' +
+          '<input type="hidden" name="_subject" value="Inquiry: ' + escapeHtml(build.title) + ' \u2014 North Bridge PCs">' +
           '<input type="hidden" name="_captcha" value="false">' +
           '<input type="hidden" name="_template" value="table">' +
-          '<input type="hidden" name="_next" value="' + nextUrl + '">' +
-          '<input type="hidden" name="_url" value="' + pageUrl + '">' +
-          '<input type="hidden" name="system" value="' + build.title + '">' +
+          '<input type="hidden" name="_next" value="' + escapeHtml(nextUrl) + '">' +
+          '<input type="hidden" name="_url" value="' + escapeHtml(pageUrl) + '">' +
+          '<input type="hidden" name="system" value="' + escapeHtml(build.title) + '">' +
           '<input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">' +
           '<div style="display:flex; flex-direction:column; gap:1rem;">' +
             '<div class="form-group"><label class="form-label" for="name">Your Name</label>' +
@@ -262,7 +264,7 @@ function initBuildDetailPage() {
         thumbsHtml +
       '</div>' +
       '<div class="listing-details">' +
-        '<div class="listing-header"><h1 class="listing-title">' + build.title + '</h1>' + badge + '</div>' +
+        '<div class="listing-header"><h1 class="listing-title">' + escapeHtml(build.title) + '</h1>' + badge + '</div>' +
         '<div class="listing-price-row">' +
           '<div class="listing-price-wrap">' + priceHtml + '</div>' +
           '<div class="listing-pickup-note">Pickup in person near Grants Pass</div>' +

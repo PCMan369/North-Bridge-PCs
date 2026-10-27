@@ -50,12 +50,12 @@ function renderGalleryGrid(images, containerId) {
     var thumbSrc = isVideo ? img.poster : img.src;
 
     var mediaHtml = thumbSrc
-      ? '<img src="' + thumbSrc + '" alt="' + img.alt + '" loading="lazy" ' +
+      ? '<img src="' + escapeHtml(thumbSrc) + '" alt="' + escapeHtml(img.alt) + '" loading="lazy" ' +
           'onerror="this.parentElement.innerHTML=\'<div class=gallery-placeholder><span class=gp-icon><svg width=&quot;1em&quot; height=&quot;1em&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M4 8a1.5 1.5 0 0 1 1.5-1.5h2l1-2h7l1 2h2A1.5 1.5 0 0 1 20 8v10a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18Z&quot;/><circle cx=&quot;12&quot; cy=&quot;13&quot; r=&quot;3.3&quot;/></svg></span><span>Photo coming soon</span></div>\'">'
-      : '<div class="gallery-placeholder"><span class="gp-icon"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 4.6 5h3.6L6.6 9.5Z"/><path d="M9 9.5 10.6 5h3.6L12.6 9.5Z"/><path d="M15 9.5 16.6 5H20L18.4 9.5Z"/><rect x="3" y="9.5" width="18" height="9.5" rx="1"/></svg></span><span>' + img.alt + '</span></div>';
+      : '<div class="gallery-placeholder"><span class="gp-icon"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 4.6 5h3.6L6.6 9.5Z"/><path d="M9 9.5 10.6 5h3.6L12.6 9.5Z"/><path d="M15 9.5 16.6 5H20L18.4 9.5Z"/><rect x="3" y="9.5" width="18" height="9.5" rx="1"/></svg></span><span>' + escapeHtml(img.alt) + '</span></div>';
 
     return '<div class="gallery-item" data-idx="' + i + '" tabindex="0" role="button" ' +
-      'aria-label="' + label + '">' +
+      'aria-label="' + escapeHtml(label) + '">' +
       mediaHtml +
       (isVideo ? '<span class="gallery-item-video-icon"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5Z"/></svg></span>' : '') +
     '</div>';

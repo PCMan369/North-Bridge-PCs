@@ -1,0 +1,197 @@
+# Admin forms for North Bridge PCs (Pages CMS, https://app.pagescms.org).
+# Edits the files in content/ and photos in images/. Saving commits to GitHub,
+# which starts the "Publish site" workflow (.github/workflows/publish.yml).
+# Listing rules that this form can't express (duplicate IDs, a photo required
+# before a PC can go Available, etc.) are enforced by build-tools/content.py
+# when publishing; if something is wrong the live site keeps its last good version.
+
+media:
+  input: images
+  output: /images
+  rename: safe
+  extensions: [jpg, jpeg]
+
+settings:
+  content:
+    merge: true          # keep fields this form doesn't show (for example video clips)
+  commit:
+    templates:
+      create: "Add {path} (admin)"
+      update: "Update {path} (admin)"
+      delete: "Remove {path} (admin)"
+      rename: "Rename {oldPath} to {newPath} (admin)"
+
+actions:
+  - name: publish
+    label: Publish now
+    workflow: publish.yml
+    ref: current
+    confirm:
+      title: Publish now?
+      message: The website normally updates by itself a minute or two after every save. Use this only if it looks out of date.
+      button: Publish
+
+content:
+  - name: builds
+    label: Gaming PCs
+    type: collection
+    path: content/builds
+    format: json
+    filename:
+      template: "{id}.json"
+      field: false
+    operations:
+      rename: false
+      delete: false      # use Status = Hidden to archive instead
+    view:
+      fields: [status, price, listedDate]
+      primary: title
+      sort: [listedDate, title]
+      default:
+        sort: listedDate
+        order: desc
+    fields:
+      - name: id
+        label: Listing ID
+        type: string
+        required: true
+        description: "Month, year and a number, like nov26-01. This becomes the web address of the listing, so never change it after publishing."
+        pattern:
+          regex: "^[a-z]{3}[0-9]{2}-[0-9]{2}$"
+          message: "Use month, year and number, like nov26-01 (lowercase)."
+      - name: title
+        label: Title
+        type: string
+        required: true
+        description: "Shown on the cards and at the top of the listing. Example: Ryzen 5 3600 / RX 5700 XT"
+        options:
+          maxlength: 120
+      - name: status
+        label: Status
+        type: select
+        required: true
+        default: draft
+        description: "Only Available and Sold appear on the website."
+        options:
+          values:
+            - { name: draft, label: "Draft (not on the website yet)" }
+            - { name: available, label: "Available (live on the website)" }
+            - { name: sold, label: "Sold (shown under recently sold)" }
+            - { name: hidden, label: "Hidden / archived (not on the website)" }
+      - name: price
+        label: Price
+        type: number
+        description: "Whole dollars, no $ sign (650 shows as $650). Required before the listing can be Available or Sold."
+        options:
+          min: 0
+      - name: listedDate
+        label: Date listed
+        type: date
+        options:
+          format: "yyyy-MM-dd"
+        description: "Newest listings are shown first."
+      - name: summary
+        label: Short summary
+        type: text
+        options:
+          maxlength: 300
+      - name: images
+        label: Photos
+        type: image
+        description: "The first photo is the cover. The order here is the order on the website. Tap Add to pick several photos from your phone at once."
+        options:
+          multiple:
+            max: 30
+          unique: true
+          extensions: [jpg, jpeg]
+      - name: components
+        label: Parts
+        type: object
+        description: "Fill in what applies. Empty lines are simply not shown."
+        fields:
+          - { name: cpu, label: Processor (CPU), type: string }
+          - { name: gpu, label: Graphics card (GPU), type: string }
+          - { name: motherboard, label: Motherboard, type: string }
+          - { name: ram, label: Memory (RAM), type: string }
+          - { name: storage, label: Storage, type: string }
+          - { name: psu, label: Power supply, type: string }
+          - { name: case, label: Case, type: string }
+          - { name: cooler, label: Cooling, type: string }
+          - { name: os, label: Operating system, type: string }
+          - { name: networking, label: Wi-Fi / Bluetooth, type: string }
+          - name: accessories
+            label: Included extras
+            type: string
+            list: true
+      - name: performance
+        label: Estimated performance
+        type: object
+        fields:
+          - name: isEstimate
+            label: These are estimates, not measured results
+            type: boolean
+            default: true
+          - name: items
+            label: Games
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{game}: {fps}"
+            fields:
+              - { name: game, label: Game, type: string }
+              - { name: fps, label: "Frame rate (example: ~100fps)", type: string }
+              - { name: settings, label: "Settings (example: 1080p High)", type: string }
+      - name: condition
+        label: Condition
+        type: text
+      - name: testingNotes
+        label: Testing notes
+        type: text
+      - name: notes
+        label: Anything else buyers should know
+        type: text
+      - name: eventId
+        label: Sale event (optional)
+        type: string
+        description: "Only if this PC is part of a sale. Must match an event in js/data/events.js. Leave empty otherwise."
+      - name: eventPrice
+        label: Sale price (optional)
+        type: number
+        options:
+          min: 0
+
+  - name: gallery-extras
+    label: Extra gallery photos
+    type: file
+    path: content/gallery-extras.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: current
+        label: Extra photos for "Available now"
+        type: object
+        list: true
+        fields:
+          - { name: src, label: Photo, type: image }
+          - { name: alt, label: Short description (for screen readers), type: string }
+      - name: completed
+        label: Extra photos for "Recently sold"
+        type: object
+        list: true
+        fields:
+          - { name: src, label: Photo, type: image }
+          - { name: alt, label: Short description (for screen readers), type: string }
+
+  - name: photo-alts
+    label: Photo descriptions
+    type: file
+    path: content/photo-alts.json
+    format: json
+    list: true
+    operations:
+      delete: false
+    fields:
+      - { name: src, label: Photo, type: image }
+      - { name: alt, label: "Description (for screen readers; example: blue lighting, front view)", type: string }

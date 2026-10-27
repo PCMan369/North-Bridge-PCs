@@ -1,0 +1,46 @@
+{
+  "id": "may26-01",
+  "title": "Ryzen 5 5500 / RTX 2070 Super",
+  "status": "sold",
+  "price": 649,
+  "summary": "Cleaned and stress tested 1080p/1440p gaming build.",
+  "components": {
+    "cpu": "Ryzen 5 5500",
+    "gpu": "RTX 2070 Super",
+    "ram": "16GB DDR4 3000MHz",
+    "storage": "512GB NVMe SSD"
+  },
+  "performance": {
+    "isEstimate": true,
+    "items": [
+      {
+        "game": "Fortnite",
+        "fps": "~130fps",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Minecraft",
+        "fps": "~240fps+",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Marvel Rivals",
+        "fps": "~95fps",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Cyberpunk 2077",
+        "fps": "~70fps",
+        "settings": "1080p High"
+      }
+    ]
+  },
+  "images": [
+    "/images/may26-01-main.jpg"
+  ],
+  "videos": [],
+  "condition": "",
+  "testingNotes": "",
+  "notes": "",
+  "listedDate": "2026-05-01"
+}

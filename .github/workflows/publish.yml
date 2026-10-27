@@ -1,0 +1,103 @@
+# Publishes the North Bridge PCs website.
+#
+# Runs automatically every time something is saved to the main branch (for
+# example when you save a listing in the admin), and can be run by hand from the
+# repository's Actions tab ("Run workflow") or from the admin's "Publish now" button.
+#
+# What it does:
+#   1. cleans photos (removes location data, fixes rotation, shrinks)
+#   2. checks every listing; if something is wrong it STOPS and the live
+#      site keeps its last good version
+#   3. rebuilds the data files and pages and saves them to the repository
+#   4. publishes the site to GitHub Pages
+#
+# One-time setup is in ADMIN_SETUP.md (Pages must be set to "GitHub Actions").
+
+name: Publish site
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: "Sent automatically by the admin's Publish now button; leave empty."
+        required: false
+        type: string
+
+permissions:
+  contents: write     # save the generated files back to the repository
+  pages: write        # publish to GitHub Pages
+  id-token: write     # required by the Pages deploy step
+
+# Only one publish at a time; a newer one waits for the current one to finish.
+concurrency:
+  group: publish-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the latest files
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the photo tools
+        run: pip install pillow pillow-heif
+
+      - name: Clean photos, check listings, build pages, save generated files
+        run: |
+          git config user.name "North Bridge PCs publisher"
+          git config user.email "publisher@users.noreply.github.com"
+          bash build-tools/ci-build.sh
+
+      - name: Collect the public website files
+        run: bash build-tools/assemble-site.sh
+
+      - name: Prepare Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # Extra safety checks. These do NOT block publishing; a red mark here means
+  # "tell Claude", not "your listing is broken".
+  tests:
+    runs-on: ubuntu-latest
+    needs: build
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: pip install pillow pillow-heif
+      - name: Listing and photo tests
+        run: python3 build-tools/test-content.py
+      - name: Page rendering tests
+        run: |
+          npm install jsdom --no-save --no-audit --no-fund
+          node build-tools/test-render.js

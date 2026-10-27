@@ -1,0 +1,50 @@
+{
+  "id": "aug26-01",
+  "title": "Ryzen 5 5500 / RX 5700 XT",
+  "status": "sold",
+  "price": 550,
+  "summary": "Cleaned and stress tested 1080p/1440p gaming build.",
+  "components": {
+    "cpu": "AMD Ryzen 5 5500",
+    "gpu": "AMD RX 5700 XT",
+    "ram": "16GB DDR4 2800MHz",
+    "storage": "512GB NVMe SSD"
+  },
+  "performance": {
+    "isEstimate": true,
+    "items": [
+      {
+        "game": "Fortnite",
+        "fps": "~130fps",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Minecraft",
+        "fps": "~240fps+",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Marvel Rivals",
+        "fps": "~90fps",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Cyberpunk 2077",
+        "fps": "~65fps",
+        "settings": "1080p High"
+      }
+    ]
+  },
+  "images": [
+    "/images/5500_5700XT.jpg",
+    "/images/5500_5700XT_FRONT.jpg",
+    "/images/5500_5700XT_SIDE.jpg",
+    "/images/5500_5700XT_IO.jpg",
+    "/images/5500_5700XT_BACK.jpg"
+  ],
+  "videos": [],
+  "condition": "",
+  "testingNotes": "",
+  "notes": "",
+  "listedDate": "2026-08-01"
+}

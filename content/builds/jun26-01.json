@@ -1,0 +1,50 @@
+{
+  "id": "jun26-01",
+  "title": "Ryzen 5 3600 / RTX 2060",
+  "status": "sold",
+  "price": 549,
+  "summary": "Cleaned and stress tested 1080p gaming build.",
+  "components": {
+    "cpu": "Ryzen 5 3600",
+    "gpu": "RTX 2060",
+    "ram": "16GB DDR4 2666MHz",
+    "storage": "480GB SSD"
+  },
+  "performance": {
+    "isEstimate": true,
+    "items": [
+      {
+        "game": "Fortnite",
+        "fps": "~100fps",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Minecraft",
+        "fps": "~180fps+",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Marvel Rivals",
+        "fps": "~75fps",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Cyberpunk 2077",
+        "fps": "~55fps",
+        "settings": "1080p High"
+      }
+    ]
+  },
+  "images": [
+    "/images/3600_RTX2060.jpg",
+    "/images/3600_RTX2060_FRONT.jpg",
+    "/images/3600_RTX2060_SIDE.jpg",
+    "/images/3600_RTX2060_IO.jpg",
+    "/images/3600_RTX2060_BACK.jpg"
+  ],
+  "videos": [],
+  "condition": "",
+  "testingNotes": "",
+  "notes": "",
+  "listedDate": "2026-06-01"
+}

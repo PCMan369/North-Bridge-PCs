@@ -1,0 +1,64 @@
+{
+  "id": "oct26-01",
+  "title": "Ryzen 5 3600 / RX 5700 XT",
+  "status": "available",
+  "price": 650,
+  "summary": "Cleaned 1080p gaming build with RGB lighting.",
+  "components": {
+    "cpu": "AMD Ryzen 5 3600",
+    "gpu": "MSI Radeon RX 5700 XT MECH OC BV Dual Fan",
+    "motherboard": "Gigabyte B550M K (mATX)",
+    "ram": "GeIL Super Luce RGB Sync 2x8GB 3000MHz",
+    "storage": "500GB SATA SSD (PNY CS900)",
+    "psu": "Apevia Prestige 600W",
+    "case": "Okies Aqua Uno (black)",
+    "cooler": "ID-Cooling SE-214 XT-V2, stock case fans",
+    "os": "Windows 11 Home (activated)",
+    "networking": "Wi-Fi and Bluetooth dongle included",
+    "accessories": [
+      "Power cable",
+      "RGB remote for the fan lighting"
+    ]
+  },
+  "performance": {
+    "isEstimate": true,
+    "items": [
+      {
+        "game": "Fortnite",
+        "fps": "~100fps",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Minecraft",
+        "fps": "~180fps+",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Marvel Rivals",
+        "fps": "~70fps",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Cyberpunk 2077",
+        "fps": "~50fps",
+        "settings": "1080p High"
+      }
+    ]
+  },
+  "images": [
+    "/images/oct26-01-blue-angle.jpg",
+    "/images/oct26-01-blue-front.jpg",
+    "/images/oct26-01-blue-close.jpg",
+    "/images/oct26-01-red-angle.jpg",
+    "/images/oct26-01-red-front.jpg",
+    "/images/oct26-01-red-close.jpg",
+    "/images/oct26-01-green-angle.jpg",
+    "/images/oct26-01-green-front.jpg",
+    "/images/oct26-01-green-close.jpg"
+  ],
+  "videos": [],
+  "condition": "Good condition. Everything is used except the case and power supply, which are new.",
+  "testingNotes": "",
+  "notes": "Lighting: the RAM is controlled with OpenRGB and the fans with the included remote. Photos show blue, red and green.",
+  "listedDate": "2026-10-24"
+}

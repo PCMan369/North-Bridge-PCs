@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--ANALYTICS-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Custom gaming PCs built around your budget, plus ready-to-buy systems when I have them. Every one tested before pickup near Grants Pass, Oregon.">
+  <meta name="geo.region" content="US-OR">
+  <meta name="geo.placename" content="Southern Oregon">
+  <title>Gaming PCs in Grants Pass, Oregon | North Bridge PCs</title>
+<!--SEO-->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/gallery.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <!--
+    NOTE: no google-site-verification meta tag or canonical URL yet —
+    those depend on the real domain/Search Console property for this
+    new site, which don't exist yet. Phase 5 (SEO) picks this up once
+    the site has a real home.
+  -->
+</head>
+<body>
+
+<!--HEADER:home-->
+
+<main id="main">
+
+  <!-- ============================================================
+       HERO — text-focused, no image slot (Visual Redesign, home page
+       decision 1: Option C). No real hero photo exists yet, and every
+       real product photo is a portrait 3:4 shot — the wrong shape for
+       a wide hero regardless. Full-bleed photography (a real landscape
+       shot) is worth reconsidering specifically once one exists — see
+       VISUAL_REDESIGN.md, home page decision 1.
+       ============================================================ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Local Gaming PCs, Built in Grants Pass</h1>
+      <p class="hero-body">
+        I build gaming PCs, test every one, and tell you exactly what you're getting, good and
+        bad. Gaming PCs and custom builds, picked up in person.
+      </p>
+      <div class="hero-buttons">
+        <a href="builds.html"       class="btn btn-primary btn-lg">Browse Gaming PCs</a>
+        <a href="custom-build.html" class="btn btn-secondary btn-lg">Start a Custom Build</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       HOW I WORK: six selling points (COPY_BRIEF.md). Words are the
+       owner's choices (B-055); the hairline-row look is .point in theme.css.
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>How I Work</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="grid-3">
+        <div class="point"><h3>Ready to play</h3><p>Cleaned, tested, and set up with current drivers, so you can plug in and start gaming.</p></div>
+        <div class="point"><h3>Honest numbers, honest flaws</h3><p>Specs are accurate, performance figures are labeled as estimates, and any limitation is explained before you buy.</p></div>
+        <div class="point"><h3>One person, start to finish</h3><p>I do the whole process from parts to product, so any question is answered by the person who built it.</p></div>
+        <div class="point"><h3>See it running</h3><p>We meet in person near Grants Pass, so you can see the system running before you buy it.</p></div>
+        <div class="point"><h3>Built around your budget</h3><p>Tell me what you can spend and what you play, and I won't pad the parts list.</p></div>
+        <div class="point"><h3>Used parts, priced fairly</h3><p>Most parts are used; the power supply and case are almost always new.</p></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FEATURED GAMING PCS
+       Data-driven from js/data/builds.js — shows up to 3 available
+       systems, or the empty state if none are currently available.
+       ============================================================ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label" id="home-availability-label">Recent Builds</span>
+        <h2>Systems I've Built and Listed</h2>
+        <p>New listings are added as I finish them. Each one has real specs and an estimated performance for popular games.</p>
+        <div class="accent-line"></div>
+      </div>
+
+      <div id="featured-builds" class="builds-grid"></div>
+
+      <div class="text-center mt-4">
+        <a href="builds.html" class="btn btn-ghost">Browse Gaming PCs &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       EVIDENCE
+       Replaces the old icon+heading+description trust cards and the
+       numbered-circle testing steps with one section built from the
+       same real facts — homepage-specific markup, does NOT use the
+       shared js/render/trustSection.js (that stays exactly as-is for
+       build.html). If this copy needs updating, update it here AND
+       in trustSection.js separately — they're intentionally no
+       longer the same component on this page.
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Before It Leaves</span>
+        <h2>What Happens Before Pickup</h2>
+        <p>Here's what I do to every system before it leaves my bench.</p>
+        <div class="accent-line"></div>
+      </div>
+
+      <div class="evidence">
+        <div>
+          <p class="evidence-lead">Five steps <span class="accent">before it's yours.</span></p>
+          <p class="evidence-sub">Performance figures are estimates based on real-world expectations for that hardware, not benchmarks I ran. There are no returns, but if you hit a snag after getting it home, email me and I'll help you troubleshoot.</p>
+        </div>
+        <div class="evidence-checklist">
+          <div class="evidence-row">
+            <span class="mark">01</span>
+            <div><h3>Cleaned</h3><p>Dust removed, thermal paste refreshed where needed. Clean inside and out.</p></div>
+          </div>
+          <div class="evidence-row">
+            <span class="mark">02</span>
+            <div><h3>Stress tested</h3><p>CPU and GPU pushed under sustained load to check for stability issues.</p></div>
+          </div>
+          <div class="evidence-row">
+            <span class="mark">03</span>
+            <div><h3>Temps checked</h3><p>Temperatures checked under load.</p></div>
+          </div>
+          <div class="evidence-row">
+            <span class="mark">04</span>
+            <div><h3>Drivers updated</h3><p>GPU and system drivers current before handoff. Ready to game the same day.</p></div>
+          </div>
+          <div class="evidence-row">
+            <span class="mark">05</span>
+            <div><h3>Ready to use</h3><p>Confirmed working, then handed over. A finished computer, not a box of parts.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CUSTOM BUILDS SECTION
+       ============================================================ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="two-col center">
+
+        <div>
+          <div class="section-header align-left">
+            <span class="section-label">Built for You</span>
+            <h2>Not Seeing the Right One? I'll Build It</h2>
+            <p>
+              I put together a system based on what you want to do with it, using the parts that
+              fit your budget and nothing you don't need.
+            </p>
+            <div class="accent-line"></div>
+          </div>
+
+          <div class="cb-list">
+            <div class="cb-row">
+              <strong>Tell me your budget.</strong>
+              <p>I'll work with what you have, not push you past it.</p>
+            </div>
+            <div class="cb-row">
+              <strong>Tell me what games you play.</strong>
+              <p>Different games have different demands. I'll build for what you actually run.</p>
+            </div>
+            <div class="cb-row">
+              <strong>Tell me what features matter.</strong>
+              <p>Wi-Fi, extra storage, Linux, quiet operation: mention what's important to you.</p>
+            </div>
+          </div>
+
+          <a href="custom-build.html" class="btn btn-primary btn-lg">Start a Custom Build &rarr;</a>
+        </div>
+
+        <div>
+          <table class="budget-table">
+            <tr><td>~$500</td><td>Solid 1080p gaming on popular titles.</td></tr>
+            <tr><td>~$800</td><td>Smoother gameplay and more headroom on demanding games.</td></tr>
+            <tr><td>~$1,200</td><td>Higher resolution and a stronger graphics card for modern titles at quality settings.</td></tr>
+          </table>
+          <p class="budget-note">
+            Example ranges only. Actual cost depends on parts availability and your specific requirements.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       GALLERY PREVIEW
+       Sourced directly from builds.js media — available systems first,
+       falling back to sold/completed builds if none are available.
+       See js/render/galleryGrid.js for the render logic.
+       ============================================================ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Photos</span>
+        <h2>Recent Builds</h2>
+        <p>A look at systems I've built and sold.</p>
+        <div class="accent-line"></div>
+      </div>
+
+      <div id="gallery-preview" class="gallery-grid" style="margin-bottom:2rem;"></div>
+
+      <div class="text-center">
+        <a href="gallery.html" class="btn btn-ghost">View Full Gallery &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FAQ PREVIEW
+       ============================================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+
+        <div>
+          <div class="section-header align-left">
+            <span class="section-label">Good to Know</span>
+            <h2>Questions Before You Buy</h2>
+            <p>
+              Short answers to what buyers ask most. The full FAQ has the rest.
+            </p>
+            <div class="accent-line"></div>
+          </div>
+          <a href="faq.html" class="btn btn-secondary">Read the Full FAQ &rarr;</a>
+        </div>
+
+        <div class="faq-list" id="home-faq"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT CTA
+       ============================================================ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Get in Touch</span>
+        <h2>Want to Talk It Through?</h2>
+        <p>
+          Whether you're interested in a specific system, planning a custom build,
+          or just not sure where to start, send a message and I'll reply, usually within
+          a day or two. No pressure, no sales pitch.
+        </p>
+        <div class="accent-line"></div>
+        <div class="btn-group">
+          <a href="contact.html" class="btn btn-primary btn-lg">Send a Message</a>
+          <a href="builds.html"  class="btn btn-secondary btn-lg">Browse Gaming PCs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!--FOOTER-->
+
+  <!-- ============================================================
+       SCRIPTS
+       Data files load first, then render helpers, then chrome.
+       ============================================================ -->
+  <script src="js/data/config.js"></script>
+  <script src="js/data/events.js"></script>
+  <script src="js/data/builds.js"></script>
+  <script src="js/data/faq.js"></script>
+  <script src="js/render/escape.js"></script>
+  <script src="js/render/galleryGrid.js"></script>
+  <script src="js/render/buildCard.js"></script>
+  <script src="js/render/faqList.js"></script>
+  <script src="js/render/eventBanner.js"></script>
+  <script src="js/render/chrome.js"></script>
+  <script src="js/render/faqAccordion.js"></script>
+
+  <script>
+    // FAQ preview (also used, in full, on faq.html)
+    document.getElementById('home-faq').innerHTML =
+      renderFaqList(faqItems.filter(function (f) { return f.featured; }));
+
+    // Featured builds (homepage — up to 3 available systems)
+    (function () {
+      var container = document.getElementById('featured-builds');
+      if (!container) return;
+
+      var available = builds.filter(function (b) { return b.status === 'available'; }).slice(0, 3);
+      var lbl = document.getElementById('home-availability-label');
+      if (lbl) lbl.textContent = available.length ? 'Available Now' : 'Recent Builds';
+      container.innerHTML = available.length
+        ? available.map(renderBuildCard).join('')
+        : renderEmptyBuildsState();
+    })();
+
+    // Gallery preview (homepage) — sourced directly from builds.js
+    // media, not a separate photo list, so there's nothing extra to
+    // keep in sync as inventory changes. Prioritizes available
+    // systems; falls back to sold/completed builds if none are
+    // available right now; empty state if there's no media at all.
+    // Supports both photos and video clips (same {type, src, poster}
+    // shape build.html's own media list already uses).
+    (function () {
+      var container = document.getElementById('gallery-preview');
+      if (!container) return;
+
+      function collectMedia(list) {
+        var out = [];
+        list.forEach(function (b) {
+          var m = b.media || {};
+          (m.images || []).forEach(function (src) {
+            out.push({
+              type: 'image',
+              src: src,
+              alt: b.title + (b.status === 'sold' ? ' (previously sold)' : '')
+            });
+          });
+          (m.videos || []).forEach(function (v) {
+            var src = typeof v === 'string' ? v : v.src;
+            var poster = typeof v === 'string' ? null : (v.poster || null);
+            out.push({
+              type: 'video',
+              src: src,
+              poster: poster,
+              alt: b.title + ', video clip' + (b.status === 'sold' ? ' (previously sold)' : '')
+            });
+          });
+        });
+        return out;
+      }
+
+      var available = builds.filter(function (b) { return b.status === 'available'; });
+      var sold = builds.filter(function (b) { return b.status === 'sold'; });
+
+      var media = collectMedia(available);
+      if (!media.length) media = collectMedia(sold);
+      // 5 photos fill the desktop bento exactly (the featured 2x2 tile plus 4
+      // around it); with only 3 the bottom-right quadrant stayed empty. Phones
+      // show 3: css/theme.css hides tiles 4 and 5 below 700px (owner: "5 photos,
+      // on desktop"). The lightbox still lists all 5.
+      media = media.slice(0, 5);
+
+      if (!media.length) {
+        container.innerHTML = '<p class="text-muted text-center" style="grid-column:1/-1;">Photos coming soon.</p>';
+        return;
+      }
+
+      renderGalleryGrid(media, 'gallery-preview');
+    })();
+  </script>
+
+</body>
+</html>

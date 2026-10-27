@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--ANALYTICS-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photos of systems sold by North Bridge PCs near Grants Pass, Oregon, shown from several angles.">
+  <title>Gallery | North Bridge PCs</title>
+<!--SEO-->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/gallery.css">
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+
+<!--HEADER:gallery-->
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label">Photos</span>
+      <h1>Gallery</h1>
+      <p>A look at the PCs I've built and sold. Click or tap any photo to see it larger.</p>
+    </div>
+  </section>
+
+  <!-- "Current Builds" is hidden while currentBuilds (js/data/gallery.js) is empty and
+       shows by itself once a photo is added there. See VISUAL_REDESIGN.md, "Gallery
+       page: empty Current Builds". -->
+  <section class="section" id="gallery-current-section">
+    <div class="container">
+      <div class="section-header align-left">
+        <span class="section-label">For Sale</span>
+        <h2>Available Now</h2>
+        <p>Systems listed for sale right now.</p>
+      </div>
+      <div id="gallery-current" class="gallery-grid"></div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header align-left">
+        <span class="section-label">Sale History</span>
+        <h2>Past Systems</h2>
+        <p>Every one has gone to a new owner. Close-ups of the front, sides and ports.</p>
+      </div>
+      <div id="gallery-completed" class="gallery-grid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Want One Like These?</h2>
+        <p>Browse what's available now, or tell me your budget and the games you play and I'll build something to fit.</p>
+        <div class="btn-group">
+          <a href="builds.html"       class="btn btn-primary btn-lg">Browse Gaming PCs &rarr;</a>
+          <a href="custom-build.html" class="btn btn-secondary btn-lg">Start a Custom Build</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!--FOOTER-->
+
+  <script src="js/data/config.js"></script>
+  <script src="js/data/events.js"></script>
+  <script src="js/data/gallery.js"></script>
+  <script src="js/render/escape.js"></script>
+  <script src="js/render/galleryGrid.js"></script>
+  <script src="js/render/eventBanner.js"></script>
+  <script src="js/render/chrome.js"></script>
+
+  <script>
+    if (currentBuilds.length) {
+      renderGalleryGrid(currentBuilds, 'gallery-current');
+    } else {
+      document.getElementById('gallery-current-section').hidden = true;
+    }
+    renderGalleryGrid(completedBuilds, 'gallery-completed');
+  </script>
+
+</body>
+</html>

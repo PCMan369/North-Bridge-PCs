@@ -1,0 +1,50 @@
+{
+  "id": "jul26-01",
+  "title": "Ryzen 5 3600 / RTX 2070 Super",
+  "status": "sold",
+  "price": 625,
+  "summary": "Cleaned and stress tested 1080p/1440p gaming build.",
+  "components": {
+    "cpu": "Ryzen 5 3600",
+    "gpu": "RTX 2070 Super",
+    "ram": "16GB DDR4 2800MHz",
+    "storage": "512GB NVMe SSD"
+  },
+  "performance": {
+    "isEstimate": true,
+    "items": [
+      {
+        "game": "Fortnite",
+        "fps": "~120fps",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Minecraft",
+        "fps": "~220fps+",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Marvel Rivals",
+        "fps": "~90fps",
+        "settings": "1080p High"
+      },
+      {
+        "game": "Cyberpunk 2077",
+        "fps": "~65fps",
+        "settings": "1080p High"
+      }
+    ]
+  },
+  "images": [
+    "/images/3600_2070S.jpg",
+    "/images/3600_2070S_Front.jpg",
+    "/images/3600_2070S_Side.jpg",
+    "/images/3600_2070S_IO.jpg",
+    "/images/3600_2070S_Back.jpg"
+  ],
+  "videos": [],
+  "condition": "",
+  "testingNotes": "",
+  "notes": "",
+  "listedDate": "2026-07-01"
+}
