@@ -94,7 +94,7 @@ function initPartBoxOrder() {
 
     itemsEl.innerHTML = lines.map(function (l) {
       return '<div class="order-line">' +
-        '<span class="order-line-label">' + l.label + ' &times; ' + l.qty + '</span>' +
+        '<span class="order-line-label">' + escapeHtml(l.label) + ' &times; ' + l.qty + '</span>' +
         '<span class="order-line-price">' + formatMoney(l.lineTotal) + '</span>' +
       '</div>';
     }).join('');

@@ -1,0 +1,26 @@
+# Weekly backup of everything the admin can change (listings, part boxes, photos, data files).
+# Saved as a GitHub Release named "Backup <date>"; the newest 8 are kept.
+# Run it by hand any time from the Actions tab ("Run workflow").
+# To restore, see ADMIN_SETUP.md ("Restore from a backup") in the project folder.
+
+name: Weekly backup
+
+on:
+  schedule:
+    - cron: "23 9 * * 1"     # Mondays, 09:23 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write            # create the backup release
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the latest files
+        uses: actions/checkout@v4
+
+      - name: Make the backup and keep the newest 8
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash build-tools/backup.sh

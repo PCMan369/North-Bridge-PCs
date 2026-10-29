@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # build-tools/ci-build.sh — the build step of the publishing Action.
 #
-#   1. cleans new photos        (photos.py)
+#   1. cleans new photos and converts new video clips   (photos.py, videos.py)
 #   2. checks the listings and writes the data files   (content.py)
 #   3. rebuilds the pages       (stitch.py)
 #   4. saves any files that changed back to the repository
@@ -14,10 +14,11 @@ cd "$(dirname "$0")/.."
 
 BRANCH="${GITHUB_REF_NAME:-$(git rev-parse --abbrev-ref HEAD)}"
 REMOTE="${PUBLISH_REMOTE:-origin}"
-SAVE_PATHS=(content images js css ./*.html sitemap.xml robots.txt)
+SAVE_PATHS=(content images videos js css ./*.html sitemap.xml robots.txt)
 
 for attempt in 1 2 3; do
   python3 build-tools/photos.py
+  python3 build-tools/videos.py
   python3 build-tools/content.py
   python3 build-tools/stitch.py
 

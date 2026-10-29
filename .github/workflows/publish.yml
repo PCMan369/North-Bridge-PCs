@@ -5,7 +5,8 @@
 # repository's Actions tab ("Run workflow") or from the admin's "Publish now" button.
 #
 # What it does:
-#   1. cleans photos (removes location data, fixes rotation, shrinks)
+#   1. cleans photos (removes location data, fixes rotation, shrinks) and converts
+#      new video clips (small web-safe MP4, no location data, no sound)
 #   2. checks every listing; if something is wrong it STOPS and the live
 #      site keeps its last good version
 #   3. rebuilds the data files and pages and saves them to the repository
@@ -30,6 +31,7 @@ permissions:
   contents: write     # save the generated files back to the repository
   pages: write        # publish to GitHub Pages
   id-token: write     # required by the Pages deploy step
+  issues: write       # open/close the "Website publish failed" notice
 
 # Only one publish at a time; a newer one waits for the current one to finish.
 concurrency:
@@ -39,6 +41,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Get the latest files
         uses: actions/checkout@v4
@@ -48,14 +51,15 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install the photo tools
-        run: pip install pillow pillow-heif
+      - name: Install the photo and video tools
+        run: pip install pillow pillow-heif imageio-ffmpeg
 
       - name: Clean photos, check listings, build pages, save generated files
         run: |
+          set -o pipefail
           git config user.name "North Bridge PCs publisher"
           git config user.email "publisher@users.noreply.github.com"
-          bash build-tools/ci-build.sh
+          bash build-tools/ci-build.sh 2>&1 | tee "$RUNNER_TEMP/build.log"
 
       - name: Collect the public website files
         run: bash build-tools/assemble-site.sh
@@ -68,6 +72,14 @@ jobs:
         with:
           path: _site
 
+      - name: Tell the owner the publish failed
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OWNER: ${{ github.repository_owner }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: bash build-tools/notify.sh failed "$RUNNER_TEMP/build.log"
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -75,6 +87,24 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Get the notification script
+        uses: actions/checkout@v4
+
       - name: Publish to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Close any earlier "publish failed" notice
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: bash build-tools/notify.sh fixed
+
+      - name: Tell the owner the publish failed
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OWNER: ${{ github.repository_owner }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: bash build-tools/notify.sh failed

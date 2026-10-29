@@ -49,7 +49,7 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parent.parent
 IMAGES = ROOT / "images"
-CONTENT_FILES = [ROOT / "content" / "photo-alts.json", ROOT / "content" / "gallery-extras.json"]
+CONTENT_FILES = [ROOT / "content" / "photo-alts.json", ROOT / "content" / "gallery-extras.json", ROOT / "content" / "part-boxes.json"]
 PHOTO_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".heic", ".heif"}
 MAX_EDGE = 2000
 QUALITY = 85

@@ -28,22 +28,22 @@ const builds = [
         "model": "AMD Ryzen 5 3600"
       },
       "gpu": {
-        "model": "MSI Radeon RX 5700 XT MECH OC BV"
+        "model": "MSI Radeon RX 5700 XT MECH OC BV Dual Fan"
       },
       "motherboard": {
         "model": "Gigabyte B550M K (mATX)"
       },
       "ram": {
-        "model": "RGB 2x8GB 3000MHz"
+        "model": "GeIL Super Luce RGB Sync 2x8GB 3000MHz"
       },
       "storage": {
-        "model": "500GB SATA SSD"
+        "model": "500GB SATA SSD (PNY CS900)"
       },
       "psu": {
         "model": "Apevia Prestige 600W"
       },
       "case": {
-        "model": "Black Okinos Aqua Uno"
+        "model": "Okies Aqua Uno (black)"
       },
       "cooler": {
         "model": "ID-Cooling SE-214 XT-V2, stock case fans"
@@ -231,7 +231,7 @@ const builds = [
     "id": "jun26-01",
     "title": "Ryzen 5 3600 / RTX 2060",
     "status": "sold",
-    "price": "$550",
+    "price": "$549",
     "eventId": null,
     "eventPrice": null,
     "summary": "Cleaned and stress tested 1080p gaming build.",
@@ -247,12 +247,6 @@ const builds = [
       },
       "storage": {
         "model": "480GB SSD"
-      },
-      "psu": {
-        "model": "MSI MAG A550BN"
-      },
-      "os": {
-        "model": "Windows 11 Home"
       }
     },
     "performance": {
@@ -299,7 +293,7 @@ const builds = [
     "id": "may26-01",
     "title": "Ryzen 5 5500 / RTX 2070 Super",
     "status": "sold",
-    "price": "$650",
+    "price": "$649",
     "eventId": null,
     "eventPrice": null,
     "summary": "Cleaned and stress tested 1080p/1440p gaming build.",
@@ -315,9 +309,6 @@ const builds = [
       },
       "storage": {
         "model": "512GB NVMe SSD"
-      },
-      "psu": {
-        "model": "MSI MAG A550BN"
       }
     },
     "performance": {

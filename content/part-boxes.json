@@ -1,0 +1,112 @@
+{
+  "boxes": [
+    {
+      "brand": "AMD",
+      "model": "Ryzen 5 5500",
+      "category": "CPU Box",
+      "quantity": 3,
+      "price": 5,
+      "condition": "Good condition. Includes foam inserts.",
+      "image": "/images/box-01.jpg"
+    },
+    {
+      "brand": "AMD",
+      "model": "Ryzen 5 3600",
+      "category": "CPU Box",
+      "quantity": 2,
+      "price": 5,
+      "condition": "Good condition. Includes foam inserts.",
+      "image": "/images/box-02.jpg"
+    },
+    {
+      "brand": "AMD",
+      "model": "Ryzen 7 5800X3D",
+      "category": "CPU Box",
+      "quantity": 1,
+      "price": 5,
+      "condition": "Fair condition. No inserts.",
+      "image": "/images/box-03.jpg"
+    },
+    {
+      "brand": "MSI",
+      "model": "MAG A550BN",
+      "category": "PSU Box",
+      "quantity": 4,
+      "price": 3,
+      "condition": "Good condition. Includes foam inserts.",
+      "image": "/images/box-04.jpg"
+    },
+    {
+      "brand": "MSI",
+      "model": "MAG A650BE",
+      "category": "PSU Box",
+      "quantity": 1,
+      "price": 3,
+      "condition": "Good condition. Includes foam inserts.",
+      "image": "/images/box-05.jpg"
+    },
+    {
+      "brand": "ID-Cooling",
+      "model": "SE-214 XT-V2",
+      "category": "Cooler Box",
+      "quantity": 1,
+      "price": 3,
+      "condition": "Good condition. Includes insert(s).",
+      "image": "/images/box-06.jpg"
+    },
+    {
+      "brand": "ASUS",
+      "model": "TUF Gaming A520",
+      "category": "Motherboard Box",
+      "quantity": 1,
+      "price": 5,
+      "condition": "Good condition. Includes insert(s).",
+      "image": "/images/box-07.jpg"
+    },
+    {
+      "brand": "ASUS",
+      "model": "TUF Gaming A520",
+      "category": "Motherboard Box",
+      "quantity": 1,
+      "price": 5,
+      "condition": "Good condition. No inserts.",
+      "image": "/images/box-08.jpg"
+    },
+    {
+      "brand": "MSI",
+      "model": "PRO B550M VC WIFI",
+      "category": "Motherboard Box",
+      "quantity": 1,
+      "price": 5,
+      "condition": "Good condition. Includes insert(s).",
+      "image": "/images/box-09.jpg"
+    },
+    {
+      "brand": "MSI",
+      "model": "PRO B550M VC WIFI",
+      "category": "Motherboard Box",
+      "quantity": 1,
+      "price": 5,
+      "condition": "Good condition. No inserts.",
+      "image": "/images/box-12.jpg"
+    },
+    {
+      "brand": "ASUS",
+      "model": "B550-PLUS AC-HES",
+      "category": "Motherboard Box",
+      "quantity": 1,
+      "price": 5,
+      "condition": "Good condition. No inserts.",
+      "image": "/images/box-10.jpg"
+    },
+    {
+      "brand": "Rosewill",
+      "model": "CPU Air Cooler with Digital Display",
+      "category": "Cooler Box",
+      "quantity": 1,
+      "price": 3,
+      "condition": "Good condition. No inserts.",
+      "image": "/images/box-11.jpg"
+    }
+  ]
+}

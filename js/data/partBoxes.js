@@ -1,195 +1,210 @@
 /*
   ================================================================
-  js/data/partBoxes.js — Part Boxes & Packaging Inventory
+  js/data/partBoxes.js — GENERATED FILE. DO NOT EDIT BY HAND.
   ================================================================
-  Empty component boxes (from builds/flips) available for resale.
-  Same pattern as builds.js — one structured entry per box type, edit
-  this file to add/remove/update inventory, no HTML editing required.
+  Written by build-tools/content.py from content/part-boxes.json
+  (edited through the admin forms). Any change made here is
+  overwritten the next time the site is built.
 
-  IMPORTANT: quantities here are NOT automatically updated by orders.
-  This is a static site with no backend — when a box sells, you need
-  to manually lower (or zero out) its quantity here, the same way you
-  mark a PC as "sold" in builds.js. There's no live inventory system
-  counting down on its own.
-
-  ================================================================
-  HOW TO ADD A BOX TYPE
-  ================================================================
-  Copy this block into the `partBoxes` array below and fill it in:
-
-  {
-    id: "box-01",                    // unique, never reuse even after
-                                      // a box type sells out
-    brand: "MSI",
-    model: "GeForce RTX 3060 Ventus 2X",
-    category: "GPU Box",             // optional short label shown on
-                                      // the card — omit if not useful
-    quantity: 3,                     // how many you actually have
-    price: "$5",                     // price per box
-    condition: "",                   // optional — e.g. "includes foam
-                                      // inserts", "some shelf wear"
-    media: {
-      images: [],                    // optional photos
-      videos: []
-    },
-    notes: ""                        // optional, anything else worth
-                                      // knowing
-  },
-
-  ================================================================
-  HOW TO MARK A BOX AS SOLD OUT
-  ================================================================
-  Set quantity to 0. It automatically drops out of the orderable grid
-  — no need to delete the entry, useful if you expect more of that box
-  type later.
+  Boxes appear on part-boxes.html in the order of the list in
+  content/part-boxes.json. A quantity of 0 hides a box from the page
+  without deleting it. The ids (box-01, box-02, ...) are handed out by
+  position and are only used inside the page; orders by email list the
+  box names and quantities, not the ids.
   ================================================================
 */
 
 const partBoxes = [
-
   {
-    id: "box-01",
-    brand: "AMD",
-    model: "Ryzen 5 5500",
-    category: "CPU Box",
-    quantity: 3,
-    price: "$5",
-    condition: "Good condition. Includes foam inserts.",
-    media: { images: ["images/box-01.jpg"], videos: [] },
-    notes: ""
+    "id": "box-01",
+    "brand": "AMD",
+    "model": "Ryzen 5 5500",
+    "category": "CPU Box",
+    "quantity": 3,
+    "price": "$5",
+    "condition": "Good condition. Includes foam inserts.",
+    "media": {
+      "images": [
+        "images/box-01.jpg"
+      ],
+      "videos": []
+    },
+    "notes": ""
   },
-
   {
-    id: "box-02",
-    brand: "AMD",
-    model: "Ryzen 5 3600",
-    category: "CPU Box",
-    quantity: 2,
-    price: "$5",
-    condition: "Good condition. Includes foam inserts.",
-    media: { images: ["images/box-02.jpg"], videos: [] },
-    notes: ""
+    "id": "box-02",
+    "brand": "AMD",
+    "model": "Ryzen 5 3600",
+    "category": "CPU Box",
+    "quantity": 2,
+    "price": "$5",
+    "condition": "Good condition. Includes foam inserts.",
+    "media": {
+      "images": [
+        "images/box-02.jpg"
+      ],
+      "videos": []
+    },
+    "notes": ""
   },
-
   {
-    id: "box-03",
-    brand: "AMD",
-    model: "Ryzen 7 5800X3D",
-    category: "CPU Box",
-    quantity: 1,
-    price: "$5",
-    condition: "Fair condition. No inserts.",
-    media: { images: ["images/box-03.jpg"], videos: [] },
-    notes: ""
+    "id": "box-03",
+    "brand": "AMD",
+    "model": "Ryzen 7 5800X3D",
+    "category": "CPU Box",
+    "quantity": 1,
+    "price": "$5",
+    "condition": "Fair condition. No inserts.",
+    "media": {
+      "images": [
+        "images/box-03.jpg"
+      ],
+      "videos": []
+    },
+    "notes": ""
   },
-
   {
-    id: "box-04",
-    brand: "MSI",
-    model: "MAG A550BN",
-    category: "PSU Box",
-    quantity: 4,
-    price: "$3",
-    condition: "Good condition. Includes foam inserts.",
-    media: { images: ["images/box-04.jpg"], videos: [] },
-    notes: ""
+    "id": "box-04",
+    "brand": "MSI",
+    "model": "MAG A550BN",
+    "category": "PSU Box",
+    "quantity": 4,
+    "price": "$3",
+    "condition": "Good condition. Includes foam inserts.",
+    "media": {
+      "images": [
+        "images/box-04.jpg"
+      ],
+      "videos": []
+    },
+    "notes": ""
   },
-
   {
-    id: "box-05",
-    brand: "MSI",
-    model: "MAG A650BE", // owner wrote "mg a650be" — corrected to MSI's
-                          // "MAG" PSU line; confirmed correct by owner
-    category: "PSU Box",
-    quantity: 1,
-    price: "$3",
-    condition: "Good condition. Includes foam inserts.",
-    media: { images: ["images/box-05.jpg"], videos: [] },
-    notes: ""
+    "id": "box-05",
+    "brand": "MSI",
+    "model": "MAG A650BE",
+    "category": "PSU Box",
+    "quantity": 1,
+    "price": "$3",
+    "condition": "Good condition. Includes foam inserts.",
+    "media": {
+      "images": [
+        "images/box-05.jpg"
+      ],
+      "videos": []
+    },
+    "notes": ""
   },
-
   {
-    id: "box-06",
-    brand: "ID-Cooling",
-    model: "SE-214 XT-V2",
-    category: "Cooler Box",
-    quantity: 1,
-    price: "$3",
-    condition: "Good condition. Includes insert(s).",
-    media: { images: ["images/box-06.jpg"], videos: [] },
-    notes: ""
+    "id": "box-06",
+    "brand": "ID-Cooling",
+    "model": "SE-214 XT-V2",
+    "category": "Cooler Box",
+    "quantity": 1,
+    "price": "$3",
+    "condition": "Good condition. Includes insert(s).",
+    "media": {
+      "images": [
+        "images/box-06.jpg"
+      ],
+      "videos": []
+    },
+    "notes": ""
   },
-
   {
-    id: "box-07",
-    brand: "ASUS",
-    model: "TUF Gaming A520",
-    category: "Motherboard Box",
-    quantity: 1,
-    price: "$5",
-    condition: "Good condition. Includes insert(s).",
-    media: { images: ["images/box-07.jpg"], videos: [] },
-    notes: ""
+    "id": "box-07",
+    "brand": "ASUS",
+    "model": "TUF Gaming A520",
+    "category": "Motherboard Box",
+    "quantity": 1,
+    "price": "$5",
+    "condition": "Good condition. Includes insert(s).",
+    "media": {
+      "images": [
+        "images/box-07.jpg"
+      ],
+      "videos": []
+    },
+    "notes": ""
   },
-
   {
-    id: "box-08",
-    brand: "ASUS",
-    model: "TUF Gaming A520",
-    category: "Motherboard Box",
-    quantity: 1,
-    price: "$5",
-    condition: "Good condition. No inserts.",
-    media: { images: ["images/box-08.jpg"], videos: [] },
-    notes: ""
+    "id": "box-08",
+    "brand": "ASUS",
+    "model": "TUF Gaming A520",
+    "category": "Motherboard Box",
+    "quantity": 1,
+    "price": "$5",
+    "condition": "Good condition. No inserts.",
+    "media": {
+      "images": [
+        "images/box-08.jpg"
+      ],
+      "videos": []
+    },
+    "notes": ""
   },
-
   {
-    id: "box-09",
-    brand: "MSI",
-    model: "PRO B550M VC WIFI",
-    category: "Motherboard Box",
-    quantity: 1,
-    price: "$5",
-    condition: "Good condition. Includes insert(s).",
-    media: { images: ["images/box-09.jpg"], videos: [] },
-    notes: ""
+    "id": "box-09",
+    "brand": "MSI",
+    "model": "PRO B550M VC WIFI",
+    "category": "Motherboard Box",
+    "quantity": 1,
+    "price": "$5",
+    "condition": "Good condition. Includes insert(s).",
+    "media": {
+      "images": [
+        "images/box-09.jpg"
+      ],
+      "videos": []
+    },
+    "notes": ""
   },
-
   {
-    id: "box-12",
-    brand: "MSI",
-    model: "PRO B550M VC WIFI",
-    category: "Motherboard Box",
-    quantity: 1,
-    price: "$5",
-    condition: "Good condition. No inserts.",
-    media: { images: ["images/box-12.jpg"], videos: [] },
-    notes: ""
+    "id": "box-10",
+    "brand": "MSI",
+    "model": "PRO B550M VC WIFI",
+    "category": "Motherboard Box",
+    "quantity": 1,
+    "price": "$5",
+    "condition": "Good condition. No inserts.",
+    "media": {
+      "images": [
+        "images/box-12.jpg"
+      ],
+      "videos": []
+    },
+    "notes": ""
   },
-
   {
-    id: "box-10",
-    brand: "ASUS",
-    model: "B550-PLUS AC-HES",
-    category: "Motherboard Box",
-    quantity: 1,
-    price: "$5",
-    condition: "Good condition. No inserts.",
-    media: { images: ["images/box-10.jpg"], videos: [] },
-    notes: ""
+    "id": "box-11",
+    "brand": "ASUS",
+    "model": "B550-PLUS AC-HES",
+    "category": "Motherboard Box",
+    "quantity": 1,
+    "price": "$5",
+    "condition": "Good condition. No inserts.",
+    "media": {
+      "images": [
+        "images/box-10.jpg"
+      ],
+      "videos": []
+    },
+    "notes": ""
   },
-
   {
-    id: "box-11",
-    brand: "Rosewill",
-    model: "CPU Air Cooler with Digital Display",
-    category: "Cooler Box",
-    quantity: 1,
-    price: "$3",
-    condition: "Good condition. No inserts.",
-    media: { images: ["images/box-11.jpg"], videos: [] },
-    notes: ""
+    "id": "box-12",
+    "brand": "Rosewill",
+    "model": "CPU Air Cooler with Digital Display",
+    "category": "Cooler Box",
+    "quantity": 1,
+    "price": "$3",
+    "condition": "Good condition. No inserts.",
+    "media": {
+      "images": [
+        "images/box-11.jpg"
+      ],
+      "videos": []
+    },
+    "notes": ""
   }
-
 ];

@@ -7,9 +7,10 @@ WHERE THE LISTINGS LIVE
   content/builds/<id>.json      one file per PC (this is what the admin forms edit)
   content/photo-alts.json       optional photo descriptions, [{src, alt}, ...]
   content/gallery-extras.json   optional extra gallery photos {current: [], completed: []}
+  content/part-boxes.json       the part boxes {boxes: [...]}, in page order
 
-js/data/builds.js and js/data/gallery.js are GENERATED from those files. Never
-edit them by hand; the next run overwrites them.
+js/data/builds.js, js/data/gallery.js and js/data/partBoxes.js are GENERATED from
+those files. Never edit them by hand; the next run overwrites them.
 
 USAGE
     python3 build-tools/content.py            check, then write both data files
@@ -34,7 +35,8 @@ EXTRAS_FILE = ROOT / "content" / "gallery-extras.json"
 OUT_BUILDS = ROOT / "js" / "data" / "builds.js"
 OUT_GALLERY = ROOT / "js" / "data" / "gallery.js"
 EVENTS_FILE = ROOT / "js" / "data" / "events.js"
-PART_BOXES_FILE = ROOT / "js" / "data" / "partBoxes.js"
+PART_BOXES_SRC = ROOT / "content" / "part-boxes.json"
+OUT_PART_BOXES = ROOT / "js" / "data" / "partBoxes.js"
 STITCH_FILE = ROOT / "build-tools" / "stitch.py"
 
 ID_RE = re.compile(r"^[a-z]{3}[0-9]{2}-[0-9]{2}$")
@@ -43,6 +45,7 @@ PUBLIC_STATUSES = ("available", "sold")
 COMPONENT_KEYS = ("cpu", "gpu", "motherboard", "ram", "storage", "psu",
                   "case", "cooler", "os", "networking")
 SOLD_SUFFIX = " \u2014 previously sold"
+MAX_VIDEO_BYTES = 15 * 1024 * 1024     # a converted 10-15 s clip is a few MB; bigger means the conversion did not run
 
 errors = []    # (where, message): stop publishing
 warnings = []  # (where, message): worth knowing, not blocking
@@ -264,16 +267,23 @@ def check_listing(path, raw, seen_ids, event_ids):
         vsrc = v.get("src") if isinstance(v, dict) else v
         if blank(vsrc):
             continue
-        if isinstance(v, dict):
-            v = dict(v)
-            v["src"] = norm_path(v["src"])
-            if not blank(v.get("poster")):
-                v["poster"] = norm_path(v["poster"])
+        src = norm_path(vsrc)
+        poster = norm_path(v.get("poster")) if isinstance(v, dict) and not blank(v.get("poster")) else ""
+        report = problem if public else warn
+        if not src.lower().endswith(".mp4"):
+            report(where, "{}: the video {} hasn't been converted to MP4 yet (the publisher does this automatically; "
+                          "by hand run python3 build-tools/videos.py).".format(label, src))
+        elif not poster:
+            poster = src[:-4] + "-poster.jpg"
+        if not image_exists(src):
+            report(where, "{}: the video {} isn't in the videos folder.".format(label, src))
         else:
-            v = norm_path(v)
-        videos.append(v)
-        if public and not image_exists(norm_path(vsrc)):
-            problem(where, "{}: the video {} isn't in the images folder.".format(label, norm_path(vsrc)))
+            if (ROOT / src).stat().st_size > MAX_VIDEO_BYTES:
+                report(where, "{}: the video {} is {:.0f} MB, too big for the website. It should be a few MB after "
+                              "conversion; run python3 build-tools/videos.py.".format(label, src, (ROOT / src).stat().st_size / 1048576))
+            if poster and not image_exists(poster):
+                report(where, "{}: the video {} has no cover frame ({}); run python3 build-tools/videos.py.".format(label, src, poster))
+        videos.append({"src": src, "poster": poster} if poster else src)
 
     # date
     listed = text(raw.get("listedDate"))[:10]
@@ -383,16 +393,88 @@ def gallery_entries(public_items, alts):
 
 # ---------------------------------------------------------------- other files that name photos
 
+def warn_unused_clips(listings):
+    """A clip in videos/ that no listing uses still takes up site space; say so (never delete)."""
+    folder = ROOT / "videos"
+    if not folder.is_dir():
+        return
+    used = set()
+    for item in listings:
+        for v in item["videos"]:
+            used.add(norm_path(v["src"] if isinstance(v, dict) else v))
+    for clip in sorted(folder.glob("*.mp4")):
+        if "videos/" + clip.name not in used:
+            warn("videos/" + clip.name, "No listing uses this clip, so it only takes up space on the website. "
+                                      "You can leave it, or ask Claude to remove it.")
+
+
 def check_other_references():
     og = re.search(r'DEFAULT_OG_IMAGE\s*=\s*"([^"]+)"', STITCH_FILE.read_text(encoding="utf-8")) if STITCH_FILE.exists() else None
     if og and not image_exists(og.group(1)):
         problem("build-tools/stitch.py",
                 "The photo every page uses for link previews ({}) is missing from the images folder.".format(og.group(1)))
-    if PART_BOXES_FILE.exists():
-        src = strip_js_comments(PART_BOXES_FILE.read_text(encoding="utf-8"))
-        for ref in sorted(set(re.findall(r"[\"'](images/[^\"']+)[\"']", src))):
-            if not image_exists(ref):
-                problem("js/data/partBoxes.js", "The part-box photo {} isn't in the images folder.".format(ref))
+
+
+# ---------------------------------------------------------------- part boxes
+
+def load_part_boxes():
+    """Validate content/part-boxes.json. Returns the list in the shape partBoxCard.js expects."""
+    boxes_out = []
+    if not PART_BOXES_SRC.exists():
+        problem("content/part-boxes.json", "The part-boxes file is missing.")
+        return boxes_out
+    data = read_json(PART_BOXES_SRC, "content/part-boxes.json")
+    if data is None:
+        return boxes_out
+    items = data.get("boxes") if isinstance(data, dict) else None
+    if not isinstance(items, list):
+        problem("content/part-boxes.json", "Expected an object with a 'boxes' list.")
+        return boxes_out
+    where = "content/part-boxes.json"
+    for n, raw in enumerate(items, 1):
+        if not isinstance(raw, dict):
+            problem(where, "Box {}: not in the expected shape.".format(n))
+            continue
+        brand, model = text(raw.get("brand")), text(raw.get("model"))
+        label = ("{} {}".format(brand, model)).strip() or "Box {}".format(n)
+        if not model:
+            if not (brand or not blank(raw.get("quantity")) or not blank(raw.get("price"))):
+                continue                      # a completely empty row is ignored
+            problem(where, "{}: every box needs a model name.".format(label))
+        qty = None
+        try:
+            q = parse_number(raw.get("quantity"))
+            if q is None:
+                raise ValueError
+            if q != int(q) or q < 0:
+                raise ValueError
+            qty = int(q)
+        except ValueError:
+            problem(where, "{}: the quantity must be a whole number, 0 or more (0 hides the box).".format(label))
+        price_num = None
+        try:
+            price_num = parse_number(raw.get("price"))
+            if price_num is None or price_num < 0:
+                raise ValueError
+        except ValueError:
+            problem(where, "{}: the price must be a number, like 5 (no $ sign).".format(label))
+            price_num = None
+        image = norm_path(raw.get("image"))
+        if image and not image_exists(image):
+            msg = "{}: the photo {} isn't in the images folder.".format(label, image)
+            (problem if (qty or 0) > 0 else warn)(where, msg)
+        boxes_out.append({
+            "id": "box-{:02d}".format(len(boxes_out) + 1),
+            "brand": brand,
+            "model": model,
+            "category": text(raw.get("category")),
+            "quantity": qty if qty is not None else 0,
+            "price": fmt_price(price_num) if price_num is not None else "",
+            "condition": text(raw.get("condition")),
+            "media": {"images": [image] if image else [], "videos": []},
+            "notes": text(raw.get("notes")),
+        })
+    return boxes_out
 
 
 # ---------------------------------------------------------------- output
@@ -414,6 +496,24 @@ BUILDS_HEADER = """/*
 */
 
 const builds = """
+
+PART_BOXES_HEADER = """/*
+  ================================================================
+  js/data/partBoxes.js — GENERATED FILE. DO NOT EDIT BY HAND.
+  ================================================================
+  Written by build-tools/content.py from content/part-boxes.json
+  (edited through the admin forms). Any change made here is
+  overwritten the next time the site is built.
+
+  Boxes appear on part-boxes.html in the order of the list in
+  content/part-boxes.json. A quantity of 0 hides a box from the page
+  without deleting it. The ids (box-01, box-02, ...) are handed out by
+  position and are only used inside the page; orders by email list the
+  box names and quantities, not the ids.
+  ================================================================
+*/
+
+const partBoxes = """
 
 GALLERY_HEADER = """/*
   ================================================================
@@ -452,6 +552,8 @@ def main(argv):
     alts = load_alts()
     extras = load_extras()
     check_other_references()
+    warn_unused_clips(listings)
+    part_boxes = load_part_boxes()
 
     public_items = [i for i in listings if i["status"] in PUBLIC_STATUSES]
     public_items.sort(key=lambda i: (i["listedDate"], i["id"]), reverse=True)
@@ -475,8 +577,8 @@ def main(argv):
         print("Fix the items above in the admin (or the files named) and save again.")
         return 1
 
-    print("Checked {} listing file(s): {} available, {} sold, {} not on the site (drafts/hidden).".format(
-        len(listings), avail, sold, other))
+    print("Checked {} listing file(s): {} available, {} sold, {} not on the site (drafts/hidden); {} part box type(s), {} in stock.".format(
+        len(listings), avail, sold, other, len(part_boxes), sum(1 for b in part_boxes if b["quantity"] > 0)))
     if check_only:
         print("Check only: no files written.")
         return 0
@@ -492,6 +594,8 @@ def main(argv):
     gallery_src = GALLERY_HEADER + js_array("currentBuilds", cur) + "\n" + js_array("completedBuilds", comp)
     if write_if_changed(OUT_GALLERY, gallery_src):
         changed.append("js/data/gallery.js")
+    if write_if_changed(OUT_PART_BOXES, PART_BOXES_HEADER + json.dumps(part_boxes, indent=2, ensure_ascii=False) + ";\n"):
+        changed.append("js/data/partBoxes.js")
     print("Wrote: {}".format(", ".join(changed) if changed else "nothing new (data files already up to date)"))
     return 0
 

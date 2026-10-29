@@ -55,15 +55,15 @@ const currentBuilds = [
 const completedBuilds = [
   {
     "src": "images/5500_5700XT.jpg",
-    "alt": "Ryzen 5 5500 / RX 5700 XT build, angled view — previously sold"
+    "alt": "Ryzen 5 5500 / RX 5700 XT build — previously sold"
   },
   {
     "src": "images/5500_5700XT_FRONT.jpg",
-    "alt": "Ryzen 5 5500 / RX 5700 XT build, front view — previously sold"
+    "alt": "Ryzen 5 5500 / RX 5700 XT build, front panel — previously sold"
   },
   {
     "src": "images/5500_5700XT_SIDE.jpg",
-    "alt": "Ryzen 5 5500 / RX 5700 XT build, side view — previously sold"
+    "alt": "Ryzen 5 5500 / RX 5700 XT build, side panel — previously sold"
   },
   {
     "src": "images/5500_5700XT_IO.jpg",
@@ -71,19 +71,19 @@ const completedBuilds = [
   },
   {
     "src": "images/5500_5700XT_BACK.jpg",
-    "alt": "Ryzen 5 5500 / RX 5700 XT build, back view — previously sold"
+    "alt": "Ryzen 5 5500 / RX 5700 XT build, back panel — previously sold"
   },
   {
     "src": "images/3600_2070S.jpg",
-    "alt": "Ryzen 5 3600 / RTX 2070 Super build, angled view — previously sold"
+    "alt": "Ryzen 5 3600 / RTX 2070 Super build — previously sold"
   },
   {
     "src": "images/3600_2070S_Front.jpg",
-    "alt": "Ryzen 5 3600 / RTX 2070 Super build, front view — previously sold"
+    "alt": "Ryzen 5 3600 / RTX 2070 Super build, front panel — previously sold"
   },
   {
     "src": "images/3600_2070S_Side.jpg",
-    "alt": "Ryzen 5 3600 / RTX 2070 Super build, side view — previously sold"
+    "alt": "Ryzen 5 3600 / RTX 2070 Super build, side panel — previously sold"
   },
   {
     "src": "images/3600_2070S_IO.jpg",
@@ -91,19 +91,19 @@ const completedBuilds = [
   },
   {
     "src": "images/3600_2070S_Back.jpg",
-    "alt": "Ryzen 5 3600 / RTX 2070 Super build, back view — previously sold"
+    "alt": "Ryzen 5 3600 / RTX 2070 Super build, back panel — previously sold"
   },
   {
     "src": "images/3600_RTX2060.jpg",
-    "alt": "Ryzen 5 3600 / RTX 2060 build, angled view — previously sold"
+    "alt": "Ryzen 5 3600 / RTX 2060 build — previously sold"
   },
   {
     "src": "images/3600_RTX2060_FRONT.jpg",
-    "alt": "Ryzen 5 3600 / RTX 2060 build, front view — previously sold"
+    "alt": "Ryzen 5 3600 / RTX 2060 build, front panel — previously sold"
   },
   {
     "src": "images/3600_RTX2060_SIDE.jpg",
-    "alt": "Ryzen 5 3600 / RTX 2060 build, side view — previously sold"
+    "alt": "Ryzen 5 3600 / RTX 2060 build, side panel — previously sold"
   },
   {
     "src": "images/3600_RTX2060_IO.jpg",
@@ -111,7 +111,7 @@ const completedBuilds = [
   },
   {
     "src": "images/3600_RTX2060_BACK.jpg",
-    "alt": "Ryzen 5 3600 / RTX 2060 build, back view — previously sold"
+    "alt": "Ryzen 5 3600 / RTX 2060 build, back panel — previously sold"
   },
   {
     "src": "images/may26-01-main.jpg",

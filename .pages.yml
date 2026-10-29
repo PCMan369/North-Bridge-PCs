@@ -6,10 +6,18 @@
 # when publishing; if something is wrong the live site keeps its last good version.
 
 media:
-  input: images
-  output: /images
-  rename: safe
-  extensions: [jpg, jpeg]
+  - name: images
+    label: Photos
+    input: images
+    output: /images
+    rename: safe
+    extensions: [jpg, jpeg]
+  - name: videos
+    label: Video clips
+    input: videos
+    output: /videos
+    rename: safe
+    extensions: [mp4, mov, m4v]
 
 settings:
   content:
@@ -100,10 +108,21 @@ content:
         type: image
         description: "The first photo is the cover. The order here is the order on the website. Tap Add to pick several photos from your phone at once."
         options:
+          media: images
           multiple:
             max: 30
           unique: true
           extensions: [jpg, jpeg]
+      - name: videos
+        label: Video clips (10 seconds or less)
+        type: file
+        description: "Short clips only: 10 seconds or less, recorded at 720p if you can. Add them here; after saving, the website makes a small copy with no sound or location data and a cover picture (a minute or two). Phone clips from your camera roll are fine."
+        options:
+          media: videos
+          multiple:
+            max: 4
+          unique: true
+          extensions: [mp4, mov, m4v]
       - name: components
         label: Parts
         type: object
@@ -160,6 +179,43 @@ content:
         type: number
         options:
           min: 0
+
+  - name: part-boxes
+    label: Part boxes
+    type: file
+    path: content/part-boxes.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: boxes
+        label: Boxes
+        type: object
+        description: "Boxes appear on the Part Boxes page in this order. When a box sells out, set Quantity to 0 (it disappears from the page but stays here for next time). Tap Add at the bottom for a new box type."
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{brand} {model}: {quantity} in stock"
+        fields:
+          - { name: brand, label: Brand, type: string }
+          - { name: model, label: Model, type: string, required: true }
+          - { name: category, label: "Label on the card (example: CPU Box)", type: string }
+          - name: quantity
+            label: How many you have
+            type: number
+            required: true
+            description: "A whole number. 0 hides the box from the page."
+            options:
+              min: 0
+          - name: price
+            label: Price per box
+            type: number
+            required: true
+            description: "Whole dollars, no $ sign (5 shows as $5)."
+            options:
+              min: 0
+          - { name: condition, label: "Condition (example: Good condition. Includes foam inserts.)", type: string }
+          - { name: image, label: Photo, type: image }
 
   - name: gallery-extras
     label: Extra gallery photos

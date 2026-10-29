@@ -2,15 +2,13 @@
   "id": "jun26-01",
   "title": "Ryzen 5 3600 / RTX 2060",
   "status": "sold",
-  "price": 550,
+  "price": 549,
   "summary": "Cleaned and stress tested 1080p gaming build.",
   "components": {
     "cpu": "Ryzen 5 3600",
     "gpu": "RTX 2060",
     "ram": "16GB DDR4 2666MHz",
-    "storage": "480GB SSD",
-    "psu": "MSI MAG A550BN",
-    "os": "Windows 11 Home"
+    "storage": "480GB SSD"
   },
   "performance": {
     "isEstimate": true,
@@ -44,5 +42,9 @@
     "/images/3600_RTX2060_IO.jpg",
     "/images/3600_RTX2060_BACK.jpg"
   ],
+  "videos": [],
+  "condition": "",
+  "testingNotes": "",
+  "notes": "",
   "listedDate": "2026-06-01"
 }
