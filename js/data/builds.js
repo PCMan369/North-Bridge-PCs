@@ -101,7 +101,7 @@ const builds = [
     "condition": "Good condition. Everything is used except the case and power supply, which are new.",
     "testingNotes": "",
     "listedDate": "2026-10-24",
-    "notes": "Lighting: the RAM is controlled with OpenRGB and the fans with the included remote. Photos show blue, red and green."
+    "notes": "Lighting: the RAM is controlled with OpenRGB and the fans with the included remote. Photos show blue, red, and green."
   },
   {
     "id": "aug26-01",
