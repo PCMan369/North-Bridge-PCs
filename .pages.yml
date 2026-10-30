@@ -217,6 +217,73 @@ content:
           - { name: condition, label: "Condition (example: Good condition. Includes foam inserts.)", type: string }
           - { name: image, label: Photo, type: image }
 
+  - name: sale-banners
+    label: Sale banners
+    type: file
+    path: content/events.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: events
+        label: Sales
+        type: object
+        description: "A sale puts a banner across the top of every page from its first day to its last day (the last day is included). Only one shows at a time. For a discounted PC, type this sale's code into that listing's Sale event box and its sale price into Sale price. Switch a sale off to end it early."
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - name: id
+            label: Sale code
+            type: string
+            required: true
+            description: "Short code like holiday-2026 (lowercase letters, numbers, dashes). Type the same code into the PC listings that are part of this sale."
+            pattern:
+              regex: "^[a-z0-9][a-z0-9-]*$"
+              message: "Lowercase letters, numbers and dashes only, like holiday-2026."
+          - { name: name, label: "Sale name (shown first in the banner, example: Holiday Sale)", type: string, required: true }
+          - { name: active, label: Switched on, type: boolean, default: true }
+          - name: starts
+            label: First day
+            type: date
+            options:
+              format: "yyyy-MM-dd"
+          - name: ends
+            label: Last day (included)
+            type: date
+            options:
+              format: "yyyy-MM-dd"
+          - { name: banner, label: "Banner message (example: Priced to move.)", type: string, required: true }
+          - name: showCountdown
+            label: Show a "days left" countdown
+            type: boolean
+            default: false
+            description: "Only for a real deadline; a soft, ongoing sale shouldn't pressure anyone."
+
+  - name: faq
+    label: FAQ
+    type: file
+    path: content/faq.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: items
+        label: Questions
+        type: object
+        description: "Shown in this order on the FAQ page. Questions ticked 'Also show on the home page' make up the home preview (keep it to about 3). The question 'What if something goes wrong after I buy?' is frozen until the legal check: the website will not publish if its wording changes."
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{question}"
+        fields:
+          - { name: question, label: Question, type: string, required: true }
+          - { name: answer, label: Answer, type: text, required: true }
+          - { name: answerExtra, label: "Second paragraph (optional)", type: text }
+          - { name: featured, label: Also show on the home page, type: boolean, default: false }
+          - { name: id, label: "Internal name (leave empty for a new question)", type: string }
+
   - name: gallery-extras
     label: Extra gallery photos
     type: file

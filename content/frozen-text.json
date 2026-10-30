@@ -1,0 +1,9 @@
+{
+  "note": "Wording frozen until the legal check (START_HERE reminder 1). content.py refuses to publish if one of these FAQ items changes. To lift the freeze, delete its entry here (ask Claude).",
+  "frozen": [
+    {
+      "id": "support",
+      "sha256": "b7e1ebd5bcb681fa2c3abc2537b58d14c30f62b1d225cfaa9f8465ededf2b695"
+    }
+  ]
+}

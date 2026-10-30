@@ -28,14 +28,14 @@ function renderFaqList(items) {
       '<div class="faq-item">' +
         '<h2 class="faq-heading">' +
           '<button type="button" class="faq-question" id="' + qid + '" aria-expanded="false" aria-controls="' + aid + '">' +
-            '<span class="faq-q-text">' + item.question + '</span>' +
+            '<span class="faq-q-text">' + escapeHtml(item.question) + '</span>' +
             '<span class="faq-icon" aria-hidden="true">+</span>' +
           '</button>' +
         '</h2>' +
         '<div class="faq-answer" id="' + aid + '" role="region" aria-labelledby="' + qid + '">' +
           '<div class="faq-answer-inner">' +
-            '<p>' + item.answer + '</p>' +
-            (item.answerExtra ? '<p style="margin-top:0.75rem;">' + item.answerExtra + '</p>' : '') +
+            '<p>' + escapeHtml(item.answer) + '</p>' +
+            (item.answerExtra ? '<p style="margin-top:0.75rem;">' + escapeHtml(item.answerExtra) + '</p>' : '') +
           '</div>' +
         '</div>' +
       '</div>'

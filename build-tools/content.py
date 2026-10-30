@@ -8,8 +8,11 @@ WHERE THE LISTINGS LIVE
   content/photo-alts.json       optional photo descriptions, [{src, alt}, ...]
   content/gallery-extras.json   optional extra gallery photos {current: [], completed: []}
   content/part-boxes.json       the part boxes {boxes: [...]}, in page order
+  content/events.json           sale / promo banners {events: [...]}
+  content/faq.json              the FAQ {items: [...]}, in page order
+  content/frozen-text.json      FAQ items whose wording is frozen (see load_faq)
 
-js/data/builds.js, js/data/gallery.js and js/data/partBoxes.js are GENERATED from
+js/data/builds.js, gallery.js, partBoxes.js, events.js and faq.js are GENERATED from
 those files. Never edit them by hand; the next run overwrites them.
 
 USAGE
@@ -22,6 +25,7 @@ keeps its last good version).
 """
 
 import datetime
+import hashlib
 import json
 import os
 import re
@@ -34,7 +38,11 @@ ALTS_FILE = ROOT / "content" / "photo-alts.json"
 EXTRAS_FILE = ROOT / "content" / "gallery-extras.json"
 OUT_BUILDS = ROOT / "js" / "data" / "builds.js"
 OUT_GALLERY = ROOT / "js" / "data" / "gallery.js"
-EVENTS_FILE = ROOT / "js" / "data" / "events.js"
+EVENTS_SRC = ROOT / "content" / "events.json"
+FAQ_SRC = ROOT / "content" / "faq.json"
+FROZEN_FILE = ROOT / "content" / "frozen-text.json"
+OUT_EVENTS = ROOT / "js" / "data" / "events.js"
+OUT_FAQ = ROOT / "js" / "data" / "faq.js"
 PART_BOXES_SRC = ROOT / "content" / "part-boxes.json"
 OUT_PART_BOXES = ROOT / "js" / "data" / "partBoxes.js"
 STITCH_FILE = ROOT / "build-tools" / "stitch.py"
@@ -112,9 +120,15 @@ def strip_js_comments(src):
 
 
 def known_event_ids():
-    if not EVENTS_FILE.exists():
+    """Ids of the sale events in content/events.json (used to check a listing's eventId)."""
+    if not EVENTS_SRC.exists():
         return set()
-    return set(re.findall(r"\bid:\s*[\"']([^\"']+)[\"']", strip_js_comments(EVENTS_FILE.read_text(encoding="utf-8"))))
+    try:
+        data = json.loads(EVENTS_SRC.read_text(encoding="utf-8"))
+    except ValueError:
+        return set()
+    items = data.get("events") if isinstance(data, dict) else None
+    return {text(e.get("id")) for e in (items or []) if isinstance(e, dict) and text(e.get("id"))}
 
 
 def image_exists(rel):
@@ -192,7 +206,7 @@ def check_listing(path, raw, seen_ids, event_ids):
     if event_price is not None and not event_id:
         warn(where, "{}: it has a sale price but no sale event, so the sale price won't show.".format(label))
     if event_id and event_id not in event_ids:
-        warn(where, "{}: the sale event \"{}\" isn't in js/data/events.js, so no sale price will show.".format(label, event_id))
+        warn(where, "{}: the sale event \"{}\" isn't in the Sale banners list, so no sale price will show.".format(label, event_id))
     if event_id and event_price is None:
         warn(where, "{}: it names a sale event but has no sale price, so no sale price will show.".format(label))
 
@@ -415,6 +429,188 @@ def check_other_references():
                 "The photo every page uses for link previews ({}) is missing from the images folder.".format(og.group(1)))
 
 
+# ---------------------------------------------------------------- sale events
+
+EVENT_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
+
+
+def parse_day(value):
+    try:
+        return datetime.date.fromisoformat(text(value)[:10])
+    except ValueError:
+        return None
+
+
+def load_events():
+    """Validate content/events.json. Dates in the form are whole days; the site wants
+    'starts' = first moment of the first day and 'ends' = first moment AFTER the last day."""
+    out = []
+    where = "content/events.json"
+    if not EVENTS_SRC.exists():
+        problem(where, "The sale-banners file is missing.")
+        return out
+    data = read_json(EVENTS_SRC, where)
+    if data is None:
+        return out
+    items = data.get("events") if isinstance(data, dict) else None
+    if not isinstance(items, list):
+        problem(where, "Expected an object with an 'events' list.")
+        return out
+    seen = set()
+    today = datetime.date.today()
+    for n, raw in enumerate(items, 1):
+        if not isinstance(raw, dict):
+            problem(where, "Sale {}: not in the expected shape.".format(n))
+            continue
+        eid, name, banner = text(raw.get("id")), text(raw.get("name")), text(raw.get("banner"))
+        if not (eid or name or banner):
+            continue                                    # an empty row is ignored
+        label = "Sale \"{}\"".format(name or eid or n)
+        if not EVENT_ID_RE.match(eid):
+            problem(where, "{}: the code must be lowercase letters, numbers and dashes, like holiday-2026.".format(label))
+        elif eid in seen:
+            problem(where, "{}: another sale already uses the code {}.".format(label, eid))
+        seen.add(eid)
+        if not name:
+            problem(where, "{}: it needs a name (shown first in the banner).".format(label))
+        if not banner:
+            problem(where, "{}: it needs the banner message.".format(label))
+        first, last = parse_day(raw.get("starts")), parse_day(raw.get("ends"))
+        if first is None:
+            problem(where, "{}: it needs a first day (like 2026-12-01).".format(label))
+        if last is None:
+            problem(where, "{}: it needs a last day (like 2026-12-26).".format(label))
+        if first and last and last < first:
+            problem(where, "{}: the last day is before the first day.".format(label))
+        active = raw.get("active") is True
+        if active and last and last < today:
+            warn(where, "{}: it is switched on but its last day has passed, so no banner shows.".format(label))
+        if first and last:
+            out.append({"id": eid, "name": name, "active": active, "first": first, "last": last,
+                        "banner": banner, "showCountdown": raw.get("showCountdown") is True})
+    running = sorted((e for e in out if e["active"]), key=lambda e: e["first"])
+    for a, b in zip(running, running[1:]):
+        if b["first"] <= a["last"]:
+            warn(where, "Sales \"{}\" and \"{}\" overlap; only the first one in the list will show.".format(a["name"], b["name"]))
+    return out
+
+
+EVENTS_HEADER = """/*
+  ================================================================
+  js/data/events.js — GENERATED FILE. DO NOT EDIT BY HAND.
+  ================================================================
+  Written by build-tools/content.py from content/events.json (edited
+  through the admin form "Sale banners"). Any change made here is
+  overwritten the next time the site is built.
+
+  Each sale has a first and last day (the last day is included). Only
+  one sale shows at a time; if two overlap, the first in the list wins.
+  A sale's price on a PC comes from that listing's "Sale event" and
+  "Sale price" fields. The functions below the line are fixed.
+  ================================================================
+*/
+
+"""
+
+EVENTS_FUNCTIONS = '// ================================================================\n// DO NOT EDIT BELOW THIS LINE\n// ================================================================\n\nfunction getActiveEvent() {\n  const now = new Date();\n  return events.find(function (e) {\n    return e.active && now >= e.starts && now < e.ends;\n  }) || null;\n}\n\nfunction eventDaysLeft(event) {\n  const ms = event.ends - new Date();\n  return Math.max(0, Math.floor(ms / (1000 * 60 * 60 * 24)));\n}\n'
+
+
+def events_js(events):
+    if not events:
+        body = "const events = [\n\n  // No event is currently active.\n\n];\n"
+    else:
+        rows = []
+        for e in events:
+            end_exclusive = e["last"] + datetime.timedelta(days=1)
+            rows.append("  {\n    id: %s,\n    name: %s,\n    active: %s,\n    starts: new Date(%s),\n    ends:   new Date(%s),\n    banner: %s,\n    showCountdown: %s\n  }" % (
+                json.dumps(e["id"]), json.dumps(e["name"], ensure_ascii=False), "true" if e["active"] else "false",
+                json.dumps(e["first"].isoformat() + "T00:00:00"), json.dumps(end_exclusive.isoformat() + "T00:00:00"),
+                json.dumps(e["banner"], ensure_ascii=False), "true" if e["showCountdown"] else "false"))
+        body = "const events = [\n\n" + ",\n\n".join(rows) + "\n\n];\n"
+    return EVENTS_HEADER + body + "\n" + EVENTS_FUNCTIONS
+
+
+# ---------------------------------------------------------------- FAQ
+
+def slug(value):
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")[:60] or "question"
+
+
+def faq_digest(question, answer, extra):
+    return hashlib.sha256((question.strip() + "\n" + answer.strip() + "\n" + (extra or "").strip()).encode("utf-8")).hexdigest()
+
+
+def load_faq():
+    """Validate content/faq.json and enforce frozen wording from content/frozen-text.json."""
+    out = []
+    where = "content/faq.json"
+    if not FAQ_SRC.exists():
+        problem(where, "The FAQ file is missing.")
+        return out
+    data = read_json(FAQ_SRC, where)
+    items = data.get("items") if isinstance(data, dict) else None
+    if not isinstance(items, list):
+        if data is not None:
+            problem(where, "Expected an object with an 'items' list.")
+        return out
+    seen = set()
+    for n, raw in enumerate(items, 1):
+        if not isinstance(raw, dict):
+            problem(where, "Question {}: not in the expected shape.".format(n))
+            continue
+        question, answer, extra = text(raw.get("question")), text(raw.get("answer")), text(raw.get("answerExtra"))
+        if not (question or answer or extra):
+            continue                                    # an empty row is ignored
+        label = "FAQ \"{}\"".format(question or n)
+        if not question:
+            problem(where, "Question {}: it needs the question text.".format(n))
+        if not answer:
+            problem(where, "{}: it needs an answer.".format(label))
+        fid = text(raw.get("id")) or slug(question)
+        if not EVENT_ID_RE.match(fid):
+            problem(where, "{}: the id must be lowercase letters, numbers and dashes.".format(label))
+        base, k = fid, 2
+        while fid in seen:
+            fid = "{}-{}".format(base, k)
+            k += 1
+        seen.add(fid)
+        out.append({"id": fid, "question": question, "answer": answer, "answerExtra": extra,
+                    "featured": raw.get("featured") is True})
+    if sum(1 for i in out if i["featured"]) > 4:
+        warn(where, "More than 4 questions are marked for the homepage; that preview is meant to be short.")
+
+    if FROZEN_FILE.exists():
+        frozen = read_json(FROZEN_FILE, "content/frozen-text.json")
+        entries = frozen.get("frozen") if isinstance(frozen, dict) else None
+        for entry in entries or []:
+            fid, want = text(entry.get("id")), text(entry.get("sha256"))
+            item = next((i for i in out if i["id"] == fid), None)
+            if item is None:
+                problem(where, "The FAQ question with id \"{}\" has frozen wording (waiting on the legal check) and it is missing. "
+                               "Put it back, or ask Claude to lift the freeze.".format(fid))
+            elif faq_digest(item["question"], item["answer"], item["answerExtra"]) != want:
+                problem(where, "The FAQ question \"{}\" has frozen wording (waiting on the legal check), and it was changed. "
+                               "Put the original wording back, or ask Claude to lift the freeze.".format(item["question"]))
+    return out
+
+
+FAQ_HEADER = """/*
+  ================================================================
+  js/data/faq.js — GENERATED FILE. DO NOT EDIT BY HAND.
+  ================================================================
+  Written by build-tools/content.py from content/faq.json (edited
+  through the admin form "FAQ"). Any change made here is overwritten
+  the next time the site is built.
+
+  Order = order on the page. Questions marked featured also appear in
+  the homepage preview (keep that to about 3). Wording of the questions
+  listed in content/frozen-text.json is protected until the legal check.
+  ================================================================
+*/
+
+"""
+
+
 # ---------------------------------------------------------------- part boxes
 
 def load_part_boxes():
@@ -554,6 +750,8 @@ def main(argv):
     check_other_references()
     warn_unused_clips(listings)
     part_boxes = load_part_boxes()
+    events = load_events()
+    faq = load_faq()
 
     public_items = [i for i in listings if i["status"] in PUBLIC_STATUSES]
     public_items.sort(key=lambda i: (i["listedDate"], i["id"]), reverse=True)
@@ -577,8 +775,8 @@ def main(argv):
         print("Fix the items above in the admin (or the files named) and save again.")
         return 1
 
-    print("Checked {} listing file(s): {} available, {} sold, {} not on the site (drafts/hidden); {} part box type(s), {} in stock.".format(
-        len(listings), avail, sold, other, len(part_boxes), sum(1 for b in part_boxes if b["quantity"] > 0)))
+    print("Checked {} listing file(s): {} available, {} sold, {} not on the site (drafts/hidden); {} part box type(s), {} in stock; {} sale(s); {} FAQ question(s).".format(
+        len(listings), avail, sold, other, len(part_boxes), sum(1 for b in part_boxes if b["quantity"] > 0), len(events), len(faq)))
     if check_only:
         print("Check only: no files written.")
         return 0
@@ -594,6 +792,10 @@ def main(argv):
     gallery_src = GALLERY_HEADER + js_array("currentBuilds", cur) + "\n" + js_array("completedBuilds", comp)
     if write_if_changed(OUT_GALLERY, gallery_src):
         changed.append("js/data/gallery.js")
+    if write_if_changed(OUT_EVENTS, events_js(events)):
+        changed.append("js/data/events.js")
+    if write_if_changed(OUT_FAQ, FAQ_HEADER + js_array("faqItems", faq)):
+        changed.append("js/data/faq.js")
     if write_if_changed(OUT_PART_BOXES, PART_BOXES_HEADER + json.dumps(part_boxes, indent=2, ensure_ascii=False) + ";\n"):
         changed.append("js/data/partBoxes.js")
     print("Wrote: {}".format(", ".join(changed) if changed else "nothing new (data files already up to date)"))
