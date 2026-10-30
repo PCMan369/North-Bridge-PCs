@@ -43,7 +43,7 @@ const builds = [
         "model": "Apevia Prestige 600W"
       },
       "case": {
-        "model": "Okies Aqua Uno (black)"
+        "model": "Black Okinos Aqua Uno"
       },
       "cooler": {
         "model": "ID-Cooling SE-214 XT-V2, stock case fans"
