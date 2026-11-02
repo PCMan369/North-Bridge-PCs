@@ -100,7 +100,7 @@ const partBoxes = [
     "brand": "ID-Cooling",
     "model": "SE-214 XT-V2",
     "category": "Cooler Box",
-    "quantity": 2,
+    "quantity": 1,
     "price": "$3",
     "condition": "Good condition. Includes insert(s).",
     "media": {
