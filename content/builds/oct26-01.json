@@ -6,9 +6,9 @@
   "summary": "Cleaned 1080p gaming build with RGB lighting.",
   "components": {
     "cpu": "AMD Ryzen 5 3600",
-    "gpu": "MSI Radeon RX 5700 XT MECH OC BV Dual Fan",
+    "gpu": "MSI Radeon RX 5700 XT MECH OC BV",
     "motherboard": "Gigabyte B550M K (mATX)",
-    "ram": "GeIL Super Luce RGB Sync 2x8GB 3000MHz",
+    "ram": "RGB 2x8GB 3000MHz",
     "storage": "500GB SATA SSD (PNY CS900)",
     "psu": "Apevia Prestige 600W",
     "case": "Black Okinos Aqua Uno",
