@@ -28,13 +28,13 @@ const builds = [
         "model": "AMD Ryzen 5 3600"
       },
       "gpu": {
-        "model": "MSI Radeon RX 5700 XT MECH OC BV Dual Fan"
+        "model": "MSI Radeon RX 5700 XT MECH OC BV"
       },
       "motherboard": {
         "model": "Gigabyte B550M K (mATX)"
       },
       "ram": {
-        "model": "GeIL Super Luce RGB Sync 2x8GB 3000MHz"
+        "model": "RGB 2x8GB 3000MHz"
       },
       "storage": {
         "model": "500GB SATA SSD (PNY CS900)"
