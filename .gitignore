@@ -12,6 +12,9 @@ visual-check.py
 build-tools/test-content.py
 build-tools/test-render.js
 
+# Local helper for applying a ZIP from a Claude chat (not needed by the site, admin or publisher)
+build-tools/apply_update.py
+
 # Scratch and build leftovers
 screenshots/
 node_modules/

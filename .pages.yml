@@ -38,6 +38,14 @@ actions:
       title: Publish now?
       message: The website normally updates by itself a minute or two after every save. Use this only if it looks out of date.
       button: Publish
+  - name: backup
+    label: Back up now
+    workflow: backup.yml
+    ref: current
+    confirm:
+      title: Back up now?
+      message: Saves a copy of your listings, part boxes, photos, sales and FAQ as a "Backup" under the repository's Releases on GitHub (takes about a minute). A backup also runs by itself every Monday.
+      button: Back up
 
 content:
   - name: builds
