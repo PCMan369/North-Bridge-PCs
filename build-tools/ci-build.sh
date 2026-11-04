@@ -14,7 +14,16 @@ cd "$(dirname "$0")/.."
 
 BRANCH="${GITHUB_REF_NAME:-$(git rev-parse --abbrev-ref HEAD)}"
 REMOTE="${PUBLISH_REMOTE:-origin}"
-SAVE_PATHS=(content images videos js css ./*.html sitemap.xml robots.txt)
+# Paths to save. A path that does not exist (for example videos/ before any clip has been added) is left out: git
+# refuses the whole "git add" if one pathspec matches nothing. ':(glob)*.html' (not ./*.html) so that a deleted
+# pc-<id>.html is saved as a deletion too.
+save_paths() {
+  local p
+  for p in content images videos js css sitemap.xml robots.txt; do
+    if [ -e "$p" ] || [ -n "$(git ls-files -- "$p")" ]; then printf '%s\n' "$p"; fi
+  done
+  printf '%s\n' ':(glob)*.html'
+}
 
 for attempt in 1 2 3; do
   python3 build-tools/photos.py
@@ -22,7 +31,8 @@ for attempt in 1 2 3; do
   python3 build-tools/content.py
   python3 build-tools/stitch.py
 
-  git add -A -- "${SAVE_PATHS[@]}" 2>/dev/null || git add -A -- content images js css
+  mapfile -t SAVE_PATHS < <(save_paths)
+  git add -A -- "${SAVE_PATHS[@]}"
   if git diff --cached --quiet; then
     echo "Nothing to save: generated files were already up to date."
     exit 0

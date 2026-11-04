@@ -266,12 +266,25 @@ def main() -> int:
     # be indexed, just the error page GitHub Pages serves for unmatched
     # URLs. It still gets the full header/footer/build treatment above
     # like every other page; it's just left out of this one list.
-    sitemap_pages = [name for name in built if name != "404.html"]
+    #
+    # build.html is the generic listing template (it shows "System Not Found"
+    # without an id), so it is left out too; each public listing has its own
+    # pc-<id>.html page (written by previews.py) and those are listed instead.
+    listing_pages = []
+    if "build.html" in built:
+        try:
+            import previews
+            listing_pages = previews.generate(site_url)
+        except Exception as e:          # the share pages are an extra; never stop the main build for them
+            print(f"NOTE: the listing share pages were not written ({e}).")
+    sitemap_pages = [name for name in built if name not in ("404.html", "build.html")] + listing_pages
     if sitemap_pages:
         (ROOT / "sitemap.xml").write_text(build_sitemap(site_url, sitemap_pages), encoding="utf-8")
         (ROOT / "robots.txt").write_text(build_robots_txt(site_url), encoding="utf-8")
 
     print(f"Built {len(built)} page(s): {', '.join(built) if built else '(none)'}")
+    if listing_pages:
+        print(f"Wrote {len(listing_pages)} listing page(s) for sharing: {', '.join(listing_pages)}")
     if skipped:
         print(f"Skipped {len(skipped)} file(s):")
         for name, reason in skipped:

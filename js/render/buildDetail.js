@@ -42,7 +42,8 @@ function initBuildDetailPage() {
   if (!contentEl) return;
 
   var params = new URLSearchParams(window.location.search);
-  var id = params.get('id');
+  // pc-<id>.html pages (made by build-tools/previews.py) carry the id in data-build-id; build.html?id=<id> still works.
+  var id = contentEl.getAttribute('data-build-id') || params.get('id');
   var build = builds.find(function (b) { return b.id === id; }) || null;
   // Only available or sold listings have a public page; anything else is "not found".
   if (build && build.status !== 'available' && build.status !== 'sold') build = null;
@@ -58,7 +59,14 @@ function initBuildDetailPage() {
     return;
   }
 
+  // The old build.html?id=<id> address now points search engines at the listing's own page.
+  if (!contentEl.getAttribute('data-build-id') && typeof SITE !== 'undefined' && SITE.url) {
+    var canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.href = SITE.url + '/pc-' + build.id + '.html';
+  }
+
   // ---- Page title / meta description ----
+  // (build-tools/previews.py writes these same two strings into each pc-<id>.html head; keep them in step)
   document.title = build.title + ' | North Bridge PCs';
   var metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) {

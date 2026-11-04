@@ -83,7 +83,7 @@ function renderBuildCard(build) {
         perfHtml +
         '<div class="build-footer">' +
           priceHtml +
-          '<a href="build.html?id=' + escapeHtml(encodeURIComponent(build.id)) + '" class="btn btn-primary btn-sm">' +
+          '<a href="pc-' + escapeHtml(encodeURIComponent(build.id)) + '.html" class="btn btn-primary btn-sm">' +
             (isSold ? 'View Build' : 'View Details') +
           '</a>' +
         '</div>' +
