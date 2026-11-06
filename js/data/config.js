@@ -28,7 +28,7 @@
 
 const SITE = {
   // Core identity — used in <title> tags, footer, structured data, etc.
-  businessName: "North Bridge PCs",
+  businessName: "Jacob Skrove PCs",
   tagline: "Southern Oregon Gaming PCs",
 
   // IMPORTANT: update this the day you get a custom domain, and nowhere

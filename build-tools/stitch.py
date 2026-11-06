@@ -107,7 +107,7 @@ def build_seo_block(site_url: str, page_filename: str, title: str, description: 
     lines = [
         f'<link rel="canonical" href="{page_url}">',
         '<meta property="og:type" content="website">',
-        '<meta property="og:site_name" content="North Bridge PCs">',
+        '<meta property="og:site_name" content="Jacob Skrove PCs">',
         f'<meta property="og:title" content="{title_attr}">',
         f'<meta property="og:description" content="{desc_attr}">',
         f'<meta property="og:url" content="{page_url}">',
@@ -127,7 +127,7 @@ def build_seo_block(site_url: str, page_filename: str, title: str, description: 
             "{\n"
             '  "@context": "https://schema.org",\n'
             '  "@type": "ComputerStore",\n'
-            '  "name": "North Bridge PCs",\n'
+            '  "name": "Jacob Skrove PCs",\n'
             '  "description": "Gaming PC sales and custom builds in Southern Oregon.",\n'
             f'  "url": "{site_url}/",\n'
             '  "address": {\n'
@@ -229,7 +229,7 @@ def main() -> int:
         if SEO_MARKER in content:
             title_match = TITLE_RE.search(content)
             desc_match = DESCRIPTION_RE.search(content)
-            title = title_match.group(1) if title_match else "North Bridge PCs"
+            title = title_match.group(1) if title_match else "Jacob Skrove PCs"
             description = desc_match.group(1) if desc_match else ""
             seo_html = build_seo_block(site_url, src_file.name, title, description)
             content = content.replace(SEO_MARKER, seo_html)

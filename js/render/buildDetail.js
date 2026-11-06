@@ -67,10 +67,10 @@ function initBuildDetailPage() {
 
   // ---- Page title / meta description ----
   // (build-tools/previews.py writes these same two strings into each pc-<id>.html head; keep them in step)
-  document.title = build.title + ' | North Bridge PCs';
+  document.title = build.title + ' | Jacob Skrove PCs';
   var metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) {
-    metaDesc.content = build.title + ', ' + build.price + '. Built and tested by North Bridge PCs. Pickup in person near Grants Pass, Oregon.';
+    metaDesc.content = build.title + ', ' + build.price + '. Built and tested by Jacob Skrove PCs. Pickup in person near Grants Pass, Oregon.';
   }
 
   var isAvailable = build.status === 'available';
@@ -202,7 +202,7 @@ function initBuildDetailPage() {
         '<div class="listing-form-sub">Send a message and I\'ll reply by email, usually within a day or two.</div>' +
         '<div class="listing-system-badge"><span>Asking about:</span> <strong>' + escapeHtml(build.title) + '</strong></div>' +
         '<form action="https://formsubmit.co/' + CONTACT.email + '" method="POST" aria-live="polite" aria-atomic="true">' +
-          '<input type="hidden" name="_subject" value="Inquiry: ' + escapeHtml(build.title) + ' \u2014 North Bridge PCs">' +
+          '<input type="hidden" name="_subject" value="Inquiry: ' + escapeHtml(build.title) + ' \u2014 Jacob Skrove PCs">' +
           '<input type="hidden" name="_captcha" value="false">' +
           '<input type="hidden" name="_template" value="table">' +
           '<input type="hidden" name="_next" value="' + escapeHtml(nextUrl) + '">' +
@@ -247,7 +247,7 @@ function initBuildDetailPage() {
   var trustHtml =
     '<div class="trust-section">' +
       '<div class="section-header" style="text-align:left; margin-bottom:2rem;">' +
-        '<span class="section-label">Why North Bridge PCs</span>' +
+        '<span class="section-label">Why Jacob Skrove PCs</span>' +
         '<h2 style="font-size:1.5rem;">What You\'re Getting</h2>' +
       '</div>' +
       renderTrustEvidence() +

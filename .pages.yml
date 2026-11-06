@@ -1,4 +1,4 @@
-# Admin forms for North Bridge PCs (Pages CMS, https://app.pagescms.org).
+# Admin forms for Jacob Skrove PCs (Pages CMS, https://app.pagescms.org).
 # Edits the files in content/ and photos in images/. Saving commits to GitHub,
 # which starts the "Publish site" workflow (.github/workflows/publish.yml).
 # Listing rules that this form can't express (duplicate IDs, a photo required

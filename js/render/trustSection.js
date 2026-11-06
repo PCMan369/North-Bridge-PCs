@@ -2,7 +2,7 @@
   ================================================================
   js/render/trustSection.js — Shared Trust Content
   ================================================================
-  The "Why North Bridge PCs" content appears on build detail pages.
+  The "Why Jacob Skrove PCs" content appears on build detail pages.
   This is the single source of truth for that real content — as of
   Redesign Batch 2, presented as one lead statement + a plain
   checklist (the "evidence" pattern), matching what Batch 1 shipped

@@ -51,7 +51,7 @@ function renderNotifyBox() {
           '</p>' +
         '</div>' +
         '<form class="notify-form-wrap" id="notify-form" method="POST" action="https://formsubmit.co/' + CONTACT.email + '">' +
-          '<input type="hidden" name="_subject" value="Notify me request \u2014 North Bridge PCs">' +
+          '<input type="hidden" name="_subject" value="Notify me request \u2014 Jacob Skrove PCs">' +
           '<input type="hidden" name="_captcha" value="false">' +
           '<input type="hidden" name="_template" value="table">' +
           '<input type="hidden" name="_next" value="' + nextUrl + '">' +

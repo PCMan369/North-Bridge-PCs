@@ -388,7 +388,7 @@ def load_extras():
                 problem("content/gallery-extras.json", "The extra gallery photo {} isn't in the images folder.".format(src))
             if not alt:
                 warn("content/gallery-extras.json", "The extra gallery photo {} has no description.".format(src))
-            out[section].append({"src": src, "alt": alt or "North Bridge PCs photo"})
+            out[section].append({"src": src, "alt": alt or "Jacob Skrove PCs photo"})
     return out
 
 

@@ -5,7 +5,7 @@ build-tools/previews.py — makes a shareable page for every public listing.
 WHY
   Listing pages are drawn in the browser from js/data/builds.js. The raw page
   that Facebook, text messages, Discord and search engines read is generic, so a
-  link to one PC previewed as "Gaming PC | North Bridge PCs" with the same
+  link to one PC previewed as "Gaming PC | Jacob Skrove PCs" with the same
   picture for every listing.
 
 WHAT THIS DOES (runs as the last step of build-tools/stitch.py)
@@ -94,12 +94,12 @@ def price_number(price_text):
 
 def title_text(listing):
     # same wording as js/render/buildDetail.js
-    return "{} | North Bridge PCs".format(listing["title"])
+    return "{} | Jacob Skrove PCs".format(listing["title"])
 
 
 def description_text(listing):
     # same wording as js/render/buildDetail.js
-    return "{}, {}. Built and tested by North Bridge PCs. Pickup in person near Grants Pass, Oregon.".format(
+    return "{}, {}. Built and tested by Jacob Skrove PCs. Pickup in person near Grants Pass, Oregon.".format(
         listing["title"], listing.get("price", ""))
 
 
@@ -140,7 +140,7 @@ def head_block(site_url, listing, share_ok):
     lines = [
         '<link rel="canonical" href="{}">'.format(page_url),
         '<meta property="og:type" content="website">',
-        '<meta property="og:site_name" content="North Bridge PCs">',
+        '<meta property="og:site_name" content="Jacob Skrove PCs">',
         '<meta property="og:title" content="{}">'.format(title),
         '<meta property="og:description" content="{}">'.format(desc),
         '<meta property="og:url" content="{}">'.format(page_url),
