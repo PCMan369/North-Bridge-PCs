@@ -1,37 +1,44 @@
 <!DOCTYPE html>
-<!--
-  REDIRECT STUB for the OLD repo (North-Bridge-PCs). Not part of the site.
-  The old repo's Pages site is replaced by copies of this one file, named after every
-  page the old site had (index, about, build, builds, contact, custom-build, faq, gallery,
-  part-boxes) plus 404.html (which catches every other old address). Visitors with an old
-  link land on the same page of the new site (path, ?query and #hash are kept).
-  Change NEW_BASE (and the two links below) if the address moves again. Uses no site copy
-  beyond the one plain sentence in the body.
--->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jacob Skrove PCs has moved</title>
-<link rel="canonical" href="https://pcman369.github.io/Jacob-Skrove-PCs/">
-<noscript><meta http-equiv="refresh" content="0; url=https://pcman369.github.io/Jacob-Skrove-PCs/"></noscript>
-<script>
-(function () {
-  var NEW_BASE = 'https://pcman369.github.io/Jacob-Skrove-PCs/';
-  var OLD_BASE = '/North-Bridge-PCs/';
-  var path = location.pathname;
-  var rest = path.indexOf(OLD_BASE) === 0 ? path.slice(OLD_BASE.length) : '';
-  if (rest === 'index.html') rest = '';
-  location.replace(NEW_BASE + rest + location.search + location.hash);
-})();
-</script>
+<title>North Bridge PCs has moved to Jacob Skrove PCs</title>
+<meta name="description" content="North Bridge PCs has moved to Jacob Skrove PCs: https://pcman369.github.io/Jacob-Skrove-PCs/">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0c0c0e">
+<link rel="canonical" href="https://pcman369.github.io/North-Bridge-PCs/">
+<link rel="icon" type="image/x-icon" href="https://pcman369.github.io/Jacob-Skrove-PCs/favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:title" content="North Bridge PCs has moved to Jacob Skrove PCs">
+<meta property="og:description" content="North Bridge PCs has moved to Jacob Skrove PCs: https://pcman369.github.io/Jacob-Skrove-PCs/">
+<meta property="og:url" content="https://pcman369.github.io/North-Bridge-PCs/">
+<meta property="og:image" content="https://pcman369.github.io/Jacob-Skrove-PCs/images/may26-01-main.jpg">
 <style>
-  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
-         background: #0c0c0e; color: #f2efe9; font: 18px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; text-align: center; padding: 1rem; }
-  a { color: #ae798e; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem; background: #0c0c0e; color: #f2efe9; text-align: center;
+    font: 18px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { width: 100%; max-width: 38rem; }
+  h1 { margin: 0 0 2rem; font-size: clamp(1.75rem, 6vw, 2.75rem); line-height: 1.2; font-weight: 800; letter-spacing: -0.01em; }
+  h1 .new { color: #ae798e; }
+  .go {
+    display: inline-block; min-height: 3rem; padding: 0.9rem 1.8rem; border-radius: 10px;
+    background: #8b3f5e; color: #fff; font-size: 1.15rem; font-weight: 700; text-decoration: none;
+  }
+  .go:hover { background: #9d4a6c; }
+  .go:focus-visible { outline: 3px solid #ae798e; outline-offset: 3px; }
+  .url { margin: 1.25rem 0 0; font-size: 0.95rem; color: #a8a29a; overflow-wrap: anywhere; }
 </style>
 </head>
 <body>
-<p>This site has moved to <a href="https://pcman369.github.io/Jacob-Skrove-PCs/">Jacob Skrove PCs</a>.</p>
+<main>
+  <h1>North Bridge PCs has moved to <span class="new">Jacob Skrove PCs</span></h1>
+  <a class="go" href="https://pcman369.github.io/Jacob-Skrove-PCs/">Go to Jacob Skrove PCs</a>
+  <p class="url">https://pcman369.github.io/<wbr>Jacob-Skrove-PCs/</p>
+</main>
 </body>
 </html>
